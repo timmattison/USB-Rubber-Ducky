@@ -1,0 +1,30 @@
+package com.timmattison.hacking.usbrubberducky.parsers;
+
+import com.timmattison.hacking.usbrubberducky.constants.Whitespace;
+import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.RepeatInstruction;
+
+import java.util.List;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: timmattison
+ * Date: 11/30/13
+ * Time: 11:32 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public class DelayInstructionParser extends AbstractInstructionParser<DelayInstruction> {
+    private static final String name = "DELAY";
+    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
+    private Integer delayValue;
+
+    @Override
+    protected DelayInstruction create(List<String> input) {
+        return new DelayInstruction(Integer.parseInt(input.get(0)));
+    }
+
+    @Override
+    protected String getMatchingRegex() {
+        return matchingRegex;
+    }
+}
