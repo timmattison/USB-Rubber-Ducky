@@ -41,6 +41,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testPayloadNetcatFtpDownloadAndReverseShell() throws IOException {
+        String filename = "payload-netcat-ftp-download-and-reverse-shell";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile = TestAgainstFiles.getInputFile(filename);
         byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
