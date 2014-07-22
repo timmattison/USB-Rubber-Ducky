@@ -31,6 +31,17 @@ public class IntegrationTest {
     public void testHelloWorld() throws IOException {
         String filename = "hello-world";
 
+        testFile(filename);
+    }
+
+    @Test
+    public void testDownloadAndExecute() throws IOException {
+        String filename = "download-and-execute";
+
+        testFile(filename);
+    }
+
+    private void testFile(String filename) throws IOException {
         String[] inputFile = TestAgainstFiles.getInputFile(filename);
         byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
 
@@ -40,6 +51,9 @@ public class IntegrationTest {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         for(String line : inputFile) {
+            // Trim leading and trailing whitespace
+            line = line.trim();
+
             Instruction instruction = null;
 
             for(InstructionParser instructionParser : instructionParserSet) {
