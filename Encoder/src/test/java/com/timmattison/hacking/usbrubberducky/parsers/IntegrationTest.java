@@ -48,6 +48,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testWallpaperPrank() throws IOException {
+        String filename = "wallpaper-prank";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile = TestAgainstFiles.getInputFile(filename);
         byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
