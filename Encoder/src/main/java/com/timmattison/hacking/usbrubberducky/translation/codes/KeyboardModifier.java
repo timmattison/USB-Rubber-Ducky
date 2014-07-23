@@ -6,16 +6,16 @@ package com.timmattison.hacking.usbrubberducky.translation.codes;
 public enum KeyboardModifier implements ReturnsKeyboardCode {
     CTRL("CTRL", 0x01),
     SHIFT("SHIFT", 0x02),
-    ALT("ALT", 0x04),
+    ALT("ALT", 0xE2),
     GUI("GUI", 0x08),
-    LEFT_CTRL("LEFTCTRL", 0x01),
-    LEFT_SHIFT("LEFTSHIFT", 0x02),
-    LEFT_ALT("LEFTALT", 0x04),
-    LEFT_GUI("LEFTGUI", 0x08),
-    RIGHT_CTRL("RIGHTCTRL", 0x10),
-    RIGHT_SHIFT("RIGHTSHIFT", 0x20),
-    RIGHT_ALT("RIGHTALT", 0x40),
-    RIGHT_GUI("RIGHTGUI", 0x80);
+    LEFT_CTRL("LEFTCTRL", 0xE0),
+    LEFT_SHIFT("LEFTSHIFT", 0xE1),
+    LEFT_ALT("LEFTALT", 0xE2),
+    LEFT_GUI("LEFTGUI", 0xE3),
+    RIGHT_CTRL("RIGHTCTRL", 0xE4),
+    RIGHT_SHIFT("RIGHTSHIFT", 0xE5),
+    RIGHT_ALT("RIGHTALT", 0xE6),
+    RIGHT_GUI("RIGHTGUI", 0xE7);
 
     private final KeyboardCode value;
 
