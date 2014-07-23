@@ -1,4 +1,6 @@
-package com.timmattison.hacking.usbrubberducky.instructions;
+package com.timmattison.hacking.usbrubberducky.instructions.interfaces;
+
+import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 
 /**
  * Created with IntelliJ IDEA.

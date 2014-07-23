@@ -2,7 +2,7 @@ package com.timmattison.hacking.usbrubberducky.parsers;
 
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.instructions.BasicRepeatInstruction;
-import com.timmattison.hacking.usbrubberducky.instructions.RepeatInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
 import junit.framework.Assert;
 import org.junit.Before;

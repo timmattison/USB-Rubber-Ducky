@@ -37,14 +37,16 @@ public class KeypressInstruction implements Instruction {
         // The keyboard codes we've used already
         usedKeyboardCodes = new HashSet<KeyboardCode>();
 
-        for (KeyboardCode keyboardCode : keyboardCodeStack) {
+        while (!keyboardCodeStack.empty()) {
+            KeyboardCode keyboardCode = keyboardCodeStack.pop();
+
             // Make sure there are no duplicates
             forceNoDuplicates(keyboardCode);
 
             // Is this the first key?
             if (!first) {
                 // No, is it a modifier?
-                if (keyboardCode.getSecondByte() != 0x00) {
+                if (keyboardCode.getFirstByte() != 0x00) {
                     // No, throw an exception
                     throw new UnsupportedOperationException("All leading key codes must be modifiers");
                 }

@@ -5,7 +5,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.multibindings.Multibinder;
 import com.timmattison.hacking.usbrubberducky.instructions.BasicRepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.KeypressInstruction;
-import com.timmattison.hacking.usbrubberducky.instructions.RepeatInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.StringInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
@@ -13,7 +13,6 @@ import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstr
 import com.timmattison.hacking.usbrubberducky.parsers.*;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslator;
-import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslatorFactory;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCodes;
 
@@ -33,6 +32,7 @@ public class UsbRubberDuckyModule extends AbstractModule {
         instructionParserMultibinder.addBinding().to(StringInstructionParser.class);
         instructionParserMultibinder.addBinding().to(DelayInstructionParser.class);
         instructionParserMultibinder.addBinding().to(KeypressInstructionParser.class);
+        instructionParserMultibinder.addBinding().to(NopInstructionParser.class);
 
         bind(KeyboardCodes.class).to(USKeyboardCodes.class);
         bind(CharacterTranslator.class).to(BasicCharacterTranslator.class);

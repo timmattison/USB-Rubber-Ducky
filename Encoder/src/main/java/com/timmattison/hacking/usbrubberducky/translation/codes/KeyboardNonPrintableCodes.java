@@ -2,6 +2,11 @@ package com.timmattison.hacking.usbrubberducky.translation.codes;
 
 /**
  * Created by timmattison on 12/5/13.
+ *
+ * Built from http://www.usb.org/developers/devclass_docs/Hut1_11.pdf
+ *
+ * The original USB Rubber Ducky application defines MENU and APP as code 101.  USB HID defines MENU as 118.
+ * To maintain backwards compatibility USB HID's MENU was renamed MENU2
  */
 public enum KeyboardNonPrintableCodes implements ReturnsKeyboardCode {
     KeyboardEnter(40, "ENTER"),
@@ -31,6 +36,7 @@ public enum KeyboardNonPrintableCodes implements ReturnsKeyboardCode {
     KeyboardLeftArrow(80, "LEFTARROW"),
     KeyboardDownArrow(81, "DOWNARROW"),
     KeyboardUpArrow(82, "UPARROW"),
+    KeyboardMenu(101, "MENU"),
     KeyboardApplication(101, "APPLICATION"),
     KeyboardPower(102, "POWER"),
     KeyboardF13(104, "F13"),
@@ -47,7 +53,7 @@ public enum KeyboardNonPrintableCodes implements ReturnsKeyboardCode {
     KeyboardF24(115, "F24"),
     KeyboardExecute(116, "EXECUTE"),
     KeyboardHelp(117, "HELP"),
-    KeyboardMenu(118, "MENU"),
+    KeyboardMenu2(118, "MENU2"), // Renamed from MENU for backwards compatibility
     KeyboardSelect(119, "SELECT"),
     KeyboardStop(120, "STOP"),
     KeyboardAgain(121, "AGAIN"),
@@ -70,7 +76,7 @@ public enum KeyboardNonPrintableCodes implements ReturnsKeyboardCode {
     KeyboardInternational6(140, "INTERNATIONAL6"),
     KeyboardInternational7(141, "INTERNATIONAL7"),
     KeyboardInternational8(142, "INTERNATIONAL8"),
-    KeyboardInternational9(143, "INTERNATIONAL9"),
+    KeyboardInternational9(143, "INwallpaper-prankTERNATIONAL9"),
     KeyboardLang1(144, "LANG1"),
     KeyboardLang2(145, "LANG2"),
     KeyboardLang3(146, "LANG3"),
