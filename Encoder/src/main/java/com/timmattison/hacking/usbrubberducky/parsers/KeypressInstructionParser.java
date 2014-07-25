@@ -3,11 +3,12 @@ package com.timmattison.hacking.usbrubberducky.parsers;
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.instructions.KeypressInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressInstructionFactory;
-import com.timmattison.hacking.usbrubberducky.stack.KeyboardStackProcessor;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -20,6 +21,7 @@ import java.util.Stack;
 public class KeypressInstructionParser implements InstructionParser<KeypressInstruction> {
     private final KeypressInstructionFactory keypressInstructionFactory;
     private final KeyboardCodes keyboardCodes;
+    private Map<String, KeyboardCode> keyboardModifierMap;
 
     @Inject
     public KeypressInstructionParser(KeypressInstructionFactory keypressInstructionFactory, KeyboardCodes keyboardCodes) {
@@ -63,6 +65,18 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
     }
 
     private KeyboardCode getKeyboardModifier(String codeString) {
-        return KeyboardModifier.valueOf(codeString).getValue();
+        return getKeyboardModifierMap().get(codeString);
+    }
+
+    private Map<String, KeyboardCode> getKeyboardModifierMap() {
+        if (keyboardModifierMap == null) {
+            keyboardModifierMap = new HashMap<String, KeyboardCode>();
+
+            for (KeyboardModifier keyboardModifier : KeyboardModifier.values()) {
+                keyboardModifierMap.put(keyboardModifier.name(), keyboardModifier.getValue());
+            }
+        }
+
+        return keyboardModifierMap;
     }
 }
