@@ -46,8 +46,8 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
 
             // Did we still not find this mapping?
             if (keyboardCode == null) {
-                // No, this shouldn't happen
-                throw new UnsupportedOperationException("Unknown modifier or keyboard code [" + currentChunk + "]");
+                // No, we can't process it
+                return null;
             }
 
             // Push this code onto the stack
