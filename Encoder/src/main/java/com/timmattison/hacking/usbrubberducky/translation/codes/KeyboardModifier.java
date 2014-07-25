@@ -8,6 +8,7 @@ public enum KeyboardModifier implements ReturnsKeyboardCode {
     SHIFT("SHIFT", 0x02),
     ALT("ALT", 0xE2),
     GUI("GUI", 0x08),
+    WINDOWS("WINDOWS", 0xE3),
     LEFT_CTRL("LEFTCTRL", 0xE0),
     LEFT_SHIFT("LEFTSHIFT", 0xE1),
     LEFT_ALT("LEFTALT", 0xE2),
