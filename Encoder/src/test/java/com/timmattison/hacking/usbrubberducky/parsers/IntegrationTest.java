@@ -62,6 +62,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testYouGotQuacked() throws IOException {
+        String filename = "you-got-quacked";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile = TestAgainstFiles.getInputFile(filename);
         byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
