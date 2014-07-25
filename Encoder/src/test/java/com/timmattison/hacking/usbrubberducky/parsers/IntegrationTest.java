@@ -55,6 +55,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testHideCmdWindow() throws IOException {
+        String filename = "hide-cmd-window";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile = TestAgainstFiles.getInputFile(filename);
         byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
