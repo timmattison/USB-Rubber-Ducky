@@ -38,11 +38,28 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
         for (String inputChunk : inputChunks) {
             String currentChunk = inputChunk.trim();
 
-            KeyboardCode keyboardCode = getKeyboardCode(currentChunk);
+            boolean last = false;
 
-            // Did we find this mapping?
-            if (keyboardCode == null) {
-                // No, maybe it is a modifier
+            // Is this the last keyboard code?
+            if(inputChunk.equals(inputChunks[inputChunks.length - 1])) {
+                last = true;
+            }
+
+            boolean only = false;
+
+            // Is this the only keyboard code?
+            if(inputChunks.length == 1) {
+                only = true;
+            }
+
+            KeyboardCode keyboardCode;
+
+            if(last || only) {
+                // Yes, it must be a real key
+                keyboardCode = getKeyboardCode(currentChunk);
+            }
+            else {
+                // No, it must be a modifier
                 keyboardCode = getKeyboardModifier(currentChunk);
             }
 

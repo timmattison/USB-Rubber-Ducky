@@ -98,7 +98,8 @@ public enum KeyboardNonPrintableCodes implements ReturnsKeyboardCode {
     KeyboardOper(161, "OPER"),
     KeyboardClearAgain(162, "CLEAR_AGAIN"),
     KeyboardCrSelProps(163, "CRSEL_PROPS"),
-    KeyboardExSel(164, "EXSEL");
+    KeyboardExSel(164, "EXSEL"),
+    KeyboardWindows(0xE3, "WINDOWS");
 
     private final KeyboardCode value;
 
