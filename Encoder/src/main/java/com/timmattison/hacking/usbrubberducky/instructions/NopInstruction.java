@@ -8,6 +8,6 @@ import java.io.ByteArrayOutputStream;
 public class NopInstruction implements Instruction {
     @Override
     public byte[] getEncodedInstruction() {
-        return null;
+        return new byte[0];
     }
 }
