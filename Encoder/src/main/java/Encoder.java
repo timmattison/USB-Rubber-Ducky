@@ -402,6 +402,15 @@ public class Encoder {
 		for (int i = 0; i < file.size(); i++) {
 			data[i] = file.get(i);
 		}
+
+        // Support to output to stdout to allow fast testing
+        // Did the user specify minus/dash as their output file?
+        if(fileDest.equals("-")) {
+            // Yes, print the output to stdout and return immediately
+            System.out.print(data);
+            return;
+        }
+
 		try {
 			File someFile = new File(fileDest);
 			FileOutputStream fos = new FileOutputStream(someFile);
