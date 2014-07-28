@@ -155,6 +155,20 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testPowershellWgetAndExecute() throws IOException {
+        String filename = "powershell-wget-and-execute";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testPowershellWgetAndExecuteHidden() throws IOException {
+        String filename = "powershell-wget-and-execute-hidden";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
