@@ -127,6 +127,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testFtpUploadDownload() throws IOException {
+        String filename = "ftp-upload-download";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
