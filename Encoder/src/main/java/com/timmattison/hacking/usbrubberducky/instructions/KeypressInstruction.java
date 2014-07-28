@@ -19,7 +19,6 @@ import java.util.Stack;
  */
 public class KeypressInstruction implements Instruction {
     private final Stack<KeyboardCode> keyboardCodeStack;
-    private Set<KeyboardCode> usedKeyboardCodes;
 
     @Inject
     public KeypressInstruction(@Assisted("keyboardCodeStack") Stack<KeyboardCode> keyboardCodeStack) {
@@ -36,13 +35,15 @@ public class KeypressInstruction implements Instruction {
         KeyboardCode output = null;
 
         // The keyboard codes we've used already
-        usedKeyboardCodes = new HashSet<KeyboardCode>();
+        HashSet<KeyboardCode> usedKeyboardCodes = new HashSet<KeyboardCode>();
 
-        while (!keyboardCodeStack.empty()) {
-            KeyboardCode keyboardCode = keyboardCodeStack.pop();
+        Stack<KeyboardCode> tempKeyboardCodeStack = (Stack<KeyboardCode>) keyboardCodeStack.clone();
+
+        while (!tempKeyboardCodeStack.empty()) {
+            KeyboardCode keyboardCode = tempKeyboardCodeStack.pop();
 
             // Make sure there are no duplicates
-            forceNoDuplicates(keyboardCode);
+            forceNoDuplicates(usedKeyboardCodes, keyboardCode);
 
             // Is this the first key?
             if (!first) {
@@ -79,7 +80,7 @@ public class KeypressInstruction implements Instruction {
         return output.getBytes();
     }
 
-    private void forceNoDuplicates(KeyboardCode keyboardCode) {
+    private void forceNoDuplicates(HashSet<KeyboardCode> usedKeyboardCodes, KeyboardCode keyboardCode) {
         int sizeBeforeAdding = usedKeyboardCodes.size();
 
         usedKeyboardCodes.add(keyboardCode);
