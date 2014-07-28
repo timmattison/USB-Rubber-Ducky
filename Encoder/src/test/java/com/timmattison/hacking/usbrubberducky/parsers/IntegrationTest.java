@@ -169,6 +169,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testMimikatz() throws IOException {
+        String filename = "mimikatz";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
