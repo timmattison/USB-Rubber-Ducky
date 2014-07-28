@@ -14,6 +14,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -73,32 +76,57 @@ public class IntegrationTest {
         String[] inputFile = TestAgainstFiles.getInputFile(filename);
         byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
 
-        TypeLiteral<Set<InstructionParser>> instructionParserTypeLiteral = new TypeLiteral<Set<InstructionParser>>(){};
+        TypeLiteral<Set<InstructionParser>> instructionParserTypeLiteral = new TypeLiteral<Set<InstructionParser>>() {
+        };
         Set<InstructionParser> instructionParserSet = injector.getInstance(Key.get(instructionParserTypeLiteral));
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        List<Instruction> instructions = new ArrayList<Instruction>();
 
-        for(String line : inputFile) {
+        for (String line : inputFile) {
             // Trim leading and trailing whitespace
             line = line.trim();
 
             Instruction instruction = null;
 
-            for(InstructionParser instructionParser : instructionParserSet) {
+            for (InstructionParser instructionParser : instructionParserSet) {
                 instruction = instructionParser.parse(line);
 
-                if(instruction != null) {
+                if (instruction != null) {
                     break;
                 }
             }
 
-            if(instruction == null) {
+            if (instruction == null) {
                 // Couldn't process this instruction!
                 throw new UnsupportedOperationException("Couldn't process instruction [" + line + "]");
             }
 
+            instructions.add(instruction);
+        }
+
+        int counter = 0;
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        for (Instruction instruction : instructions) {
             byte[] encodedInstruction = instruction.getEncodedInstruction();
             baos.write(encodedInstruction);
+
+            byte[] instructionToTestAgainst = Arrays.copyOfRange(outputFile, counter, counter + encodedInstruction.length);
+
+            if(!Arrays.equals(instructionToTestAgainst, encodedInstruction)) {
+                // Bad!
+                if((instructionToTestAgainst[1] == 1) && (encodedInstruction[1] == 3)) {
+                    System.out.println("Could be a case issue");
+                }
+                else {
+                    System.out.println("BAD");
+                }
+            }
+
+            Assert.assertArrayEquals(instruction.toString() + " failed to match", instructionToTestAgainst, encodedInstruction);
+
+            counter += encodedInstruction.length;
         }
 
         byte[] generatedOutput = baos.toByteArray();
