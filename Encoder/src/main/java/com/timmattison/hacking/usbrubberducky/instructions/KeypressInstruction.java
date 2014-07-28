@@ -45,34 +45,13 @@ public class KeypressInstruction implements Instruction {
             // Make sure there are no duplicates
             forceNoDuplicates(usedKeyboardCodes, keyboardCode);
 
-            // Is this the first key?
-            if (!first) {
-                // No, is it a modifier?
-                if (keyboardCode.getFirstByte() != 0x00) {
-                    // No, throw an exception
-                    throw new UnsupportedOperationException("All leading key codes must be modifiers");
-                }
-
-                // Is this a GUI key and did we already see one as the final key?
-                if (isLeftGuiKey(keyboardCode) && finalKeyIsLeftGui) {
-                    // Yes, throw an exception
-                    throw new UnsupportedOperationException("GUI key cannot be the final keypress and a modifier at the same time");
-                }
-
-                // Combine it with the previous keys
-                output = output.combine(keyboardCode);
-            } else {
-                // Yes, copy it
+            // Do we have any keys yet?
+            if (output == null) {
+                // No, just copy this code
                 output = keyboardCode;
-
-                // Is this the left GUI key?
-                if (isLeftGuiKey(output)) {
-                    // Yes, indicate that it is
-                    finalKeyIsLeftGui = true;
-                }
-
-                // We are past the first key
-                first = false;
+            } else {
+                // Yes, it with the previous keys
+                output = output.combine(keyboardCode);
             }
         }
 
@@ -87,7 +66,7 @@ public class KeypressInstruction implements Instruction {
 
         int sizeAfterAdding = usedKeyboardCodes.size();
 
-        if(sizeAfterAdding == sizeBeforeAdding) {
+        if (sizeAfterAdding == sizeBeforeAdding) {
             throw new UnsupportedOperationException("Duplicate keyboard code in a single line [" + keyboardCode + "]");
         }
     }
