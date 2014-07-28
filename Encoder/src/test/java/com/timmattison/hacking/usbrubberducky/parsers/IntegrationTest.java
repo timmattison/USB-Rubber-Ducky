@@ -120,7 +120,7 @@ public class IntegrationTest {
 
         byte[] generatedData = basicInstructionList.getBytes();
 
-        Assert.assertArrayEquals(outputFile, generatedData);
+        Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
     }
 
     private byte[] getOutputFileFromOriginalEncoder(String filename) throws IOException {
