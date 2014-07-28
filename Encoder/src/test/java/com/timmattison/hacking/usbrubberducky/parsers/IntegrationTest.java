@@ -99,6 +99,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testNonMaliciousAutoDefacer() throws IOException {
+        String filename = "non-malicious-auto-defacer";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
