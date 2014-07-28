@@ -45,16 +45,9 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
                 last = true;
             }
 
-            boolean only = false;
-
-            // Is this the only keyboard code?
-            if(inputChunks.length == 1) {
-                only = true;
-            }
-
             KeyboardCode keyboardCode;
 
-            if(last || only) {
+            if(last) {
                 // Yes, it must be a real key
                 keyboardCode = getKeyboardCode(currentChunk);
             }
