@@ -10,6 +10,7 @@ package com.timmattison.hacking.usbrubberducky.translation.codes;
  */
 public enum KeyboardNonPrintableCodes implements ReturnsKeyboardCode {
     KeyboardEnter(40, "ENTER"),
+    KeyboardEscape(41, "ESCAPE"),
     KeyboardSpace(44, "SPACE"),
     KeyboardCapsLock(57, "CAPSLOCK"),
     KeyboardF1(58, "F1"),
