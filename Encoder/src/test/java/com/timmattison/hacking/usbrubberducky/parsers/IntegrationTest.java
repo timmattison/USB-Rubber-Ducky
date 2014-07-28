@@ -113,6 +113,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testDuckyDownloader() throws IOException {
+        String filename = "ducky-downloader";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
