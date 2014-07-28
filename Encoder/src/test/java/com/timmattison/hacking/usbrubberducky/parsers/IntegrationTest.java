@@ -71,6 +71,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testReverseShell() throws IOException {
+        String filename = "reverse-shell";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
