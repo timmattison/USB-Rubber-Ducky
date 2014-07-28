@@ -134,7 +134,7 @@ public class IntegrationTest {
         try {
             inputFile = TestAgainstFiles.getInputFile(filename);
         } catch (NullPointerException e) {
-            throw new UnsupportedOperationException("Input file [" + filename + ".txt not found");
+            throw new UnsupportedOperationException("Input file [" + filename + ".txt] not found");
         }
 
         outputFile = getOutputFileFromOriginalEncoder(filename);
