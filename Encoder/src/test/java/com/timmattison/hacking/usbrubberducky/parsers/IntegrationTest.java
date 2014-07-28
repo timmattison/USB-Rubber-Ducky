@@ -176,6 +176,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testCreateWirelessNetworkAssociation() throws Exception {
+        String filename = "create-wireless-network-association";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
