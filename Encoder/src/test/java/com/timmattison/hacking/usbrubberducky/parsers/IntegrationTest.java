@@ -60,7 +60,7 @@ public class IntegrationTest {
 
     @Test
     public void testHideCmdWindow() throws IOException {
-        String filename = "hide-cmd-window";
+        String filename = "hide-cmd-window-expanded";
 
         testFile(filename);
     }
