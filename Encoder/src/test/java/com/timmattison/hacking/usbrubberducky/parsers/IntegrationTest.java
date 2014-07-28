@@ -6,6 +6,8 @@ import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
 import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,11 +78,23 @@ public class IntegrationTest {
         String[] inputFile = TestAgainstFiles.getInputFile(filename);
         byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
 
+        try {
+            inputFile = TestAgainstFiles.getInputFile(filename);
+        } catch (NullPointerException e) {
+            throw new UnsupportedOperationException("Input file [" + filename + ".txt not found");
+        }
+
+        try {
+            outputFile = TestAgainstFiles.getOutputFile(filename);
+        } catch (NullPointerException e) {
+            throw new UnsupportedOperationException("Output file [" + filename + ".bin not found");
+        }
+
         TypeLiteral<Set<InstructionParser>> instructionParserTypeLiteral = new TypeLiteral<Set<InstructionParser>>() {
         };
         Set<InstructionParser> instructionParserSet = injector.getInstance(Key.get(instructionParserTypeLiteral));
 
-        List<Instruction> instructions = new ArrayList<Instruction>();
+        BasicInstructionList basicInstructionList = new BasicInstructionList();
 
         for (String line : inputFile) {
             // Trim leading and trailing whitespace
@@ -101,36 +115,11 @@ public class IntegrationTest {
                 throw new UnsupportedOperationException("Couldn't process instruction [" + line + "]");
             }
 
-            instructions.add(instruction);
+            basicInstructionList.addInstruction(instruction);
         }
 
-        int counter = 0;
+        byte[] generatedData = basicInstructionList.getBytes();
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-        for (Instruction instruction : instructions) {
-            byte[] encodedInstruction = instruction.getEncodedInstruction();
-            baos.write(encodedInstruction);
-
-            byte[] instructionToTestAgainst = Arrays.copyOfRange(outputFile, counter, counter + encodedInstruction.length);
-
-            if(!Arrays.equals(instructionToTestAgainst, encodedInstruction)) {
-                // Bad!
-                if((instructionToTestAgainst[1] == 1) && (encodedInstruction[1] == 3)) {
-                    System.out.println("Could be a case issue");
-                }
-                else {
-                    System.out.println("BAD");
-                }
-            }
-
-            Assert.assertArrayEquals(instruction.toString() + " failed to match", instructionToTestAgainst, encodedInstruction);
-
-            counter += encodedInstruction.length;
-        }
-
-        byte[] generatedOutput = baos.toByteArray();
-
-        Assert.assertArrayEquals(outputFile, generatedOutput);
+        Assert.assertArrayEquals(outputFile, generatedData);
     }
 }
