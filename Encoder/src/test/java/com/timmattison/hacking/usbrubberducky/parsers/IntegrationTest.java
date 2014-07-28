@@ -97,9 +97,6 @@ public class IntegrationTest {
         BasicInstructionList basicInstructionList = new BasicInstructionList();
 
         for (String line : inputFile) {
-            // Trim leading and trailing whitespace
-            line = line.trim();
-
             Instruction instruction = null;
 
             for (InstructionParser instructionParser : instructionParserSet) {
