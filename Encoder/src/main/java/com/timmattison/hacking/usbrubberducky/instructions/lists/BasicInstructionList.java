@@ -60,4 +60,8 @@ public class BasicInstructionList implements InstructionList {
 
         return baos.toByteArray();
     }
+
+    public List<Instruction> getInstructions() {
+        return instructionList;
+    }
 }
