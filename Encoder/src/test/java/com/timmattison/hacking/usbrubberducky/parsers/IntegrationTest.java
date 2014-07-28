@@ -120,6 +120,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testDuckyPhisher() throws IOException {
+        String filename = "ducky-phisher";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
