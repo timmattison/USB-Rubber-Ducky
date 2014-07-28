@@ -92,6 +92,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testWifiBackdoor() throws IOException {
+        String filename = "wifi-backdoor";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
