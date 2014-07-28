@@ -30,7 +30,6 @@ public class BasicRepeatInstruction implements RepeatInstruction {
 
     @Override
     public byte[] getEncodedInstruction() {
-        //To change body of implemented methods use File | Settings | File Templates.
-        throw new UnsupportedOperationException("Not implemented yet.  May use AbtractInstruction base class here.");
+        throw new UnsupportedOperationException("Not implemented yet.");
     }
 }
