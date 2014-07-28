@@ -78,6 +78,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testForkBomb() throws IOException {
+        String filename = "fork-bomb";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
