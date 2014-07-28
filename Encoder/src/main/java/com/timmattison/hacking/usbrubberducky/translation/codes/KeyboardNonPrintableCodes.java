@@ -105,7 +105,8 @@ public enum KeyboardNonPrintableCodes implements ReturnsKeyboardCode {
     KeyboardCrSelProps(163, "CRSEL_PROPS"),
     KeyboardExSel(164, "EXSEL"),
     KeyboardWindows(0xE3, "WINDOWS"),
-    KeyboardGui(0xE3, "GUI");
+    KeyboardGui(0xE3, "GUI"),
+    KeyboardTab(0x2B, "TAB");
 
     private final KeyboardCode value;
 
