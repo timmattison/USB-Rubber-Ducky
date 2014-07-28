@@ -106,6 +106,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testLockYourComputerMessage() throws IOException {
+        String filename = "lock-your-computer-message";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
