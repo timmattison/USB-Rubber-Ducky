@@ -1,5 +1,6 @@
 package com.timmattison.hacking.usbrubberducky.instructions;
 
+import com.google.gson.Gson;
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
@@ -96,5 +97,10 @@ public class KeypressInstruction implements Instruction {
 
     private boolean isRightGuiKey(KeyboardCode keyboardCode) {
         return keyboardCode.equals(KeyboardModifier.RIGHT_GUI.getValue());
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }
