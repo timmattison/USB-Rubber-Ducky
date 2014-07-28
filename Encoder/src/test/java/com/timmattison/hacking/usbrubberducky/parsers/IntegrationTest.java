@@ -141,6 +141,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testSillyMouseWindowsIsForKids() throws IOException {
+        String filename = "silly-mouse-windows-is-for-kids";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
