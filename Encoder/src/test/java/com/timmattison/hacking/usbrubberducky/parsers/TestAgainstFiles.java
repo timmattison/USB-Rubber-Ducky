@@ -28,6 +28,10 @@ public class TestAgainstFiles {
         return readFileAsStringArray(inputPath + filename + inputSuffix);
     }
 
+    public static String getInputFileName(String filename) {
+        return inputPath + filename + inputSuffix;
+    }
+
     public static byte[] getOutputFile(int fileNumber) throws IOException {
         return readFileAsByteArray(outputPath + fileNumber + outputSuffix);
     }

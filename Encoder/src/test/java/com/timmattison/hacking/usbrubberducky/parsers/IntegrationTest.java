@@ -12,10 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -75,8 +72,8 @@ public class IntegrationTest {
     }
 
     private void testFile(String filename) throws IOException {
-        String[] inputFile = TestAgainstFiles.getInputFile(filename);
-        byte[] outputFile = TestAgainstFiles.getOutputFile(filename);
+        String[] inputFile;
+        byte[] outputFile;
 
         try {
             inputFile = TestAgainstFiles.getInputFile(filename);
@@ -84,11 +81,7 @@ public class IntegrationTest {
             throw new UnsupportedOperationException("Input file [" + filename + ".txt not found");
         }
 
-        try {
-            outputFile = TestAgainstFiles.getOutputFile(filename);
-        } catch (NullPointerException e) {
-            throw new UnsupportedOperationException("Output file [" + filename + ".bin not found");
-        }
+        outputFile = getOutputFileFromOriginalEncoder(filename);
 
         TypeLiteral<Set<InstructionParser>> instructionParserTypeLiteral = new TypeLiteral<Set<InstructionParser>>() {
         };
@@ -121,5 +114,50 @@ public class IntegrationTest {
         byte[] generatedData = basicInstructionList.getBytes();
 
         Assert.assertArrayEquals(outputFile, generatedData);
+    }
+
+    private byte[] getOutputFileFromOriginalEncoder(String filename) throws IOException {
+        byte[] outputFile;// Create a stream to hold the output
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        // Save the original System.out
+        PrintStream old = System.out;
+
+        // Use the printStream
+        System.setOut(printStream);
+
+        // Build the arguments for the encoder
+        List<String> args = buildEncoderArgs(filename);
+
+        // Run the encoder and capture the output
+        com.hak5.usbrubberducky.Encoder.main(args.toArray(new String[args.size()]));
+
+        // Flush the output
+        System.out.flush();
+
+        // Go back to the original System.out
+        System.setOut(old);
+
+        // Get the output from the Encoder
+        outputFile = baos.toByteArray();
+        return outputFile;
+    }
+
+    private List<String> buildEncoderArgs(String filename) {
+        List<String> args = new ArrayList<String>();
+
+        // Input file arguments
+        args.add("-i");
+        args.add(TestAgainstFiles.getInputFileName(filename));
+
+        // Output file arguments
+        args.add("-o");
+        args.add("-");
+
+        // Test mode argument
+        args.add("-t");
+
+        return args;
     }
 }
