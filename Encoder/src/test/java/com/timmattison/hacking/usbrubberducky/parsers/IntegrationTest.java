@@ -85,6 +85,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testUtilmanExploit() throws IOException {
+        String filename = "utilman-exploit";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws IOException {
         String[] inputFile;
         byte[] outputFile;
