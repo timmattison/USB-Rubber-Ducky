@@ -170,8 +170,8 @@ public class IntegrationTest {
     }
 
     @Test
-    public void testMimikatz() throws Exception {
-        String filename = "mimikatz";
+    public void testMimikatz1() throws Exception {
+        String filename = "mimikatz-1";
 
         testFile(filename);
     }
