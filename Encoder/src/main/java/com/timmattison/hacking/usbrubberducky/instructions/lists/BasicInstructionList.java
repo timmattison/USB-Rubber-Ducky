@@ -28,12 +28,30 @@ public class BasicInstructionList implements InstructionList {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Instruction lastInstruction = null;
 
+        // Loop through all of the instructions
         for (Instruction instruction : instructionList) {
+            // Is this instruction a repeat instruction?
             if (instruction instanceof RepeatInstruction) {
+                // Yes, get the repeat instruction
                 RepeatInstruction repeatInstruction = (RepeatInstruction) instruction;
+
+                // Not supporting multiple instructions yet
+                if (repeatInstruction.getInstructionCount() != 1) {
+                    throw new UnsupportedOperationException("Instruction count > 1, not supported yet");
+                }
+
+                // Is the last instruction NULL?
+                if (lastInstruction == null) {
+                    throw new UnsupportedOperationException("Either REPEAT was used as the first instruction or REPEAT was used immediately after a REPEAT.  This behavior is not supported.");
+                }
+
+                // Loop as many times as required
                 for (int loop = 0; loop < repeatInstruction.getRepeatCount(); loop++) {
                     baos.write(lastInstruction.getEncodedInstruction());
                 }
+            } else {
+                // No, just encode the instruction
+                baos.write(instruction.getEncodedInstruction());
             }
 
             // Track the last instruction so we can repeat it
