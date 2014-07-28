@@ -29,10 +29,6 @@ public class KeyboardCode {
         return stringToMatch;
     }
 
-    public boolean matches(String input) {
-        return stringToMatch.matches(input);
-    }
-
     public KeyboardCode combine(KeyboardCode keyboardCode) {
         KeyboardCode newKeyboardCode = new KeyboardCode(stringToMatch, (byte) (firstByte | keyboardCode.getFirstByte()), (byte) (secondByte | keyboardCode.getSecondByte()));
 
