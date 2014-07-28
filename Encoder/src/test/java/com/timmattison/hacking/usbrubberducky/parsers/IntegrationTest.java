@@ -169,6 +169,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testMobileTabs() throws Exception {
+        String filename = "mobile-tabs";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
