@@ -5,6 +5,7 @@ package com.timmattison.hacking.usbrubberducky.translation.codes;
  */
 public enum KeyboardModifier implements ReturnsKeyboardCode {
     CTRL("CTRL", 0x01),
+    CONTROL("CONTROL", 0x01),
     SHIFT("SHIFT", 0x02),
     ALT("ALT", 0xE2),
     GUI("GUI", 0x08),
