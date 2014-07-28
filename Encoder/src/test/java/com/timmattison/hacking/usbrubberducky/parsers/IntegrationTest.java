@@ -169,13 +169,6 @@ public class IntegrationTest {
         testFile(filename);
     }
 
-    @Test
-    public void testMimikatz1() throws Exception {
-        String filename = "mimikatz-1";
-
-        testFile(filename);
-    }
-
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
