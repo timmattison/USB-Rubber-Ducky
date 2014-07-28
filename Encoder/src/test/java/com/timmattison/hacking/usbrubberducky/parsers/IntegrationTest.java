@@ -30,153 +30,153 @@ public class IntegrationTest {
     }
 
     @Test
-    public void testHelloWorld() throws IOException {
+    public void testHelloWorld() throws Exception {
         String filename = "hello-world";
 
         testFile(filename);
     }
 
     @Test
-    public void testDownloadAndExecute() throws IOException {
+    public void testDownloadAndExecute() throws Exception {
         String filename = "download-and-execute";
 
         testFile(filename);
     }
 
     @Test
-    public void testPayloadNetcatFtpDownloadAndReverseShell() throws IOException {
+    public void testPayloadNetcatFtpDownloadAndReverseShell() throws Exception {
         String filename = "netcat-ftp-download-and-reverse-shell";
 
         testFile(filename);
     }
 
     @Test
-    public void testWallpaperPrank() throws IOException {
+    public void testWallpaperPrank() throws Exception {
         String filename = "wallpaper-prank";
 
         testFile(filename);
     }
 
     @Test
-    public void testHideCmdWindow() throws IOException {
+    public void testHideCmdWindow() throws Exception {
         String filename = "hide-cmd-window-expanded";
 
         testFile(filename);
     }
 
     @Test
-    public void testYouGotQuacked() throws IOException {
+    public void testYouGotQuacked() throws Exception {
         String filename = "you-got-quacked";
 
         testFile(filename);
     }
 
     @Test
-    public void testReverseShell() throws IOException {
+    public void testReverseShell() throws Exception {
         String filename = "reverse-shell";
 
         testFile(filename);
     }
 
     @Test
-    public void testForkBomb() throws IOException {
+    public void testForkBomb() throws Exception {
         String filename = "fork-bomb";
 
         testFile(filename);
     }
 
     @Test
-    public void testUtilmanExploit() throws IOException {
+    public void testUtilmanExploit() throws Exception {
         String filename = "utilman-exploit";
 
         testFile(filename);
     }
 
     @Test
-    public void testWifiBackdoor() throws IOException {
+    public void testWifiBackdoor() throws Exception {
         String filename = "wifi-backdoor";
 
         testFile(filename);
     }
 
     @Test
-    public void testNonMaliciousAutoDefacer() throws IOException {
+    public void testNonMaliciousAutoDefacer() throws Exception {
         String filename = "non-malicious-auto-defacer";
 
         testFile(filename);
     }
 
     @Test
-    public void testLockYourComputerMessage() throws IOException {
+    public void testLockYourComputerMessage() throws Exception {
         String filename = "lock-your-computer-message";
 
         testFile(filename);
     }
 
     @Test
-    public void testDuckyDownloader() throws IOException {
+    public void testDuckyDownloader() throws Exception {
         String filename = "ducky-downloader";
 
         testFile(filename);
     }
 
     @Test
-    public void testDuckyPhisher() throws IOException {
+    public void testDuckyPhisher() throws Exception {
         String filename = "ducky-phisher";
 
         testFile(filename);
     }
 
     @Test
-    public void testFtpUploadDownload() throws IOException {
+    public void testFtpUploadDownload() throws Exception {
         String filename = "ftp-upload-download";
 
         testFile(filename);
     }
 
     @Test
-    public void testRestartPrank() throws IOException {
+    public void testRestartPrank() throws Exception {
         String filename = "restart-prank";
 
         testFile(filename);
     }
 
     @Test
-    public void testSillyMouseWindowsIsForKids() throws IOException {
+    public void testSillyMouseWindowsIsForKids() throws Exception {
         String filename = "silly-mouse-windows-is-for-kids";
 
         testFile(filename);
     }
 
     @Test
-    public void testWindowsScreenRotationHack() throws IOException {
+    public void testWindowsScreenRotationHack() throws Exception {
         String filename = "windows-screen-rotation-hack";
 
         testFile(filename);
     }
 
     @Test
-    public void testPowershellWgetAndExecute() throws IOException {
+    public void testPowershellWgetAndExecute() throws Exception {
         String filename = "powershell-wget-and-execute";
 
         testFile(filename);
     }
 
     @Test
-    public void testPowershellWgetAndExecuteHidden() throws IOException {
+    public void testPowershellWgetAndExecuteHidden() throws Exception {
         String filename = "powershell-wget-and-execute-hidden";
 
         testFile(filename);
     }
 
     @Test
-    public void testMimikatz() throws IOException {
+    public void testMimikatz() throws Exception {
         String filename = "mimikatz";
 
         testFile(filename);
     }
 
-    private void testFile(String filename) throws IOException {
+    private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
 
@@ -218,7 +218,7 @@ public class IntegrationTest {
         Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
     }
 
-    private byte[] getOutputFileFromOriginalEncoder(String filename) throws IOException {
+    private byte[] getOutputFileFromOriginalEncoder(String filename) throws Exception {
         byte[] outputFile;// Create a stream to hold the output
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(baos);

@@ -14,7 +14,7 @@ import javax.swing.text.rtf.RTFEditorKit;
 
 public class Encoder {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         String helpStr = "Hak5 Duck Encoder 1.2\n\n"
                 + "usage: duckencode -i [file ..]\t\t\tencode specified file\n"
@@ -127,7 +127,7 @@ public class Encoder {
         }
     }
 
-    private static void encodeToFile(String inStr, String fileDest) throws IOException {
+    private static void encodeToFile(String inStr, String fileDest) throws Exception {
         inStr = inStr.replaceAll("\\r", ""); // CRLF Fix
         String[] instructions = inStr.split("\n");
         List<Byte> file = new ArrayList<Byte>();
@@ -402,6 +402,7 @@ public class Encoder {
                 }
             } catch (Exception e) {
                 System.out.println("Error on Line: " + (i + 1));
+                throw (e);
                 // e.printStackTrace();
             }
         }
