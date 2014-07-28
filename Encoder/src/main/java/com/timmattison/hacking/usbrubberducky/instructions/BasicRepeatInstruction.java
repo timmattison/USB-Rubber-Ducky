@@ -30,6 +30,6 @@ public class BasicRepeatInstruction implements RepeatInstruction {
 
     @Override
     public byte[] getEncodedInstruction() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        throw new UnsupportedOperationException("This is a virtual instruction, it should not be processed.");
     }
 }
