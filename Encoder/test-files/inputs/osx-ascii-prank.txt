@@ -9,7 +9,7 @@ ENTER
 DELAY 250
 STRING say fuck off asshole
 ENTER
-GUI N
+GUI n
 DELAY 250
 STRING echo '
 ENTER
