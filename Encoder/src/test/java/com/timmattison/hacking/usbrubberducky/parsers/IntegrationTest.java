@@ -211,6 +211,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testPineappleAssociationVeryFast() throws Exception {
+        String filename = "pineapple-association-very-fast";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
