@@ -4,12 +4,15 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.multibindings.Multibinder;
 import com.timmattison.hacking.usbrubberducky.instructions.BasicRepeatInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.KeypressInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.factories.DelayInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.StringInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.DefaultDelayInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.RepeatInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.parsers.*;
@@ -34,9 +37,11 @@ public class UsbRubberDuckyModule extends AbstractModule {
         instructionParserMultibinder.addBinding().to(DelayInstructionParser.class);
         instructionParserMultibinder.addBinding().to(KeypressInstructionParser.class);
         instructionParserMultibinder.addBinding().to(NopInstructionParser.class);
+        instructionParserMultibinder.addBinding().to(DefaultDelayInstructionParser.class);
 
         Multibinder<InstructionListProcessor> instructionListProcessorMultibinder = Multibinder.newSetBinder(binder(), InstructionListProcessor.class);
 
+        instructionListProcessorMultibinder.addBinding().to(DefaultDelayInstructionListProcessor.class);
         instructionListProcessorMultibinder.addBinding().to(RepeatInstructionListProcessor.class);
 
         bind(KeyboardCodes.class).to(USKeyboardCodes.class);
@@ -45,5 +50,6 @@ public class UsbRubberDuckyModule extends AbstractModule {
         install(new FactoryModuleBuilder().implement(StringInstruction.class, StringInstruction.class).build(StringInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(RepeatInstruction.class, BasicRepeatInstruction.class).build(RepeatInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(KeypressInstruction.class, KeypressInstruction.class).build(KeypressInstructionFactory.class));
+        install(new FactoryModuleBuilder().implement(DelayInstruction.class, DelayInstruction.class).build(DelayInstructionFactory.class));
     }
 }

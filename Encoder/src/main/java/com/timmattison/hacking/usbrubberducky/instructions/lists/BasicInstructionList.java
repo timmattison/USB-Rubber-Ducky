@@ -40,12 +40,19 @@ public class BasicInstructionList implements InstructionList {
         finalInstructionList.addAll(instructionList);
 
         for (InstructionListProcessor instructionListProcessor : instructionListProcessors) {
-            List<Instruction> tempInstructionList;
-
-            do {
+            while (true) {
                 // Run each instruction list processor until it makes no more changes
-                tempInstructionList = instructionListProcessor.process(finalInstructionList);
-            } while (!tempInstructionList.equals(finalInstructionList));
+                List<Instruction> tempInstructionList = instructionListProcessor.process(finalInstructionList);
+
+                // Is this the same as the final instruction list?
+                if (tempInstructionList.equals(finalInstructionList)) {
+                    // Yes, break from the loop
+                    break;
+                }
+
+                // The lists were different.  Update our final list and try again
+                finalInstructionList = tempInstructionList;
+            }
         }
 
         // Loop through all of the instructions
