@@ -296,7 +296,8 @@ public class Encoder {
                     file.add((byte) 0x2C);
                     file.add((byte) 0x00);
                 } else if (instruction[0].equals("WINDOWS")
-                        || instruction[0].equals("GUI")) {
+                        || instruction[0].equals("GUI")
+                        || instruction[0].equals("COMMAND")) {
                     if (instruction.length == 1) {
                         file.add((byte) 0xE3);
                         file.add((byte) 0x00);
