@@ -305,6 +305,55 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testBatchWiperDriveEraser() throws Exception {
+        String filename = "batch-wiper-drive-eraser";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testGenericBatch() throws Exception {
+        String filename = "generic-batch";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testPaintHack() throws Exception {
+        String filename = "paint-hack";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testLocalDnsPoisoning() throws Exception {
+        String filename = "local-dns-poisoning";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testDenyNetAccess() throws Exception {
+        String filename = "deny-net-access";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testRunexeFromSd() throws Exception {
+        String filename = "runexe-from-sd";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testRunJavaFromSd() throws Exception {
+        String filename = "run-java-from-sd";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
@@ -434,62 +483,6 @@ public class IntegrationTest {
 //    @Test
 //    public void testRemotelyPossible() throws Exception {
 //        String filename = "remotely-possible";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support REPEAT
-//    @Test
-//    public void testBatchWiperDriveEraser() throws Exception {
-//        String filename = "batch-wiper-drive-eraser";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support REPEAT
-//    @Test
-//    public void testGenericBatch() throws Exception {
-//        String filename = "generic-batch";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support REPEAT
-//    @Test
-//    public void testPaintHack() throws Exception {
-//        String filename = "paint-hack";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support REPEAT
-//    @Test
-//    public void testLocalDnsPoisoning() throws Exception {
-//        String filename = "local-dns-poisoning";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support REPEAT
-//    @Test
-//    public void testDenyNetAccess() throws Exception {
-//        String filename = "deny-net-access";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support REPEAT
-//    @Test
-//    public void testRunexeFromSd() throws Exception {
-//        String filename = "runexe-from-sd";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support REPEAT
-//    @Test
-//    public void testRunJavaFromSd() throws Exception {
-//        String filename = "run-java-from-sd";
 //
 //        testFile(filename);
 //    }
