@@ -232,6 +232,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testMrGrayRubberHacksEncode() throws Exception {
+        String filename = "mrgray-rubber-hacks-encode";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
