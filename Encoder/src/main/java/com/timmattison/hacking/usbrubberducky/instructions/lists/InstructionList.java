@@ -12,7 +12,18 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public interface InstructionList {
+    /**
+     * Add an instruction to the list
+     *
+     * @param instruction
+     */
     public void addInstruction(Instruction instruction);
 
+    /**
+     * Get the binary data for this instruction list
+     *
+     * @return
+     * @throws IOException
+     */
     public byte[] getBytes() throws IOException;
 }

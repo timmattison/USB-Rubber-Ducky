@@ -234,7 +234,7 @@ public class IntegrationTest {
         };
         Set<InstructionParser> instructionParserSet = injector.getInstance(Key.get(instructionParserTypeLiteral));
 
-        BasicInstructionList basicInstructionList = new BasicInstructionList();
+        InstructionList basicInstructionList = new BasicInstructionList();
 
         for (String line : inputFile) {
             Instruction instruction = null;
