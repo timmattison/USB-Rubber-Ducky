@@ -398,14 +398,15 @@ public class Encoder {
 
                 // Default delay
                 if (!delayOverride & defaultDelay != 0x00) {
-                    while (defaultDelay > 0) {
+                    int tempDefaultDelay = defaultDelay;
+                    while (tempDefaultDelay > 0) {
                         file.add((byte) 0x00);
-                        if (defaultDelay > 255) {
+                        if (tempDefaultDelay > 255) {
                             file.add((byte) 0xFF);
-                            defaultDelay = defaultDelay - 255;
+                            tempDefaultDelay = tempDefaultDelay - 255;
                         } else {
-                            file.add((byte) defaultDelay);
-                            defaultDelay = 0;
+                            file.add((byte) tempDefaultDelay);
+                            tempDefaultDelay = 0;
                         }
                     }
                 }
