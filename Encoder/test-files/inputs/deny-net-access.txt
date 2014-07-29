@@ -52,7 +52,7 @@ STRING copy con invis.vbs
 ENTER
 STRING CreateObject("Wscript.Shell").Run """" & WScript.Arguments(0) & """", 0, False
 ENTER
-CONTROL Z
+CONTROL z
 ENTER
 REM RUN THE BATCH FILE
 STRING wscript.exe invis.vbs a.bat
