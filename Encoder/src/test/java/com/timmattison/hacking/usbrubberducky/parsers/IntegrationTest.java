@@ -197,6 +197,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testUglyRolledPrank() throws Exception {
+        String filename = "ugly-rolled-prank";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
