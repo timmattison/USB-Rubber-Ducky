@@ -183,6 +183,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testRetrieveSamAndSystemFromALiveFileSystem() throws Exception {
+        String filename = "retrieve-sam-and-system-from-a-live-file-system";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
