@@ -397,6 +397,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testCopyFileToDesktop() throws Exception {
+        String filename = "copy-file-to-desktop";
+
+        testFile(filename);
+    }
+
     private void debugFile(int debugOffset, String filename) throws Exception {
         Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
 
