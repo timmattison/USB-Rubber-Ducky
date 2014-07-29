@@ -39,6 +39,7 @@ public class UsbRubberDuckyModule extends AbstractModule {
         instructionParserMultibinder.addBinding().to(KeypressInstructionParser.class);
         instructionParserMultibinder.addBinding().to(NopInstructionParser.class);
         instructionParserMultibinder.addBinding().to(DefaultDelayInstructionParser.class);
+        instructionParserMultibinder.addBinding().to(BlankLineInstructionParser.class);
 
         Multibinder<InstructionListProcessor> instructionListProcessorMultibinder = Multibinder.newSetBinder(binder(), InstructionListProcessor.class);
 
