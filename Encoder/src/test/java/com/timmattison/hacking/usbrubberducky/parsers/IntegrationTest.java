@@ -425,4 +425,13 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder encodes "GUI SPACE" as "GUI S"
+//    @Test
+//    public void testYoutubeBlaster() throws Exception {
+//        String filename = "osx-youtube-blaster";
+//
+//        testFile(filename);
+//    }
+
 }
+
