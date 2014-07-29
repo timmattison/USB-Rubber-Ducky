@@ -1,6 +1,7 @@
 REM Auto Defacer for Ubuntu Based Machines running Apache.
 REM Author: Xcellerator
 REM Description: Automatically defaces index page of an apache web server.
+DEFAULT_DELAY 200
 ALT F2
 STRING terminal
 ENTER
