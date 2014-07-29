@@ -379,14 +379,6 @@ public class IntegrationTest {
 
 // FAILS: Original encoder crashes on blank lines
 //    @Test
-//    public void testMimikatz2() throws Exception {
-//        String filename = "mimikatz-2";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder crashes on blank lines
-//    @Test
 //    public void testOsxWgetAndExecute() throws Exception {
 //        String filename = "osx-wget-and-execute";
 //
@@ -413,6 +405,14 @@ public class IntegrationTest {
 //    @Test
 //    public void testMimikatz1() throws Exception {
 //        String filename = "mimikatz-1";
+//
+//        testFile(filename);
+//    }
+
+// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
+//    @Test
+//    public void testMimikatz2() throws Exception {
+//        String filename = "mimikatz-2";
 //
 //        testFile(filename);
 //    }
