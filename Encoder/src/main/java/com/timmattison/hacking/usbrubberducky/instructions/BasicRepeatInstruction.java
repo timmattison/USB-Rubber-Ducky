@@ -11,7 +11,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInst
  * Time: 8:00 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BasicRepeatInstruction implements RepeatInstruction {
+public class BasicRepeatInstruction extends VirtualInstruction implements RepeatInstruction {
     private final int repeatCount;
     private final int instructionCount = 1;
 
@@ -26,10 +26,5 @@ public class BasicRepeatInstruction implements RepeatInstruction {
 
     public int getInstructionCount() {
         return instructionCount;
-    }
-
-    @Override
-    public byte[] getEncodedInstruction() {
-        throw new UnsupportedOperationException("This is a virtual instruction, it must not be processed.");
     }
 }
