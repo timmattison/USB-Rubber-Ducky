@@ -1,3 +1,4 @@
+DEFAULT_DELAY 200
 ESC
 ESC
 REM opens task manager for a distraction 
