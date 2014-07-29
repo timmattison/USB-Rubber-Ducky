@@ -392,8 +392,20 @@ public class Encoder {
                     file.add(functionKeyToByte(instruction[0]));
                     file.add((byte) 0x00);
                 } else {
-                    System.out.println("Invalid instruction: " + instruction[0]);
-                    throw new Exception();
+                    // Is this just a single word?
+                    if (instruction.length != 1) {
+                        // No, we didn't recognize it
+                        failOnInvalidInstruction(instruction[0]);
+                    }
+
+                    // Is this "single word" just a blank string?
+                    if (instruction[0].trim().length() == 0) {
+                        // Yes, this is just a blank line.  Continue.
+                        continue;
+                    }
+
+                    // This is single word we don't understand
+                    failOnInvalidInstruction(instruction[0]);
                 }
 
                 // Default delay
@@ -440,6 +452,11 @@ public class Encoder {
         } catch (Exception e) {
             System.out.print("Failed to write hex file!");
         }
+    }
+
+    private static void failOnInvalidInstruction(String s) throws Exception {
+        System.out.println("Invalid instruction: [" + s + "]");
+        throw new Exception();
     }
 
     private static byte charToByte(char c) {
