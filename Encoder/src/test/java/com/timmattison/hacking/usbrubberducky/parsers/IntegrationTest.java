@@ -362,4 +362,13 @@ public class IntegrationTest {
 //
 //        testFile(filename);
 //    }
+
+// FAILS: Original encoder doesn't support REPEAT
+//    @Test
+//    public void testPaintHack() throws Exception {
+//        String filename = "paint-hack";
+//
+//        testFile(filename);
+//    }
+
 }
