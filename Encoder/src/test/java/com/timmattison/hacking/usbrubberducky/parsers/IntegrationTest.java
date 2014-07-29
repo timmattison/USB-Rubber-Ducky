@@ -8,13 +8,13 @@ import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -255,7 +255,11 @@ public class IntegrationTest {
         };
         Set<InstructionParser> instructionParserSet = injector.getInstance(Key.get(instructionParserTypeLiteral));
 
-        InstructionList basicInstructionList = new BasicInstructionList();
+        TypeLiteral<Set<InstructionListProcessor>> instructionListProcessorTypeLiteral = new TypeLiteral<Set<InstructionListProcessor>>() {
+        };
+        Set<InstructionListProcessor> instructionListProcessors = injector.getInstance(Key.get(instructionListProcessorTypeLiteral));
+
+        InstructionList basicInstructionList = new BasicInstructionList(instructionListProcessors);
 
         for (String line : inputFile) {
             Instruction instruction = null;

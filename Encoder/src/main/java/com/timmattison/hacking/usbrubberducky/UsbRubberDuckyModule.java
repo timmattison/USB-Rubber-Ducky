@@ -10,6 +10,8 @@ import com.timmattison.hacking.usbrubberducky.instructions.StringInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.RepeatInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.parsers.*;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslator;
@@ -28,11 +30,14 @@ public class UsbRubberDuckyModule extends AbstractModule {
     protected void configure() {
         Multibinder<InstructionParser> instructionParserMultibinder = Multibinder.newSetBinder(binder(), InstructionParser.class);
 
-        instructionParserMultibinder.addBinding().to(RepeatInstructionParser.class);
         instructionParserMultibinder.addBinding().to(StringInstructionParser.class);
         instructionParserMultibinder.addBinding().to(DelayInstructionParser.class);
         instructionParserMultibinder.addBinding().to(KeypressInstructionParser.class);
         instructionParserMultibinder.addBinding().to(NopInstructionParser.class);
+
+        Multibinder<InstructionListProcessor> instructionListProcessorMultibinder = Multibinder.newSetBinder(binder(), InstructionListProcessor.class);
+
+        instructionListProcessorMultibinder.addBinding().to(RepeatInstructionListProcessor.class);
 
         bind(KeyboardCodes.class).to(USKeyboardCodes.class);
         bind(CharacterTranslator.class).to(BasicCharacterTranslator.class);
