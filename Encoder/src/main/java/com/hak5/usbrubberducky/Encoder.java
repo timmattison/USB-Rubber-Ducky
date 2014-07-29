@@ -392,6 +392,16 @@ public class Encoder {
                     // Function keys
                     file.add(functionKeyToByte(instruction[0]));
                     file.add((byte) 0x00);
+                } else if (instruction[0].equals("REPEAT")) {
+                    int repeatCount = Integer.parseInt(instruction[1]);
+                    byte[] instructionToRepeat = new byte[2];
+                    instructionToRepeat[0] = file.get(file.size() - 2);
+                    instructionToRepeat[1] = file.get(file.size() - 1);
+
+                    for(int loop = 0; loop < repeatCount; loop++) {
+                        file.add(instructionToRepeat[0]);
+                        file.add(instructionToRepeat[1]);
+                    }
                 } else {
                     // Is this just a single word?
                     if (instruction.length != 1) {
