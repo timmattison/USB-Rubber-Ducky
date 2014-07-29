@@ -57,8 +57,9 @@ public class BasicInstructionList implements InstructionList {
 
         // Loop through all of the instructions
         for (Instruction instruction : finalInstructionList) {
-            // No, just encode the instruction
-            baos.write(instruction.getEncodedInstruction());
+            byte[] encodedInstruction = instruction.getEncodedInstruction();
+
+            baos.write(encodedInstruction);
         }
 
         return baos.toByteArray();
