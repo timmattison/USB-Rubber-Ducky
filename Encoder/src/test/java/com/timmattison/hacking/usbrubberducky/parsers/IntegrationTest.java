@@ -298,6 +298,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testOsxPasswordlessSshAccessTwinDuck() throws Exception {
+        String filename = "osx-passwordless-ssh-access-twin-duck";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
@@ -390,14 +397,6 @@ public class IntegrationTest {
     }
 
     // The tests below blow up the original encoder
-
-// FAILS: Original encoder crashes on blank lines
-//    @Test
-//    public void testOsxPasswordlessSshAccessTwinDuck() throws Exception {
-//        String filename = "osx-passwordless-ssh-access-twin-duck";
-//
-//        testFile(filename);
-//    }
 
 // FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
 //    @Test
