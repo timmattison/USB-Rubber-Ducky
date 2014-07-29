@@ -485,6 +485,8 @@ public class Encoder {
             file.add((byte) 0x50);
         } else if (s.equals("RIGHTARROW")) {
             file.add((byte) 0x4F);
+        } else {
+            throw new UnsupportedOperationException("Couldn't find mapping for " + s);
         }
     }
 
