@@ -63,7 +63,11 @@ public class TestRepeatInstructionListProcessor {
         Assert.assertEquals(totalInstructionCount, instructionList.size());
 
         for (int loop = 0; loop < totalInstructionCount; loop++) {
-            Assert.assertTrue(instructionList.get(loop) instanceof DelayInstruction);
+            Instruction instruction = instructionList.get(loop);
+            Assert.assertTrue(instruction instanceof DelayInstruction);
+
+            DelayInstruction delayInstruction = (DelayInstruction) instruction;
+            Assert.assertEquals(delayInMilliseconds, delayInstruction.getDelayValue());
         }
     }
 }
