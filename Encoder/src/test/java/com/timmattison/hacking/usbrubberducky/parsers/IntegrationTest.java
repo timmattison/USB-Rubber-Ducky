@@ -331,6 +331,7 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
 //    @Test
 //    public void testMissDirection() throws Exception {
 //        String filename = "miss-direction";
@@ -338,4 +339,11 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
+//    @Test
+//    public void testRemotelyPossible() throws Exception {
+//        String filename = "remotely-possible";
+//
+//        testFile(filename);
+//    }
 }
