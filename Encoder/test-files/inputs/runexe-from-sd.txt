@@ -30,8 +30,7 @@ ENTER
 REM DuckyWait.bat
 STRING :while1
 ENTER
-STRING for /f %%d in ('wmic volume get driveletter^, label ^| findstr "DUCKY"') 
-do set myd=%%d
+STRING for /f %%d in ('wmic volume get driveletter^, label ^| findstr "DUCKY"') do set myd=%%d
 ENTER
 STRING if Exist %myd% (
 ENTER
