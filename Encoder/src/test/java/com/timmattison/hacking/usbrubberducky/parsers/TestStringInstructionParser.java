@@ -53,14 +53,4 @@ public class TestStringInstructionParser {
 
         Assert.assertNull(stringInstruction);
     }
-
-    @Test
-    public void testInput1() throws IOException {
-        String[] input = TestAgainstFiles.getInputFile(1);
-        byte[] expectedOutput = TestAgainstFiles.getOutputFile(1);
-
-        byte[] actualOutput = stringInstructionParser.parse(input[0]).getEncodedInstruction();
-
-        Assert.assertTrue(Arrays.equals(expectedOutput, actualOutput));
-    }
 }
