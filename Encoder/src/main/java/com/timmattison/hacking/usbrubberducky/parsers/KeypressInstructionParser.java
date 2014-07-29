@@ -31,6 +31,8 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
 
     @Override
     public KeypressInstruction parse(String input) {
+        input = processLegacyReplacements(input);
+
         String[] inputChunks = input.split(" ");
 
         Stack<KeyboardCode> keyboardCodeStack = new Stack<KeyboardCode>();
@@ -68,6 +70,12 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
 
         // Get the keypress instruction for this code
         return keypressInstructionFactory.create(keyboardCodeStack);
+    }
+
+    private String processLegacyReplacements(String input) {
+        input = input.replaceAll("^CTRL-SHIFT", "CTRL SHIFT");
+        input = input.replaceAll("^CONTROL-SHIFT", "CONTROL SHIFT");
+        return input;
     }
 
     private KeyboardCode getKeyboardCode(String codeString) {
