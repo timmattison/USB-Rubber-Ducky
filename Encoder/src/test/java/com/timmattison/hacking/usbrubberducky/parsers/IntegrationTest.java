@@ -371,4 +371,12 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder doesn't support REPEAT
+//    @Test
+//    public void testLocalDnsPoisoning() throws Exception {
+//        String filename = "local-dns-poisoning";
+//
+//        testFile(filename);
+//    }
+
 }
