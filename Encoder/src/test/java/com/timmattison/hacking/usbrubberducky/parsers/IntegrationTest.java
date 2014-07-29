@@ -218,13 +218,6 @@ public class IntegrationTest {
         testFile(filename);
     }
 
-    @Test
-    public void testRunexeFromSd() throws Exception {
-        String filename = "runexe-from-sd";
-
-        testFile(filename);
-    }
-
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
@@ -390,6 +383,14 @@ public class IntegrationTest {
 //    @Test
 //    public void testDenyNetAccess() throws Exception {
 //        String filename = "deny-net-access";
+//
+//        testFile(filename);
+//    }
+
+// FAILS: Original encoder doesn't support REPEAT
+//    @Test
+//    public void testRunexeFromSd() throws Exception {
+//        String filename = "runexe-from-sd";
 //
 //        testFile(filename);
 //    }
