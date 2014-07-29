@@ -204,6 +204,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testXmas() throws Exception {
+        String filename = "xmas";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
