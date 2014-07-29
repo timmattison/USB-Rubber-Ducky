@@ -449,5 +449,13 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder encodes "GUI SPACE" as "GUI S"
+//    @Test
+//    public void testOsxGrabMinecraftAccountPasswordAndUploadToFtp() throws Exception {
+//        String filename = "osx-grab-minecraft-account-password-and-upload-to-ftp";
+//
+//        testFile(filename);
+//    }
+
 }
 
