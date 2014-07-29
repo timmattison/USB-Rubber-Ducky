@@ -241,7 +241,7 @@ public class IntegrationTest {
     }
 
     private boolean passIfGuiSpaceNotSupported() {
-        if(!guiSpaceSupported) {
+        if (!guiSpaceSupported) {
             return true;
         }
 
