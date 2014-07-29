@@ -223,6 +223,19 @@ public class Encoder {
                     else
                         file.add((byte) 0x00);
                     file.add((byte) 0x01);
+                } else if (instruction[0].equals("CONTROL-SHIFT")
+                        || instruction[0].equals("CTRL-SHIFT")) {
+                    if (instruction[1].equals("ESCAPE")
+                            || instruction[1].equals("ESC"))
+                        file.add((byte) 0x29);
+                    else if (instruction[1].equals("PAUSE")
+                            || instruction[1].equals("BREAK"))
+                        file.add((byte) 0x48);
+                    else if (instruction.length != 1)
+                        handleTheRest(file, instruction[1]);
+                    else
+                        file.add((byte) 0x00);
+                    file.add((byte) 0x03);
                 } else if (instruction[0].equals("ALT")) {
                     if (instruction.length != 1) {
                         if (instruction[1].equals("ESCAPE")
