@@ -433,5 +433,13 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder encodes "GUI SPACE" as "GUI S"
+//    @Test
+//    public void testOsxAsciiPrank() throws Exception {
+//        String filename = "osx-ascii-prank";
+//
+//        testFile(filename);
+//    }
+
 }
 
