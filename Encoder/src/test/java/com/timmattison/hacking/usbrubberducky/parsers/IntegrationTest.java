@@ -379,4 +379,12 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder doesn't support REPEAT
+//    @Test
+//    public void testDenyNetAccess() throws Exception {
+//        String filename = "deny-net-access";
+//
+//        testFile(filename);
+//    }
+
 }
