@@ -410,4 +410,12 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder encodes "GUI SPACE" as "GUI S"
+//    @Test
+//    public void testOsxUserBackdoor() throws Exception {
+//        String filename = "osx-user-backdoor";
+//
+//        testFile(filename);
+//    }
+
 }
