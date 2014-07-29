@@ -14,6 +14,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstr
 import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.DefaultDelayInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.NopInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.RepeatInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.parsers.*;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
@@ -41,6 +42,7 @@ public class UsbRubberDuckyModule extends AbstractModule {
 
         Multibinder<InstructionListProcessor> instructionListProcessorMultibinder = Multibinder.newSetBinder(binder(), InstructionListProcessor.class);
 
+        instructionListProcessorMultibinder.addBinding().to(NopInstructionListProcessor.class);
         instructionListProcessorMultibinder.addBinding().to(DefaultDelayInstructionListProcessor.class);
         instructionListProcessorMultibinder.addBinding().to(RepeatInstructionListProcessor.class);
 

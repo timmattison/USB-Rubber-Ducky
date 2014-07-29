@@ -41,7 +41,8 @@ public class DefaultDelayInstructionListProcessor implements InstructionListProc
                 // This is a delay instruction, include it without an additional delay
                 outputInstructionList.add(instruction);
             } else if (instruction instanceof DefaultDelayInstruction) {
-                // This is the default delay instruction, do not include it
+                // This is the default delay instruction, include the default delay
+                outputInstructionList.add(delayInstructionFactory.create(defaultDelay));
             } else {
                 // This is another instruction, add it with a trailing delay
                 outputInstructionList.add(instruction);
