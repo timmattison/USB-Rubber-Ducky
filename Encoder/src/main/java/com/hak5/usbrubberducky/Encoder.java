@@ -383,7 +383,7 @@ public class Encoder {
                     file.add(functionKeyToByte(instruction[0]));
                     file.add((byte) 0x00);
                 } else {
-                    // System.out.print(instruction[0]);
+                    System.out.println("Invalid instruction: " + instruction[0]);
                     throw new Exception();
                 }
 
