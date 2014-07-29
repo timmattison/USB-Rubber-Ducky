@@ -404,6 +404,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testYoutubeRoll() throws Exception {
+        String filename = "youtube-roll";
+
+        testFile(filename);
+    }
+
     private void debugFile(int debugOffset, String filename) throws Exception {
         Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
 
