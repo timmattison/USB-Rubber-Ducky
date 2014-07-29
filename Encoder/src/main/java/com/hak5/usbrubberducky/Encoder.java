@@ -155,7 +155,7 @@ public class Encoder {
 
                 if (instruction[0].equals("DEFAULT_DELAY")
                         || instruction[0].equals("DEFAULTDELAY")) {
-                    defaultDelay = Integer.parseInt(instruction[1]
+                    defaultDelay = (byte) Integer.parseInt(instruction[1]
                             .trim());
                 } else if (instruction[0].equals("DELAY")) {
                     int delay = Integer.parseInt(instruction[1].trim());
