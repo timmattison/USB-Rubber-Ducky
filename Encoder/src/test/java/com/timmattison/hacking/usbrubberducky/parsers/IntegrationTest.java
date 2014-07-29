@@ -377,14 +377,6 @@ public class IntegrationTest {
 
     // The tests below blow up the original encoder
 
-// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
-//    @Test
-//    public void testMimikatz1() throws Exception {
-//        String filename = "mimikatz-1";
-//
-//        testFile(filename);
-//    }
-
 // FAILS: Original encoder crashes on blank lines
 //    @Test
 //    public void testMimikatz2() throws Exception {
@@ -413,6 +405,14 @@ public class IntegrationTest {
 //    @Test
 //    public void testOsxPasswordlessSshAccessTwinDuck() throws Exception {
 //        String filename = "osx-passwordless-ssh-access-twin-duck";
+//
+//        testFile(filename);
+//    }
+
+// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
+//    @Test
+//    public void testMimikatz1() throws Exception {
+//        String filename = "mimikatz-1";
 //
 //        testFile(filename);
 //    }
