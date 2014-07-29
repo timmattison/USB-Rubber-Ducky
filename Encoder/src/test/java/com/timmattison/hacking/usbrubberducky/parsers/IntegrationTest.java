@@ -346,4 +346,13 @@ public class IntegrationTest {
 //
 //        testFile(filename);
 //    }
+
+// FAILS: Original encoder doesn't support REPEAT
+//    @Test
+//    public void testBatchWiperDriveEraser() throws Exception {
+//        String filename = "batch-wiper-drive-eraser";
+//
+//        testFile(filename);
+//    }
+
 }
