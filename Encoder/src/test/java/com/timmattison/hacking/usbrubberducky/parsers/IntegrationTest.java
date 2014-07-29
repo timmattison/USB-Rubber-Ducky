@@ -218,6 +218,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testOsxRootBackdoor() throws Exception {
+        String filename = "osx-root-backdoor";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
