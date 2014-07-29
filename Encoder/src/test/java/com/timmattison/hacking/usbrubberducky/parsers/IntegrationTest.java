@@ -362,6 +362,41 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testMimikatz1() throws Exception {
+        String filename = "mimikatz-1";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testMimikatz2() throws Exception {
+        String filename = "mimikatz-2";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testWifunV1_1() throws Exception {
+        String filename = "wifun-v1-1";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testMissDirection() throws Exception {
+        String filename = "miss-direction";
+
+        testFile(filename);
+    }
+
+    @Test
+    public void testRemotelyPossible() throws Exception {
+        String filename = "remotely-possible";
+
+        testFile(filename);
+    }
+
     private void debugFile(int debugOffset, String filename) throws Exception {
         Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
 
@@ -472,47 +507,5 @@ public class IntegrationTest {
 
         return args;
     }
-
-    // The tests below blow up the original encoder
-
-// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
-//    @Test
-//    public void testMimikatz1() throws Exception {
-//        String filename = "mimikatz-1";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
-//    @Test
-//    public void testMimikatz2() throws Exception {
-//        String filename = "mimikatz-2";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
-//    @Test
-//    public void testWifunV1_1() throws Exception {
-//        String filename = "wifun-v1-1";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
-//    @Test
-//    public void testMissDirection() throws Exception {
-//        String filename = "miss-direction";
-//
-//        testFile(filename);
-//    }
-
-// FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
-//    @Test
-//    public void testRemotelyPossible() throws Exception {
-//        String filename = "remotely-possible";
-//
-//        testFile(filename);
-//    }
 }
 
