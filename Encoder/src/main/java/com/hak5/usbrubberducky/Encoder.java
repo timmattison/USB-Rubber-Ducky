@@ -219,10 +219,7 @@ public class Encoder {
                             || instruction[1].equals("BREAK"))
                         file.add((byte) 0x48);
                     else if (instruction.length != 1)
-                        if (functionKeyCheck(instruction[1]))
-                            file.add(functionKeyToByte(instruction[1]));
-                        else
-                            file.add(charToByte(instruction[1].charAt(0)));
+                        handleTheRest(file, instruction[1]);
                     else
                         file.add((byte) 0x00);
                     file.add((byte) 0x01);
@@ -236,10 +233,7 @@ public class Encoder {
                         else if (instruction[1].equals("TAB"))
                             file.add((byte) 0x2B);
                         else if (instruction.length != 1)
-                            if (functionKeyCheck(instruction[1]))
-                                file.add(functionKeyToByte(instruction[1]));
-                            else
-                                file.add(charToByte(instruction[1].charAt(0)));
+                            handleTheRest(file, instruction[1]);
                         else
                             file.add((byte) 0x00);
                     } else {
@@ -252,32 +246,7 @@ public class Encoder {
                     file.add((byte) 0x00);
                 } else if (instruction[0].equals("SHIFT")) {
                     if (instruction.length != 1) {
-                        if (instruction[1].equals("HOME")) {
-                            file.add((byte) 0x4A);
-                        } else if (instruction[1].equals("TAB")) {
-                            file.add((byte) 0x2B);
-                        } else if (instruction[1].equals("WINDOWS")
-                                || instruction[1].equals("GUI")) {
-                            file.add((byte) 0xE3);
-                        } else if (instruction[1].equals("INSERT")) {
-                            file.add((byte) 0x49);
-                        } else if (instruction[1].equals("PAGEUP")) {
-                            file.add((byte) 0x4B);
-                        } else if (instruction[1].equals("PAGEDOWN")) {
-                            file.add((byte) 0x4E);
-                        } else if (instruction[1].equals("DELETE")) {
-                            file.add((byte) 0x4C);
-                        } else if (instruction[1].equals("END")) {
-                            file.add((byte) 0x4D);
-                        } else if (instruction[1].equals("UPARROW")) {
-                            file.add((byte) 0x52);
-                        } else if (instruction[1].equals("DOWNARROW")) {
-                            file.add((byte) 0x51);
-                        } else if (instruction[1].equals("LEFTARROW")) {
-                            file.add((byte) 0x50);
-                        } else if (instruction[1].equals("RIGHTARROW")) {
-                            file.add((byte) 0x4F);
-                        }
+                        handleSpecialKeys(file, instruction[1]);
                         file.add((byte) 0xE1);
                     } else {
                         file.add((byte) 0xE1);
@@ -398,7 +367,7 @@ public class Encoder {
                     instructionToRepeat[0] = file.get(file.size() - 2);
                     instructionToRepeat[1] = file.get(file.size() - 1);
 
-                    for(int loop = 0; loop < repeatCount; loop++) {
+                    for (int loop = 0; loop < repeatCount; loop++) {
                         file.add(instructionToRepeat[0]);
                         file.add(instructionToRepeat[1]);
                     }
@@ -462,6 +431,45 @@ public class Encoder {
             fos.close();
         } catch (Exception e) {
             System.out.print("Failed to write hex file!");
+        }
+    }
+
+    private static void handleTheRest(List<Byte> file, String possibleFKey) {
+        if (functionKeyCheck(possibleFKey)) {
+            file.add(functionKeyToByte(possibleFKey));
+        } else if (possibleFKey.length() == 1) {
+            file.add(charToByte(possibleFKey.charAt(0)));
+        } else {
+            handleSpecialKeys(file, possibleFKey);
+        }
+    }
+
+    private static void handleSpecialKeys(List<Byte> file, String s) {
+        if (s.equals("HOME")) {
+            file.add((byte) 0x4A);
+        } else if (s.equals("TAB")) {
+            file.add((byte) 0x2B);
+        } else if (s.equals("WINDOWS")
+                || s.equals("GUI")) {
+            file.add((byte) 0xE3);
+        } else if (s.equals("INSERT")) {
+            file.add((byte) 0x49);
+        } else if (s.equals("PAGEUP")) {
+            file.add((byte) 0x4B);
+        } else if (s.equals("PAGEDOWN")) {
+            file.add((byte) 0x4E);
+        } else if (s.equals("DELETE")) {
+            file.add((byte) 0x4C);
+        } else if (s.equals("END")) {
+            file.add((byte) 0x4D);
+        } else if (s.equals("UPARROW")) {
+            file.add((byte) 0x52);
+        } else if (s.equals("DOWNARROW")) {
+            file.add((byte) 0x51);
+        } else if (s.equals("LEFTARROW")) {
+            file.add((byte) 0x50);
+        } else if (s.equals("RIGHTARROW")) {
+            file.add((byte) 0x4F);
         }
     }
 
