@@ -225,6 +225,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testOsxLocalDnsPoisoning() throws Exception {
+        String filename = "osx-local-dns-poisoning";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
