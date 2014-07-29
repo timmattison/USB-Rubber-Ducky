@@ -7,6 +7,7 @@ import com.google.inject.TypeLiteral;
 import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.DebugInstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 import org.junit.Assert;
@@ -348,13 +349,42 @@ public class IntegrationTest {
     }
 
     @Test
+    public void testRunexeFromSd2() throws Exception {
+        String filename = "runexe-from-sd-2";
+
+        testFile(filename);
+    }
+
+    @Test
     public void testRunJavaFromSd() throws Exception {
         String filename = "run-java-from-sd";
 
         testFile(filename);
     }
 
+    private void debugFile(int debugOffset, String filename) throws Exception {
+        Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
+
+        InstructionList instructionList = new DebugInstructionList(debugOffset, instructionListProcessors);
+
+        testFile(instructionList, filename);
+    }
+
     private void testFile(String filename) throws Exception {
+        Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
+
+        InstructionList instructionList = new BasicInstructionList(instructionListProcessors);
+
+        testFile(instructionList, filename);
+    }
+
+    private Set<InstructionListProcessor> getInstructionListProcessors() {
+        TypeLiteral<Set<InstructionListProcessor>> instructionListProcessorTypeLiteral = new TypeLiteral<Set<InstructionListProcessor>>() {
+        };
+        return injector.getInstance(Key.get(instructionListProcessorTypeLiteral));
+    }
+
+    private void testFile(InstructionList instructionList, String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
 
@@ -366,15 +396,7 @@ public class IntegrationTest {
 
         outputFile = getOutputFileFromOriginalEncoder(filename);
 
-        TypeLiteral<Set<InstructionParser>> instructionParserTypeLiteral = new TypeLiteral<Set<InstructionParser>>() {
-        };
-        Set<InstructionParser> instructionParserSet = injector.getInstance(Key.get(instructionParserTypeLiteral));
-
-        TypeLiteral<Set<InstructionListProcessor>> instructionListProcessorTypeLiteral = new TypeLiteral<Set<InstructionListProcessor>>() {
-        };
-        Set<InstructionListProcessor> instructionListProcessors = injector.getInstance(Key.get(instructionListProcessorTypeLiteral));
-
-        InstructionList basicInstructionList = new BasicInstructionList(instructionListProcessors);
+        Set<InstructionParser> instructionParserSet = getInstructionParserSet();
 
         for (String line : inputFile) {
             Instruction instruction = null;
@@ -392,12 +414,18 @@ public class IntegrationTest {
                 throw new UnsupportedOperationException("Couldn't process instruction [" + line + "]");
             }
 
-            basicInstructionList.addInstruction(instruction);
+            instructionList.addInstruction(instruction);
         }
 
-        byte[] generatedData = basicInstructionList.getBytes();
+        byte[] generatedData = instructionList.getBytes();
 
         Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
+    }
+
+    private Set<InstructionParser> getInstructionParserSet() {
+        TypeLiteral<Set<InstructionParser>> instructionParserTypeLiteral = new TypeLiteral<Set<InstructionParser>>() {
+        };
+        return injector.getInstance(Key.get(instructionParserTypeLiteral));
     }
 
     private byte[] getOutputFileFromOriginalEncoder(String filename) throws Exception {
