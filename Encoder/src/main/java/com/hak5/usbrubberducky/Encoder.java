@@ -460,6 +460,8 @@ public class Encoder {
     private static void handleSpecialKeys(List<Byte> file, String s) {
         if (s.equals("HOME")) {
             file.add((byte) 0x4A);
+        } else if (s.equals("ENTER")) {
+            file.add((byte) 0x28);
         } else if (s.equals("TAB")) {
             file.add((byte) 0x2B);
         } else if (s.equals("WINDOWS")
