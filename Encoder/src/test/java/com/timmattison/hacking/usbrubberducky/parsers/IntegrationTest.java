@@ -395,4 +395,12 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder doesn't support REPEAT
+//    @Test
+//    public void testRunJavaFromSd() throws Exception {
+//        String filename = "run-java-from-sd";
+//
+//        testFile(filename);
+//    }
+
 }
