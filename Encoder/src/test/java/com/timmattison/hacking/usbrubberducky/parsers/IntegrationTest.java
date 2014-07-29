@@ -291,6 +291,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testOsxPasswordlessSshAccess() throws Exception {
+        String filename = "osx-passwordless-ssh-access";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
@@ -383,14 +390,6 @@ public class IntegrationTest {
     }
 
     // The tests below blow up the original encoder
-
-// FAILS: Original encoder crashes on blank lines
-//    @Test
-//    public void testOsxPasswordlessSshAccess() throws Exception {
-//        String filename = "osx-passwordless-ssh-access";
-//
-//        testFile(filename);
-//    }
 
 // FAILS: Original encoder crashes on blank lines
 //    @Test
