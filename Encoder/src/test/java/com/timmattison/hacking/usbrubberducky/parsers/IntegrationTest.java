@@ -337,6 +337,14 @@ public class IntegrationTest {
 //        testFile(filename);
 //    }
 
+// FAILS: Original encoder crashes on blank lines
+//    @Test
+//    public void testOsxWgetAndExecute() throws Exception {
+//        String filename = "osx-wget-and-execute";
+//
+//        testFile(filename);
+//    }
+
 // FAILS: Original encoder doesn't support CTRL-SHIFT ENTER or CTRL SHIFT ENTER
 //    @Test
 //    public void testWifunV1_1() throws Exception {
