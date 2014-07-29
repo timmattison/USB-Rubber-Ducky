@@ -35,4 +35,8 @@ public class DelayInstruction implements Instruction {
 
         return baos.toByteArray();
     }
+
+    public int getDelayValue() {
+        return delayValue;
+    }
 }
