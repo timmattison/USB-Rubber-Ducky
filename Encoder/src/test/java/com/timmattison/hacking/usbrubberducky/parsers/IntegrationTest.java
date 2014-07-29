@@ -218,6 +218,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testWifunV1_1() throws Exception {
+        String filename = "wifun-v1-1";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
