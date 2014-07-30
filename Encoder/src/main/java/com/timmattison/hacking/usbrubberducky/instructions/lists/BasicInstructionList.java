@@ -1,5 +1,6 @@
 package com.timmattison.hacking.usbrubberducky.instructions.lists;
 
+import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 
@@ -21,6 +22,7 @@ public class BasicInstructionList implements InstructionList {
 
     protected List<Instruction> instructionList = new ArrayList<Instruction>();
 
+    @Inject
     public BasicInstructionList(Set<InstructionListProcessor> instructionListProcessors) {
         this.instructionListProcessors = instructionListProcessors;
     }
