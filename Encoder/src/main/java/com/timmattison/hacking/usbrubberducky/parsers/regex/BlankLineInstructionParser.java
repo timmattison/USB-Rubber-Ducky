@@ -1,4 +1,4 @@
-package com.timmattison.hacking.usbrubberducky.parsers.simple;
+package com.timmattison.hacking.usbrubberducky.parsers.regex;
 
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.instructions.NopInstruction;
@@ -13,7 +13,7 @@ import java.util.List;
  * Time: 11:32 AM
  * To change this template use File | Settings | File Templates.
  */
-public class BlankLineInstructionParser extends SimpleAbstractInstructionParser<NopInstruction> {
+public class BlankLineInstructionParser extends RegexAbstractInstructionParser<NopInstruction> {
     private static final String matchingRegex = "^\\s*$";
 
     @Inject

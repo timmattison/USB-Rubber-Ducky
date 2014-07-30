@@ -3,7 +3,7 @@ package com.timmattison.hacking.usbrubberducky.parsers;
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.instructions.StringInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
-import com.timmattison.hacking.usbrubberducky.parsers.simple.StringInstructionParser;
+import com.timmattison.hacking.usbrubberducky.parsers.regex.StringInstructionParser;
 import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCodes;

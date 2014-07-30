@@ -1,4 +1,4 @@
-package com.timmattison.hacking.usbrubberducky.parsers.simple;
+package com.timmattison.hacking.usbrubberducky.parsers.regex;
 
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
@@ -11,18 +11,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Parses an instruction that is described by a regular expression
+ *
  * Created with IntelliJ IDEA.
  * User: timmattison
  * Date: 11/27/13
  * Time: 6:15 PM
  * To change this template use File | Settings | File Templates.
  */
-public abstract class SimpleAbstractInstructionParser<T extends Instruction> implements InstructionParser<T> {
+public abstract class RegexAbstractInstructionParser<T extends Instruction> implements InstructionParser<T> {
     protected final Preprocessor preprocessor;
     private Pattern pattern;
 
     @Inject
-    public SimpleAbstractInstructionParser(Preprocessor preprocessor) {
+    public RegexAbstractInstructionParser(Preprocessor preprocessor) {
         this.preprocessor = preprocessor;
     }
 
@@ -64,7 +66,6 @@ public abstract class SimpleAbstractInstructionParser<T extends Instruction> imp
 
     /**
      * Creates an instruction once we know that the input matches the regex
-     *
      *
      * @param input
      * @return

@@ -19,7 +19,7 @@ import java.util.Stack;
  * Time: 6:17 PM
  * To change this template use File | Settings | File Templates.
  */
-public class KeypressInstructionParser extends AdvancedAbstractInstructionParser<KeypressInstruction> {
+public class KeypressInstructionParser extends NonRegexAbstractInstructionParser<KeypressInstruction> {
     private final KeypressInstructionFactory keypressInstructionFactory;
     private final KeyboardCodes keyboardCodes;
     private Map<String, KeyboardCode> keyboardModifierMap;

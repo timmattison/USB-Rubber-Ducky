@@ -1,4 +1,4 @@
-package com.timmattison.hacking.usbrubberducky.parsers.simple;
+package com.timmattison.hacking.usbrubberducky.parsers.regex;
 
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.constants.Whitespace;
@@ -15,7 +15,7 @@ import java.util.List;
  * Time: 6:17 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StringInstructionParser extends SimpleAbstractInstructionParser<StringInstruction> {
+public class StringInstructionParser extends RegexAbstractInstructionParser<StringInstruction> {
     private static final String name = "STRING";
     private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "{1}" + "(.+)$";
     private final StringInstructionFactory stringInstructionFactory;

@@ -18,7 +18,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.NopI
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.RepeatInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.parsers.*;
 import com.timmattison.hacking.usbrubberducky.parsers.advanced.KeypressInstructionParser;
-import com.timmattison.hacking.usbrubberducky.parsers.simple.*;
+import com.timmattison.hacking.usbrubberducky.parsers.regex.*;
 import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
 import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
