@@ -159,7 +159,16 @@ public class Encoder {
                             .trim());
                 } else if (instruction[0].equals("DELAY")) {
                     int delay = Integer.parseInt(instruction[1].trim());
-                    doDelay(file, delay);
+                    while (delay > 0) {
+                        file.add((byte) 0x00);
+                        if (delay > 255) {
+                            file.add((byte) 0xFF);
+                            delay = delay - 255;
+                        } else {
+                            file.add((byte) delay);
+                            delay = 0;
+                        }
+                    }
                     delayOverride = true;
                 } else if (instruction[0].equals("STRING")) {
                     for (int j = 0; j < instruction[1].length(); j++) {
@@ -364,9 +373,7 @@ public class Encoder {
                 } else if (functionKeyCheck(instruction[0])) {
                     // Function keys
                     file.add(functionKeyToByte(instruction[0]));
-                    writeNull(file);
-                } else if (instruction[0].equals("REPEAT")) {
-                    doRepeat(file, instruction[1]);
+                    file.add((byte) 0x00);
                 } else {
                     // Is this just a single word?
                     if (instruction.length != 1) {
@@ -429,19 +436,6 @@ public class Encoder {
             fos.close();
         } catch (Exception e) {
             System.out.print("Failed to write hex file!");
-        }
-    }
-
-    private static void doRepeat(List<Byte> file, String s) {
-        int repeatCount = Integer.parseInt(s);
-        System.err.println("REPEAT " + repeatCount);
-        byte[] instructionToRepeat = new byte[2];
-        instructionToRepeat[0] = file.get(file.size() - 2);
-        instructionToRepeat[1] = file.get(file.size() - 1);
-
-        for (int loop = 0; loop < repeatCount; loop++) {
-            file.add(instructionToRepeat[0]);
-            file.add(instructionToRepeat[1]);
         }
     }
 
