@@ -23,7 +23,6 @@ import java.util.Set;
  */
 public class IntegrationTest {
     Injector injector;
-    private static final boolean guiSpaceSupported = true;
 
     @Before
     public void setup() {
@@ -240,18 +239,8 @@ public class IntegrationTest {
         testFile(filename);
     }
 
-    private boolean passIfGuiSpaceNotSupported() {
-        if (!guiSpaceSupported) {
-            return true;
-        }
-
-        return false;
-    }
-
     @Test
     public void testOsxUserBackdoor() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-user-backdoor";
 
         testFile(filename);
@@ -259,8 +248,6 @@ public class IntegrationTest {
 
     @Test
     public void testYoutubeBlaster() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-youtube-blaster";
 
         testFile(filename);
@@ -268,8 +255,6 @@ public class IntegrationTest {
 
     @Test
     public void testOsxAsciiPrank() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-ascii-prank";
 
         testFile(filename);
@@ -277,8 +262,6 @@ public class IntegrationTest {
 
     @Test
     public void testOsxGrabMinecraftAccountPasswordAndUploadToFtp() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-grab-minecraft-account-password-and-upload-to-ftp";
 
         testFile(filename);
