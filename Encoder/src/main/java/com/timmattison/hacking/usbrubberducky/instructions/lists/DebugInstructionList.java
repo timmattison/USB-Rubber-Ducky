@@ -60,7 +60,8 @@ public class DebugInstructionList implements InstructionList {
         for (Instruction instruction : finalInstructionList) {
             byte[] encodedInstruction = instruction.getEncodedInstruction();
 
-            System.out.println(instruction);
+            System.out.println(baos.size() + " " + instruction);
+
             if(baos.size() >= debugOffset) {
                 System.out.println("STOP HERE");
             }
