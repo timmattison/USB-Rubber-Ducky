@@ -9,6 +9,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
+import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,9 @@ import java.util.Set;
  * Created by timmattison on 7/21/14.
  */
 public class IntegrationTest {
+    private static final String inputPath = "/inputs/";
+    private static final String inputSuffix = ".txt";
+
     Injector injector;
 
     @Before
@@ -447,7 +451,7 @@ public class IntegrationTest {
 
         // Get the input file data
         try {
-            inputFile = TestAgainstFiles.getInputFile(filename);
+            inputFile = getInputFile(filename);
         } catch (NullPointerException e) {
             throw new UnsupportedOperationException("Input file [" + filename + ".txt] not found");
         }
@@ -546,7 +550,7 @@ public class IntegrationTest {
 
         // Input file arguments
         args.add("-i");
-        args.add(TestAgainstFiles.getInputFileName(filename));
+        args.add(getInputFileName(filename));
 
         // Output file arguments
         args.add("-o");
@@ -556,6 +560,22 @@ public class IntegrationTest {
         args.add("-t");
 
         return args;
+    }
+
+    public String[] getInputFile(String filename) throws IOException {
+        return readFileAsStringArray(inputPath + filename + inputSuffix);
+    }
+
+    public String getInputFileName(String filename) {
+        return inputPath + filename + inputSuffix;
+    }
+
+    private String[] readFileAsStringArray(String inputFile) throws IOException {
+        String string = IOUtils.toString(new InputStreamReader(inputFile.getClass().getResourceAsStream(inputFile)));
+        string = string.replaceAll("\r", "");
+        String[] lines = string.split("\n");
+
+        return lines;
     }
 }
 
