@@ -49,7 +49,6 @@ public enum KeyboardUSNonShiftedCodes implements ReturnsKeyboardCode {
     KeyboardLeftBracket(47, '['),
     KeyboardRightBracket(48, ']'),
     KeyboardBackslash(49, '\\'),
-    //KeyboardNonUsGrid(50, '#'),
     KeyboardSemicolon(51, ';'),
     KeyboardApostrophe(52, '\''),
     KeyboardGraveAccent(53, '`'),
