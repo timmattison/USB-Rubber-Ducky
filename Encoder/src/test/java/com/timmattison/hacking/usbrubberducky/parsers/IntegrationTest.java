@@ -415,16 +415,14 @@ public class IntegrationTest {
     public void testDisableAvg2012() throws Exception {
         String filename = "disable-avg-2012";
 
-        //testFile(filename);
-        debugFile(252, filename);
+        testFile(filename);
     }
 
     @Test
     public void testDisableAvg2013() throws Exception {
         String filename = "disable-avg-2013";
 
-        //testFile(filename);
-        debugFile(368, filename);
+        testFile(filename);
     }
 
     private void debugFile(int debugOffset, String filename) throws Exception {
