@@ -1,8 +1,9 @@
-package com.timmattison.hacking.usbrubberducky.parsers;
+package com.timmattison.hacking.usbrubberducky.parsers.advanced;
 
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.instructions.KeypressInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressInstructionFactory;
+import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
@@ -18,21 +19,20 @@ import java.util.Stack;
  * Time: 6:17 PM
  * To change this template use File | Settings | File Templates.
  */
-public class KeypressInstructionParser implements InstructionParser<KeypressInstruction> {
+public class KeypressInstructionParser extends AdvancedAbstractInstructionParser<KeypressInstruction> {
     private final KeypressInstructionFactory keypressInstructionFactory;
     private final KeyboardCodes keyboardCodes;
     private Map<String, KeyboardCode> keyboardModifierMap;
 
     @Inject
-    public KeypressInstructionParser(KeypressInstructionFactory keypressInstructionFactory, KeyboardCodes keyboardCodes) {
+    public KeypressInstructionParser(Preprocessor preprocessor, KeypressInstructionFactory keypressInstructionFactory, KeyboardCodes keyboardCodes) {
+        super(preprocessor);
         this.keypressInstructionFactory = keypressInstructionFactory;
         this.keyboardCodes = keyboardCodes;
     }
 
     @Override
-    public KeypressInstruction parse(String input) {
-        input = processLegacyReplacements(input);
-
+    protected KeypressInstruction innerParse(String input) {
         String[] inputChunks = input.split(" ");
 
         Stack<KeyboardCode> keyboardCodeStack = new Stack<KeyboardCode>();
@@ -43,17 +43,16 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
             boolean last = false;
 
             // Is this the last keyboard code?
-            if(inputChunk.equals(inputChunks[inputChunks.length - 1])) {
+            if (inputChunk.equals(inputChunks[inputChunks.length - 1])) {
                 last = true;
             }
 
             KeyboardCode keyboardCode;
 
-            if(last) {
+            if (last) {
                 // Yes, it must be a real key
                 keyboardCode = getKeyboardCode(currentChunk);
-            }
-            else {
+            } else {
                 // No, it must be a modifier
                 keyboardCode = getKeyboardModifier(currentChunk);
             }
@@ -70,12 +69,6 @@ public class KeypressInstructionParser implements InstructionParser<KeypressInst
 
         // Get the keypress instruction for this code
         return keypressInstructionFactory.create(keyboardCodeStack);
-    }
-
-    private String processLegacyReplacements(String input) {
-        input = input.replaceAll("^CTRL-SHIFT", "CTRL SHIFT");
-        input = input.replaceAll("^CONTROL-SHIFT", "CONTROL SHIFT");
-        return input;
     }
 
     private KeyboardCode getKeyboardCode(String codeString) {

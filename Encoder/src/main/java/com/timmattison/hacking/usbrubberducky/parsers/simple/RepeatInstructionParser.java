@@ -1,9 +1,10 @@
-package com.timmattison.hacking.usbrubberducky.parsers;
+package com.timmattison.hacking.usbrubberducky.parsers.simple;
 
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.constants.Whitespace;
 import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
+import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 
 import java.util.List;
 
@@ -14,14 +15,15 @@ import java.util.List;
  * Time: 11:32 AM
  * To change this template use File | Settings | File Templates.
  */
-public class RepeatInstructionParser extends AbstractInstructionParser<RepeatInstruction> {
+public class RepeatInstructionParser extends SimpleAbstractInstructionParser<RepeatInstruction> {
     private static final String name = "REPEAT";
     //private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)" + "(" + getWhitespaceCharClass() + "+" + "([0-9]+))?";
     private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
     private final RepeatInstructionFactory repeatInstructionFactory;
 
     @Inject
-    public RepeatInstructionParser(RepeatInstructionFactory repeatInstructionFactory) {
+    public RepeatInstructionParser(Preprocessor preprocessor, RepeatInstructionFactory repeatInstructionFactory) {
+        super(preprocessor);
         this.repeatInstructionFactory = repeatInstructionFactory;
     }
 

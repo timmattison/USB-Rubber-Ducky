@@ -1,6 +1,8 @@
-package com.timmattison.hacking.usbrubberducky.parsers;
+package com.timmattison.hacking.usbrubberducky.parsers.simple;
 
+import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.instructions.NopInstruction;
+import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 
 import java.util.List;
 
@@ -11,8 +13,13 @@ import java.util.List;
  * Time: 11:32 AM
  * To change this template use File | Settings | File Templates.
  */
-public class BlankLineInstructionParser extends AbstractInstructionParser<NopInstruction> {
+public class BlankLineInstructionParser extends SimpleAbstractInstructionParser<NopInstruction> {
     private static final String matchingRegex = "^\\s*$";
+
+    @Inject
+    public BlankLineInstructionParser(Preprocessor preprocessor) {
+        super(preprocessor);
+    }
 
     @Override
     protected NopInstruction create(List<String> input) {

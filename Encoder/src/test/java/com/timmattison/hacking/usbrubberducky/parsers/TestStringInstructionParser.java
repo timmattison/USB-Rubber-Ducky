@@ -1,18 +1,15 @@
 package com.timmattison.hacking.usbrubberducky.parsers;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.instructions.StringInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
+import com.timmattison.hacking.usbrubberducky.parsers.simple.StringInstructionParser;
+import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCodes;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,7 +30,7 @@ public class TestStringInstructionParser {
             }
         };
 
-        stringInstructionParser = new StringInstructionParser(stringInstructionFactory);
+        stringInstructionParser = new StringInstructionParser(new LegacyPreprocessor(), stringInstructionFactory);
     }
 
     @Test

@@ -17,6 +17,10 @@ import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.Inst
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.NopInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.RepeatInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.parsers.*;
+import com.timmattison.hacking.usbrubberducky.parsers.advanced.KeypressInstructionParser;
+import com.timmattison.hacking.usbrubberducky.parsers.simple.*;
+import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
+import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
@@ -55,5 +59,7 @@ public class UsbRubberDuckyModule extends AbstractModule {
         install(new FactoryModuleBuilder().implement(RepeatInstruction.class, BasicRepeatInstruction.class).build(RepeatInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(KeypressInstruction.class, KeypressInstruction.class).build(KeypressInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(DelayInstruction.class, DelayInstruction.class).build(DelayInstructionFactory.class));
+
+        bind(Preprocessor.class).to(LegacyPreprocessor.class);
     }
 }

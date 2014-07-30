@@ -1,7 +1,9 @@
-package com.timmattison.hacking.usbrubberducky.parsers;
+package com.timmattison.hacking.usbrubberducky.parsers.simple;
 
+import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.constants.Whitespace;
 import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
+import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 
 import java.util.List;
 
@@ -12,9 +14,14 @@ import java.util.List;
  * Time: 11:32 AM
  * To change this template use File | Settings | File Templates.
  */
-public class DelayInstructionParser extends AbstractInstructionParser<DelayInstruction> {
+public class DelayInstructionParser extends SimpleAbstractInstructionParser<DelayInstruction> {
     private static final String name = "DELAY";
     private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
+
+    @Inject
+    public DelayInstructionParser(Preprocessor preprocessor) {
+        super(preprocessor);
+    }
 
     @Override
     protected DelayInstruction create(List<String> input) {

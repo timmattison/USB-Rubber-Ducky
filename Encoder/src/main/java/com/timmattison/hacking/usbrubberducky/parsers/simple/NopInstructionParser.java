@@ -1,8 +1,8 @@
-package com.timmattison.hacking.usbrubberducky.parsers;
+package com.timmattison.hacking.usbrubberducky.parsers.simple;
 
-import com.timmattison.hacking.usbrubberducky.constants.Whitespace;
-import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
+import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.instructions.NopInstruction;
+import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 
 import java.util.List;
 
@@ -13,9 +13,14 @@ import java.util.List;
  * Time: 11:32 AM
  * To change this template use File | Settings | File Templates.
  */
-public class NopInstructionParser extends AbstractInstructionParser<NopInstruction> {
+public class NopInstructionParser extends SimpleAbstractInstructionParser<NopInstruction> {
     private static final String name = "REM ";
     private static final String matchingRegex = "^" + name;
+
+    @Inject
+    public NopInstructionParser(Preprocessor preprocessor) {
+        super(preprocessor);
+    }
 
     @Override
     protected NopInstruction create(List<String> input) {
