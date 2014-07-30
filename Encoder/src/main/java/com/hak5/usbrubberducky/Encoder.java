@@ -366,15 +366,7 @@ public class Encoder {
                     file.add(functionKeyToByte(instruction[0]));
                     writeNull(file);
                 } else if (instruction[0].equals("REPEAT")) {
-                    int repeatCount = Integer.parseInt(instruction[1]);
-                    byte[] instructionToRepeat = new byte[2];
-                    instructionToRepeat[0] = file.get(file.size() - 2);
-                    instructionToRepeat[1] = file.get(file.size() - 1);
-
-                    for (int loop = 0; loop < repeatCount; loop++) {
-                        file.add(instructionToRepeat[0]);
-                        file.add(instructionToRepeat[1]);
-                    }
+                    doRepeat(file, instruction[1]);
                 } else {
                     // Is this just a single word?
                     if (instruction.length != 1) {
@@ -429,6 +421,19 @@ public class Encoder {
         }
     }
 
+    private static void doRepeat(List<Byte> file, String s) {
+        int repeatCount = Integer.parseInt(s);
+        System.err.println("REPEAT " + repeatCount);
+        byte[] instructionToRepeat = new byte[2];
+        instructionToRepeat[0] = file.get(file.size() - 2);
+        instructionToRepeat[1] = file.get(file.size() - 1);
+
+        for (int loop = 0; loop < repeatCount; loop++) {
+            file.add(instructionToRepeat[0]);
+            file.add(instructionToRepeat[1]);
+        }
+    }
+
     private static void writeNull(List<Byte> file) {
         file.add((byte) 0x00);
     }
@@ -438,7 +443,7 @@ public class Encoder {
     }
 
     private static void doDelay(List<Byte> file, int delay) {
-        System.err.println("DELAY " + delay);
+        System.err.println(file.size() + " DELAY " + delay);
         while (delay > 0) {
             writeNull(file);
             if (delay > 255) {
