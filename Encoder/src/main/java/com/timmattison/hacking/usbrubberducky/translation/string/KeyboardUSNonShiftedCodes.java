@@ -57,11 +57,9 @@ public enum KeyboardUSNonShiftedCodes implements ReturnsKeyboardCode {
     KeyboardForwardSlash(56, '/');
 
     private final KeyboardCode value;
-    private final Character character;
 
     KeyboardUSNonShiftedCodes(int value, Character character) {
         this.value = new KeyboardCode(String.valueOf(character), (byte) value, KeyboardCode.NO_SHIFT);
-        this.character = character;
     }
 
     public KeyboardCode getValue() {
