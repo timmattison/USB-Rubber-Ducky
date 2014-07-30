@@ -40,25 +40,16 @@ public class KeypressInstructionParser extends NonRegexAbstractInstructionParser
         Stack<KeyboardCode> keyboardCodeStack = new Stack<KeyboardCode>();
 
         // Loop through each chunk
-        for (String inputChunk : inputChunks) {
+        for (int loop = 0; loop < inputChunks.length; loop++) {
+            String inputChunk = inputChunks[loop];
+
             // Trim the whitespace on the chunk.  Whitespace is not important for keypresses.
             String currentChunk = inputChunk.trim();
-
-            // Keep track of whether or not this is the last code
-            boolean last = false;
-
-            // TODO: This could fail under certain circumstances and is ugly, clean this up
-
-            // Is this the last keyboard code?
-            if (inputChunk.equals(inputChunks[inputChunks.length - 1])) {
-                // Yes, set the flag
-                last = true;
-            }
 
             KeyboardCode keyboardCode;
 
             // Is this the last keyboard code?
-            if (last) {
+            if (loop == (inputChunks.length - 1)) {
                 // Yes, it MUST be a real key
                 keyboardCode = getKeyboardCode(currentChunk);
             } else {
