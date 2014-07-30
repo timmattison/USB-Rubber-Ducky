@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Handles REPEAT instructions
+ * <p/>
  * Created by timmattison on 7/29/14.
  */
 public class RepeatInstructionListProcessor implements InstructionListProcessor {
     @Override
     public List<Instruction> process(List<Instruction> instructionList) {
+        // Create the output instruction list
         List<Instruction> outputInstructionList = new ArrayList<Instruction>();
 
         for (Instruction instruction : instructionList) {
@@ -20,6 +23,7 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
                 // Yes, get the repeat instruction
                 RepeatInstruction repeatInstruction = (RepeatInstruction) instruction;
 
+                // Get the instruction count and the repeat count
                 int instructionCount = repeatInstruction.getInstructionCount();
                 int repeatCount = repeatInstruction.getRepeatCount();
 
@@ -44,6 +48,7 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
             }
         }
 
+        // Return the output instruction list
         return outputInstructionList;
     }
 }
