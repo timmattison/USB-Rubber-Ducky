@@ -27,23 +27,24 @@ public class KeypressInstruction implements Instruction {
 
     @Override
     public byte[] getEncodedInstruction() {
-        // Loop through the keyboard codes
-        boolean first = true;
-        boolean finalKeyIsLeftGui = false;
-
         // The final output value
         KeyboardCode output = null;
 
         // The keyboard codes we've used already
         HashSet<KeyboardCode> usedKeyboardCodes = new HashSet<KeyboardCode>();
 
+        // Clone the stack that we're working with so that we can re-run this instruction if necessary
         Stack<KeyboardCode> tempKeyboardCodeStack = (Stack<KeyboardCode>) keyboardCodeStack.clone();
 
+        // Loop while there are still codes on the stack
         while (!tempKeyboardCodeStack.empty()) {
+            // Pop off the top element
             KeyboardCode keyboardCode = tempKeyboardCodeStack.pop();
 
             // Make sure there are no duplicates
             forceNoDuplicates(usedKeyboardCodes, keyboardCode);
+
+            // TODO: Check to make sure that we don't have codes whose bit pattern clashes
 
             // Do we have any keys yet?
             if (output == null) {
@@ -59,24 +60,23 @@ public class KeypressInstruction implements Instruction {
         return output.getBytes();
     }
 
-    private void forceNoDuplicates(HashSet<KeyboardCode> usedKeyboardCodes, KeyboardCode keyboardCode) {
+    private void forceNoDuplicates(Set<KeyboardCode> usedKeyboardCodes, KeyboardCode keyboardCode) {
+        // TODO: This could be done with less code if we use contains()
+
+        // Determine how big our set was before we added this element
         int sizeBeforeAdding = usedKeyboardCodes.size();
 
+        // Add the code to the set
         usedKeyboardCodes.add(keyboardCode);
 
+        // Determine how big our set is now
         int sizeAfterAdding = usedKeyboardCodes.size();
 
+        // Did the set increase in size?
         if (sizeAfterAdding == sizeBeforeAdding) {
+            // No, this means we have a duplicate code
             throw new UnsupportedOperationException("Duplicate keyboard code in a single line [" + keyboardCode + "]");
         }
-    }
-
-    private boolean isLeftGuiKey(KeyboardCode keyboardCode) {
-        return (keyboardCode.equals(KeyboardModifier.GUI.getValue())) || (keyboardCode.equals(KeyboardModifier.LEFT_GUI));
-    }
-
-    private boolean isRightGuiKey(KeyboardCode keyboardCode) {
-        return keyboardCode.equals(KeyboardModifier.RIGHT_GUI.getValue());
     }
 
     @Override
