@@ -441,20 +441,19 @@ public class Encoder {
 
         String lastInstruction = null;
 
-        for(String instruction : instructions) {
+        for (String instruction : instructions) {
             String temp[] = instruction.split(" ", 2);
 
 
-            if(temp[0].equals("REPEAT")) {
+            if (temp[0].equals("REPEAT")) {
                 int repeatCount = Integer.parseInt(temp[1]);
 
-                for(int loop = 0; loop < repeatCount; loop++) {
+                for (int loop = 0; loop < repeatCount; loop++) {
                     output.add(lastInstruction);
                 }
 
                 lastInstruction = null;
-            }
-            else {
+            } else {
                 output.add(instruction);
                 lastInstruction = instruction;
             }

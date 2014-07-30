@@ -2,9 +2,9 @@ package com.timmattison.hacking.usbrubberducky.translation.codes;
 
 /**
  * Created by timmattison on 12/5/13.
- *
+ * <p/>
  * Built from http://www.usb.org/developers/devclass_docs/Hut1_11.pdf
- *
+ * <p/>
  * The original USB Rubber Ducky application defines MENU and APP as code 101.  USB HID defines MENU as 118.
  * To maintain backwards compatibility USB HID's MENU was renamed MENU2
  */

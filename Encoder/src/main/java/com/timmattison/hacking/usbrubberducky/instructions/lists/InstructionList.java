@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * Holds a list of instructions and can convert the list into code suitable for the USB Rubber Ducky
- *
+ * <p/>
  * Created with IntelliJ IDEA.
  * User: timmattison
  * Date: 11/27/13

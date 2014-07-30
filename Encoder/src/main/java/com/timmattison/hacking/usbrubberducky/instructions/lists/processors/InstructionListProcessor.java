@@ -11,6 +11,7 @@ public interface InstructionListProcessor {
     /**
      * Takes a list of instructions and returns a new list of instructions with some processing done to it (removal of
      * NOPs, REPEAT instructions expanded, DELAYs added for DEFAULT_DELAY)
+     *
      * @param instructionList
      * @return
      */

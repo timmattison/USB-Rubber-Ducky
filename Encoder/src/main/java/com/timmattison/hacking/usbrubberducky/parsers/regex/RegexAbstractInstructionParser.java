@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 /**
  * Parses an instruction that is described by a regular expression
- *
+ * <p/>
  * Created with IntelliJ IDEA.
  * User: timmattison
  * Date: 11/27/13
@@ -30,7 +30,7 @@ public abstract class RegexAbstractInstructionParser<T extends Instruction> impl
 
     private Pattern getPattern() {
         // Did we already create a pattern object?
-        if(pattern == null) {
+        if (pattern == null) {
             // No, create one with the matching regex
             pattern = Pattern.compile(getMatchingRegex());
         }
@@ -63,7 +63,7 @@ public abstract class RegexAbstractInstructionParser<T extends Instruction> impl
         List<String> fields = new ArrayList<String>();
 
         // Loop through each group
-        for(int loop = 0; loop < matcher.groupCount(); loop++) {
+        for (int loop = 0; loop < matcher.groupCount(); loop++) {
             // Add the group to the fields (+1 skips the first group which is the instruction itself)
             fields.add(matcher.group(loop + 1));
         }

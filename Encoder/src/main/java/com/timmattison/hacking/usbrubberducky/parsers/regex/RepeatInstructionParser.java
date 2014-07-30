@@ -29,7 +29,7 @@ public class RepeatInstructionParser extends RegexAbstractInstructionParser<Repe
     @Override
     protected RepeatInstruction create(List<String> input) {
         // TODO: This doesn't support repeating multiple instructions yet
-        
+
         // Parse the number of times we should repeat and create the instruction using the factory
         return repeatInstructionFactory.create(Integer.parseInt(input.get(0)));
     }
