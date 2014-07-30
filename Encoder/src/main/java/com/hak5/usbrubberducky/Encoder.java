@@ -212,7 +212,7 @@ public class Encoder {
                     else if (instruction.length != 1)
                         handleTheRest(file, instruction[1]);
                     else
-                        file.add((byte) 0x00);
+                        writeNull(file);
                     file.add((byte) 0x01);
                 } else if (instruction[0].equals("CONTROL-SHIFT")
                         || instruction[0].equals("CTRL-SHIFT")) {
@@ -225,7 +225,7 @@ public class Encoder {
                     else if (instruction.length != 1)
                         handleTheRest(file, instruction[1]);
                     else
-                        file.add((byte) 0x00);
+                        writeNull(file);
                     file.add((byte) 0x03);
                 } else if (instruction[0].equals("ALT")) {
                     if (instruction.length != 1) {
@@ -239,132 +239,132 @@ public class Encoder {
                         else if (instruction.length != 1)
                             handleTheRest(file, instruction[1]);
                         else
-                            file.add((byte) 0x00);
+                            writeNull(file);
                     } else {
-                        file.add((byte) 0x00);
+                        writeNull(file);
                     }
                     file.add((byte) 0xE2);
 
                 } else if (instruction[0].equals("ENTER")) {
                     file.add((byte) 0x28);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("SHIFT")) {
                     if (instruction.length != 1) {
                         handleSpecialKeys(file, instruction[1]);
                         file.add((byte) 0xE1);
                     } else {
                         file.add((byte) 0xE1);
-                        file.add((byte) 0x00);
+                        writeNull(file);
                     }
                 } else if (instruction[0].equals("REM")) {
                     continue;
                 } else if (instruction[0].equals("MENU")
                         || instruction[0].equals("APP")) {
                     file.add((byte) 0x65);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("TAB")) {
                     file.add((byte) 0x2B);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("SPACE")) {
                     file.add((byte) 0x2C);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("WINDOWS")
                         || instruction[0].equals("GUI")
                         || instruction[0].equals("COMMAND")) {
                     if (instruction.length == 1) {
                         file.add((byte) 0xE3);
-                        file.add((byte) 0x00);
+                        writeNull(file);
                     } else {
                         if (instruction[1].equals("SPACE")) {
                             file.add((byte) 0x2C);
                         } else {
-                            file.add(charToByte(instruction[1].charAt(0)));
+                            extractAndAddCharacter(file, instruction[1]);
                         }
                         file.add((byte) 0x08);
                     }
                 } else if (instruction[0].equals("SYSTEMPOWER")) {
                     file.add((byte) 0x81);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("SYSTEMSLEEP")) {
                     file.add((byte) 0x82);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("SYSTEMWAKE")) {
                     file.add((byte) 0x83);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("ESCAPE")
                         || instruction[0].equals("ESC")) {
                     file.add((byte) 0x29);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("CAPSLOCK")) {
                     file.add((byte) 0x39);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("PRINTSCREEN")) {
                     file.add((byte) 0x46);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("SCROLLLOCK")) {
                     file.add((byte) 0x47);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("BREAK")
                         || instruction[0].equals("PAUSE")) {
                     file.add((byte) 0x48);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("INSERT")) {
                     file.add((byte) 0x49);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("HOME")) {
                     file.add((byte) 0x4A);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("END")) {
                     file.add((byte) 0x4D);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("PAGEUP")) {
                     file.add((byte) 0x4B);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("DELETE")) {
                     file.add((byte) 0x4C);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("PAGEDOWN")) {
                     file.add((byte) 0x4E);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("RIGHTARROW")
                         || instruction[0].equals("RIGHT")) {
                     file.add((byte) 0x4F);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("LEFTARROW")
                         || instruction[0].equals("LEFT")) {
                     file.add((byte) 0x50);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("DOWNARROW")
                         || instruction[0].equals("DOWN")) {
                     file.add((byte) 0x51);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("UPARROW")
                         || instruction[0].equals("UP")) {
                     file.add((byte) 0x52);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("NUMLOCK")) {
                     file.add((byte) 0x53);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("STOP")) {
                     file.add((byte) 0xb5);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("PLAY")
                         || instruction[0].equals("PAUSE")) {
                     file.add((byte) 0xCD);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("MUTE")) {
                     file.add((byte) 0xE2);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("VOLUMEUP")) {
                     file.add((byte) 0xE9);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("VOLUMEDOWN")) {
                     file.add((byte) 0xEA);
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (functionKeyCheck(instruction[0])) {
                     // Function keys
                     file.add(functionKeyToByte(instruction[0]));
-                    file.add((byte) 0x00);
+                    writeNull(file);
                 } else if (instruction[0].equals("REPEAT")) {
                     int repeatCount = Integer.parseInt(instruction[1]);
                     byte[] instructionToRepeat = new byte[2];
@@ -429,9 +429,18 @@ public class Encoder {
         }
     }
 
+    private static void writeNull(List<Byte> file) {
+        file.add((byte) 0x00);
+    }
+
+    private static void extractAndAddCharacter(List<Byte> file, String s) {
+        file.add(charToByte(s.charAt(0)));
+    }
+
     private static void doDelay(List<Byte> file, int delay) {
+        System.err.println("DELAY " + delay);
         while (delay > 0) {
-            file.add((byte) 0x00);
+            writeNull(file);
             if (delay > 255) {
                 file.add((byte) 0xFF);
                 delay = delay - 255;
@@ -446,7 +455,7 @@ public class Encoder {
         if (functionKeyCheck(possibleFKey)) {
             file.add(functionKeyToByte(possibleFKey));
         } else if (possibleFKey.length() == 1) {
-            file.add(charToByte(possibleFKey.charAt(0)));
+            extractAndAddCharacter(file, possibleFKey);
         } else {
             handleSpecialKeys(file, possibleFKey);
         }
