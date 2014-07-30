@@ -257,7 +257,7 @@ public class Encoder {
                 } else if (instruction[0].equals("SHIFT")) {
                     if (instruction.length != 1) {
                         handleSpecialKeys(file, instruction[1]);
-                        file.add((byte) 0xE1);
+                        file.add((byte) 0x02);
                     } else {
                         file.add((byte) 0xE1);
                         writeNull(file);
