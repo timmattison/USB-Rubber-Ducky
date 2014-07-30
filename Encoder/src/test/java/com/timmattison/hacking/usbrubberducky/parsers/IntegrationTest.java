@@ -425,6 +425,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testEicarAvTest() throws Exception {
+        String filename = "eicar-av-test";
+
+        testFile(filename);
+    }
+
     private void debugFile(int debugOffset, String filename) throws Exception {
         Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
 
