@@ -244,10 +244,8 @@ public class Encoder {
                             file.add((byte) 0x2C);
                         else if (instruction[1].equals("TAB"))
                             file.add((byte) 0x2B);
-                        else if (instruction.length != 1)
-                            handleTheRest(file, instruction[1]);
                         else
-                            writeNull(file);
+                            handleTheRest(file, instruction[1]);
                     } else {
                         writeNull(file);
                     }
