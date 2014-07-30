@@ -33,4 +33,11 @@ public class StringInstruction implements Instruction {
 
         return baos.toByteArray();
     }
+
+    @Override
+    public String toString() {
+        return "StringInstruction{" +
+                "input='" + input + '\'' +
+                '}';
+    }
 }

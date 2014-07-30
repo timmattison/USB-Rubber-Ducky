@@ -42,4 +42,11 @@ public class DelayInstruction implements Instruction {
     public int getDelayValue() {
         return delayValue;
     }
+
+    @Override
+    public String toString() {
+        return "DelayInstruction{" +
+                "delayValue=" + delayValue +
+                '}';
+    }
 }
