@@ -400,8 +400,6 @@ public class Encoder {
                     if (instruction.length > 1) {
                         output += " " + instruction[1];
                     }
-
-                    System.err.println(output);
                 }
 
                 // Default delay
@@ -477,7 +475,6 @@ public class Encoder {
     }
 
     private static void doDelay(List<Byte> file, int delay) {
-        System.err.println(file.size() + " DELAY " + delay);
         while (delay > 0) {
             writeNull(file);
             if (delay > 255) {
