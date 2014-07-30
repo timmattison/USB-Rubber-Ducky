@@ -33,33 +33,42 @@ public class KeypressInstructionParser extends NonRegexAbstractInstructionParser
 
     @Override
     protected KeypressInstruction innerParse(String input) {
+        // Split up the input into chunks separated by spaces
         String[] inputChunks = input.split(" ");
 
+        // Create a stack to hold our keyboard codes
         Stack<KeyboardCode> keyboardCodeStack = new Stack<KeyboardCode>();
 
+        // Loop through each chunk
         for (String inputChunk : inputChunks) {
+            // Trim the whitespace on the chunk.  Whitespace is not important for keypresses.
             String currentChunk = inputChunk.trim();
 
+            // Keep track of whether or not this is the last code
             boolean last = false;
+
+            // TODO: This could fail under certain circumstances and is ugly, clean this up
 
             // Is this the last keyboard code?
             if (inputChunk.equals(inputChunks[inputChunks.length - 1])) {
+                // Yes, set the flag
                 last = true;
             }
 
             KeyboardCode keyboardCode;
 
+            // Is this the last keyboard code?
             if (last) {
-                // Yes, it must be a real key
+                // Yes, it MUST be a real key
                 keyboardCode = getKeyboardCode(currentChunk);
             } else {
-                // No, it must be a modifier
+                // No, it MUST be a modifier
                 keyboardCode = getKeyboardModifier(currentChunk);
             }
 
-            // Did we still not find this mapping?
+            // Did we find this mapping?
             if (keyboardCode == null) {
-                // No, we can't process it
+                // No, we can't process it.  Return NULL to tell the caller that our processing failed.
                 return null;
             }
 
@@ -80,14 +89,18 @@ public class KeypressInstructionParser extends NonRegexAbstractInstructionParser
     }
 
     private Map<String, KeyboardCode> getKeyboardModifierMap() {
+        // Has the keyboard modifier map been built already?
         if (keyboardModifierMap == null) {
+            // No, build it
             keyboardModifierMap = new HashMap<String, KeyboardCode>();
 
+            // Loop through each keyboard modifier and add it and its name to a map so we can search them quickly.
             for (KeyboardModifier keyboardModifier : KeyboardModifier.values()) {
                 keyboardModifierMap.put(keyboardModifier.name(), keyboardModifier.getValue());
             }
         }
 
+        // Return the map to the caller
         return keyboardModifierMap;
     }
 }

@@ -7,6 +7,7 @@ import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 
 /**
  * Parses an instruction that is not described by a regular expression
+ * <p/>
  * Created with IntelliJ IDEA.
  * User: timmattison
  * Date: 11/27/13
@@ -26,6 +27,7 @@ public abstract class NonRegexAbstractInstructionParser<T extends Instruction> i
         // Preprocess the input
         input = preprocessor.preprocess(input);
 
+        // Let the concrete implementation do its job
         return innerParse(input);
     }
 

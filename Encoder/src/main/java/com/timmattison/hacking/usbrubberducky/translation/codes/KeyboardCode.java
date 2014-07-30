@@ -19,12 +19,6 @@ public class KeyboardCode {
         this.secondByte = secondByte;
     }
 
-    public KeyboardCode(String stringToMatch, byte firstByte) {
-        this.stringToMatch = stringToMatch;
-        this.firstByte = firstByte;
-        this.secondByte = 0x00;
-    }
-
     public String getStringToMatch() {
         return stringToMatch;
     }

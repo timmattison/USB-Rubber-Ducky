@@ -23,6 +23,7 @@ public class BlankLineInstructionParser extends RegexAbstractInstructionParser<N
 
     @Override
     protected NopInstruction create(List<String> input) {
+        // Blank lines are treated as a NOP
         return new NopInstruction();
     }
 

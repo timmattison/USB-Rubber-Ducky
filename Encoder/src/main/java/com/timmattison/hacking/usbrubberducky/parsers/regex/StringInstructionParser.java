@@ -28,6 +28,7 @@ public class StringInstructionParser extends RegexAbstractInstructionParser<Stri
 
     @Override
     protected StringInstruction create(List<String> input) {
+        // The first (and only) input parameter is the string we need to be encoding, create the instruction using that data via the factory
         return stringInstructionFactory.create(input.get(0));
     }
 

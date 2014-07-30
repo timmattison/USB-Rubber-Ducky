@@ -25,12 +25,16 @@ public class StringInstruction implements Instruction {
 
     @Override
     public byte[] getEncodedInstruction() {
+        // Create an output stream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+        // Loop through each character
         for (int loop = 0; loop < input.length(); loop++) {
+            // Translate the current character and write it into the output stream
             characterTranslator.translate(input.charAt(loop)).write(baos);
         }
 
+        // Return the output stream as a byte array
         return baos.toByteArray();
     }
 

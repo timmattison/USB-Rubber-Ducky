@@ -8,6 +8,7 @@ package com.timmattison.hacking.usbrubberducky.preprocessors;
 public class NopPreprocessor implements Preprocessor {
     @Override
     public String preprocess(String input) {
+        // Do nothing, just return the unmodified input
         return input;
     }
 }

@@ -49,7 +49,6 @@ public enum KeyboardUSNonShiftedCodes implements ReturnsKeyboardCode {
     KeyboardLeftBracket(47, '['),
     KeyboardRightBracket(48, ']'),
     KeyboardBackslash(49, '\\'),
-    //KeyboardNonUsGrid(50, '#'),
     KeyboardSemicolon(51, ';'),
     KeyboardApostrophe(52, '\''),
     KeyboardGraveAccent(53, '`'),
@@ -58,11 +57,9 @@ public enum KeyboardUSNonShiftedCodes implements ReturnsKeyboardCode {
     KeyboardForwardSlash(56, '/');
 
     private final KeyboardCode value;
-    private final Character character;
 
     KeyboardUSNonShiftedCodes(int value, Character character) {
         this.value = new KeyboardCode(String.valueOf(character), (byte) value, KeyboardCode.NO_SHIFT);
-        this.character = character;
     }
 
     public KeyboardCode getValue() {

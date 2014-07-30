@@ -25,6 +25,7 @@ public class DefaultDelayInstructionParser extends RegexAbstractInstructionParse
 
     @Override
     protected DefaultDelayInstruction create(List<String> input) {
+        // Get the integer value from the input that contains the delay amount and create a default delay instruction with it
         return new DefaultDelayInstruction(Integer.parseInt(input.get(0)));
     }
 

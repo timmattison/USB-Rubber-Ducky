@@ -7,7 +7,6 @@ import com.google.inject.TypeLiteral;
 import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.DebugInstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 import org.junit.Assert;
@@ -24,7 +23,6 @@ import java.util.Set;
  */
 public class IntegrationTest {
     Injector injector;
-    private static final boolean guiSpaceSupported = true;
 
     @Before
     public void setup() {
@@ -241,18 +239,8 @@ public class IntegrationTest {
         testFile(filename);
     }
 
-    private boolean passIfGuiSpaceNotSupported() {
-        if (!guiSpaceSupported) {
-            return true;
-        }
-
-        return false;
-    }
-
     @Test
     public void testOsxUserBackdoor() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-user-backdoor";
 
         testFile(filename);
@@ -260,8 +248,6 @@ public class IntegrationTest {
 
     @Test
     public void testYoutubeBlaster() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-youtube-blaster";
 
         testFile(filename);
@@ -269,8 +255,6 @@ public class IntegrationTest {
 
     @Test
     public void testOsxAsciiPrank() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-ascii-prank";
 
         testFile(filename);
@@ -278,8 +262,6 @@ public class IntegrationTest {
 
     @Test
     public void testOsxGrabMinecraftAccountPasswordAndUploadToFtp() throws Exception {
-        if (passIfGuiSpaceNotSupported()) return;
-
         String filename = "osx-grab-minecraft-account-password-and-upload-to-ftp";
 
         testFile(filename);
@@ -439,74 +421,100 @@ public class IntegrationTest {
         testFile(filename);
     }
 
-    private void debugFile(int debugOffset, String filename) throws Exception {
-        Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
-
-        InstructionList instructionList = new DebugInstructionList(debugOffset, instructionListProcessors);
-
-        testFile(instructionList, filename);
-    }
-
     private void testFile(String filename) throws Exception {
+        // Get the instruction list processors
         Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
 
+        // Get the instruction list
         InstructionList instructionList = new BasicInstructionList(instructionListProcessors);
 
-        testFile(instructionList, filename);
+        // Test the file against the legacy encoder
+        testAgainstLegacyEncoder(instructionList, filename);
     }
 
     private Set<InstructionListProcessor> getInstructionListProcessors() {
+        // Create a type literal implementation that is for Set<InstructionListProcessor>
         TypeLiteral<Set<InstructionListProcessor>> instructionListProcessorTypeLiteral = new TypeLiteral<Set<InstructionListProcessor>>() {
         };
+
+        // Get the multibinding from Guice for Set<InstructionListProcessor>
         return injector.getInstance(Key.get(instructionListProcessorTypeLiteral));
     }
 
-    private void testFile(InstructionList instructionList, String filename) throws Exception {
+    private void testAgainstLegacyEncoder(InstructionList instructionList, String filename) throws Exception {
         String[] inputFile;
         byte[] outputFile;
 
+        // Get the input file data
         try {
             inputFile = TestAgainstFiles.getInputFile(filename);
         } catch (NullPointerException e) {
             throw new UnsupportedOperationException("Input file [" + filename + ".txt] not found");
         }
 
-        outputFile = getOutputFileFromOriginalEncoder(filename);
+        // Get the output file from the legacy encoder
+        outputFile = getOutputFileFromLegacyEncoder(filename);
 
+        // Get the output from the current encoder
+        byte[] generatedData = getOutputFromCurrentEncoder(instructionList, inputFile);
+
+        // Make sure the output matches
+        Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
+    }
+
+    private byte[] getOutputFromCurrentEncoder(InstructionList instructionList, String[] inputFile) throws IOException {
+        // Get the set of instruction parsers
         Set<InstructionParser> instructionParserSet = getInstructionParserSet();
 
+        // Loop through each input line
         for (String line : inputFile) {
+            // Start out with a null instruction
             Instruction instruction = null;
 
+            // Loop through each parser
             for (InstructionParser instructionParser : instructionParserSet) {
+                // Run the parser on this line
                 instruction = instructionParser.parse(line);
 
+                // Was the parser successful?
                 if (instruction != null) {
+                    // Yes, exit the for loop
                     break;
                 }
             }
 
+            // Did we find a parser that could handle this line?
             if (instruction == null) {
-                // Couldn't process this instruction!
+                // No, throw an exception
                 throw new UnsupportedOperationException("Couldn't process instruction [" + line + "]");
             }
 
+            // Add the instruction to the list
             instructionList.addInstruction(instruction);
         }
 
-        byte[] generatedData = instructionList.getBytes();
-
-        Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
+        // Get the byte array from this instruction list
+        return instructionList.getBytes();
     }
 
+    /**
+     * Gets the set of instruction parser from Guice
+     *
+     * @return
+     */
     private Set<InstructionParser> getInstructionParserSet() {
+        // Create a type literal implementation that is for Set<InstructionParser>
         TypeLiteral<Set<InstructionParser>> instructionParserTypeLiteral = new TypeLiteral<Set<InstructionParser>>() {
         };
+
+        // Get the multibinding from Guice for Set<InstructionParser>
         return injector.getInstance(Key.get(instructionParserTypeLiteral));
     }
 
-    private byte[] getOutputFileFromOriginalEncoder(String filename) throws Exception {
-        byte[] outputFile;// Create a stream to hold the output
+    private byte[] getOutputFileFromLegacyEncoder(String filename) throws Exception {
+        byte[] outputFile;
+
+        // Create a stream to hold the output
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(baos);
 

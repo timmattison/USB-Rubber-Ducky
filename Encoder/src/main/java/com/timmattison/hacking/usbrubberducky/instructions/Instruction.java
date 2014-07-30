@@ -1,6 +1,8 @@
 package com.timmattison.hacking.usbrubberducky.instructions;
 
 /**
+ * A single instruction
+ *
  * Created with IntelliJ IDEA.
  * User: timmattison
  * Date: 11/27/13

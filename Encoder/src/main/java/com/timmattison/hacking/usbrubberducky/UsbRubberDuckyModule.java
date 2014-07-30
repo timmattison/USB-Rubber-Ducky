@@ -36,30 +36,68 @@ import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCo
 public class UsbRubberDuckyModule extends AbstractModule {
     @Override
     protected void configure() {
+        // Create a multi-binder that holds all of the instruction parsers
+        createInstructionParsingMultibinder();
+
+        // Create a multi-binder that does instruction list processing
+        createListProcessingMultibinder();
+
+        // Bind the concrete implementations
+        bindConcreteImplementations();
+
+        // Create factories from the factory interfaces
+        createFactoriesFromInterfaces();
+    }
+
+    private void createInstructionParsingMultibinder() {
         Multibinder<InstructionParser> instructionParserMultibinder = Multibinder.newSetBinder(binder(), InstructionParser.class);
 
+        // Support "STRING"
         instructionParserMultibinder.addBinding().to(StringInstructionParser.class);
+        // Support "DELAY"
         instructionParserMultibinder.addBinding().to(DelayInstructionParser.class);
+        // Support keypresses
         instructionParserMultibinder.addBinding().to(KeypressInstructionParser.class);
+        // Support "REPEAT"
         instructionParserMultibinder.addBinding().to(RepeatInstructionParser.class);
+        // Support "REM"
         instructionParserMultibinder.addBinding().to(NopInstructionParser.class);
+        // Support "DEFAULT_DELAY"
         instructionParserMultibinder.addBinding().to(DefaultDelayInstructionParser.class);
+        // Support blank lines
         instructionParserMultibinder.addBinding().to(BlankLineInstructionParser.class);
+    }
 
+    private void createListProcessingMultibinder() {
         Multibinder<InstructionListProcessor> instructionListProcessorMultibinder = Multibinder.newSetBinder(binder(), InstructionListProcessor.class);
 
-        instructionListProcessorMultibinder.addBinding().to(NopInstructionListProcessor.class);
-        instructionListProcessorMultibinder.addBinding().to(RepeatInstructionListProcessor.class);
-        instructionListProcessorMultibinder.addBinding().to(DefaultDelayInstructionListProcessor.class);
+        // NOTE: The order of this list is important!
 
+        // Step 1 - Prune NOP instructions
+        instructionListProcessorMultibinder.addBinding().to(NopInstructionListProcessor.class);
+        // Step 2 - Repeat instructions
+        instructionListProcessorMultibinder.addBinding().to(RepeatInstructionListProcessor.class);
+        // Step 3 - Add default delays
+        instructionListProcessorMultibinder.addBinding().to(DefaultDelayInstructionListProcessor.class);
+    }
+
+    private void bindConcreteImplementations() {
+        // TODO: Add more keyboards and make it configurable at runtime
+
+        // Use the US keyboard
         bind(KeyboardCodes.class).to(USKeyboardCodes.class);
+
+        // Use the basic character translator
         bind(CharacterTranslator.class).to(BasicCharacterTranslator.class);
 
+        // Use the pre-processor that cleans up some legacy instructions
+        bind(Preprocessor.class).to(LegacyPreprocessor.class);
+    }
+
+    private void createFactoriesFromInterfaces() {
         install(new FactoryModuleBuilder().implement(StringInstruction.class, StringInstruction.class).build(StringInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(RepeatInstruction.class, BasicRepeatInstruction.class).build(RepeatInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(KeypressInstruction.class, KeypressInstruction.class).build(KeypressInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(DelayInstruction.class, DelayInstruction.class).build(DelayInstructionFactory.class));
-
-        bind(Preprocessor.class).to(LegacyPreprocessor.class);
     }
 }

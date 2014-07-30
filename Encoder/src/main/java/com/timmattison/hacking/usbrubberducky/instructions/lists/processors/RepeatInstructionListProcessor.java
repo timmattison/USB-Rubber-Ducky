@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Handles REPEAT instructions
+ * <p/>
  * Created by timmattison on 7/29/14.
  */
 public class RepeatInstructionListProcessor implements InstructionListProcessor {
     @Override
     public List<Instruction> process(List<Instruction> instructionList) {
+        // Create the output instruction list
         List<Instruction> outputInstructionList = new ArrayList<Instruction>();
 
         for (Instruction instruction : instructionList) {
@@ -20,6 +23,7 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
                 // Yes, get the repeat instruction
                 RepeatInstruction repeatInstruction = (RepeatInstruction) instruction;
 
+                // Get the instruction count and the repeat count
                 int instructionCount = repeatInstruction.getInstructionCount();
                 int repeatCount = repeatInstruction.getRepeatCount();
 
@@ -29,13 +33,11 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
                     throw new UnsupportedOperationException("Trying to repeat " + instructionCount + " instruction(s) but only " + outputInstructionList.size() + " instruction(s) are available");
                 }
 
-                // Create a sublist that holds all of the instructions we want ot repeat
-                List<Instruction> instructionSublist = new ArrayList<Instruction>();
+                // Create a sublist that is a copy of all of the instructions we want to repeat
+                List<Instruction> instructionSublist = new ArrayList<Instruction>(outputInstructionList.subList(outputInstructionList.size() - instructionCount, outputInstructionList.size()));
 
-                instructionSublist.addAll(outputInstructionList.subList(outputInstructionList.size() - instructionCount, outputInstructionList.size()));
-
-                // Repeat the sublist the expected number of times
-                for (int loop = 0; loop < repeatInstruction.getRepeatCount(); loop++) {
+                // Repeat the sublist the requested number of times
+                for (int loop = 0; loop < repeatCount; loop++) {
                     outputInstructionList.addAll(instructionSublist);
                 }
             } else {
@@ -44,6 +46,7 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
             }
         }
 
+        // Return the output instruction list
         return outputInstructionList;
     }
 }

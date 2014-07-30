@@ -12,6 +12,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 public interface InstructionParser<T extends Instruction> {
     /**
      * Returns an instruction if the input can be parsed as a particular instruction.  Returns NULL if not.
+     *
      * @param input
      * @return
      */
