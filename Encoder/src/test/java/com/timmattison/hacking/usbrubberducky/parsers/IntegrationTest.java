@@ -428,6 +428,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testBigTestScript() throws Exception {
+        String filename = "big-test-script";
+
+        testFile(filename);
+    }
+
     private void testFile(String filename) throws Exception {
         // Get the instruction list processors
         Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
