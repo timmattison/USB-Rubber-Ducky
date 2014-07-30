@@ -29,10 +29,13 @@ public abstract class RegexAbstractInstructionParser<T extends Instruction> impl
     }
 
     private Pattern getPattern() {
+        // Did we already create a pattern object?
         if(pattern == null) {
+            // No, create one with the matching regex
             pattern = Pattern.compile(getMatchingRegex());
         }
 
+        // Return the pattern to the caller
         return pattern;
     }
 
@@ -45,6 +48,7 @@ public abstract class RegexAbstractInstructionParser<T extends Instruction> impl
         // Preprocess the input
         input = preprocessor.preprocess(input);
 
+        // Get the matcher
         Matcher matcher = getMatcher(input);
 
         // Does this input match what we're expecting for this instruction?
@@ -53,14 +57,18 @@ public abstract class RegexAbstractInstructionParser<T extends Instruction> impl
             return null;
         }
 
-        // Now we know the input matches, create the instruction
+        // The input matches
+
+        // Create an array to hold the fields for this instruction
         List<String> fields = new ArrayList<String>();
 
+        // Loop through each group
         for(int loop = 0; loop < matcher.groupCount(); loop++) {
+            // Add the group to the fields (+1 skips the first group which is the instruction itself)
             fields.add(matcher.group(loop + 1));
         }
 
-        // Extract all of the groups
+        // Create the instruction with the extracted fields
         return create(fields);
     }
 
