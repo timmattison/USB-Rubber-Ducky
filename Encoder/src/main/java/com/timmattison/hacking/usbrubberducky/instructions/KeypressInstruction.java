@@ -61,22 +61,14 @@ public class KeypressInstruction implements Instruction {
     }
 
     private void forceNoDuplicates(Set<KeyboardCode> usedKeyboardCodes, KeyboardCode keyboardCode) {
-        // TODO: This could be done with less code if we use contains()
-
-        // Determine how big our set was before we added this element
-        int sizeBeforeAdding = usedKeyboardCodes.size();
+        // Does the set already contain this keyboard code?
+        if (usedKeyboardCodes.contains(keyboardCode)) {
+            // Yes, throw an exception
+            throw new UnsupportedOperationException("Duplicate keyboard code in a single line [" + keyboardCode + "]");
+        }
 
         // Add the code to the set
         usedKeyboardCodes.add(keyboardCode);
-
-        // Determine how big our set is now
-        int sizeAfterAdding = usedKeyboardCodes.size();
-
-        // Did the set increase in size?
-        if (sizeAfterAdding == sizeBeforeAdding) {
-            // No, this means we have a duplicate code
-            throw new UnsupportedOperationException("Duplicate keyboard code in a single line [" + keyboardCode + "]");
-        }
     }
 
     @Override
