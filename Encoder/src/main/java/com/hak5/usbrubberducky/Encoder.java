@@ -133,6 +133,8 @@ public class Encoder {
         List<Byte> file = new ArrayList<Byte>();
         int defaultDelay = 0;
 
+        instructions = handleRepeats(instructions);
+
         for (int i = 0; i < instructions.length; i++) {
             try {
                 boolean delayOverride = false;
@@ -437,6 +439,33 @@ public class Encoder {
         } catch (Exception e) {
             System.out.print("Failed to write hex file!");
         }
+    }
+
+    private static String[] handleRepeats(String[] instructions) {
+        List<String> output = new ArrayList<String>();
+
+        String lastInstruction = null;
+
+        for(String instruction : instructions) {
+            String temp[] = instruction.split(" ", 2);
+
+
+            if(temp[0].equals("REPEAT")) {
+                int repeatCount = Integer.parseInt(temp[1]);
+
+                for(int loop = 0; loop < repeatCount; loop++) {
+                    output.add(lastInstruction);
+                }
+
+                lastInstruction = null;
+            }
+            else {
+                output.add(instruction);
+                lastInstruction = instruction;
+            }
+        }
+
+        return output.toArray(new String[output.size()]);
     }
 
     private static void writeNull(List<Byte> file) {
