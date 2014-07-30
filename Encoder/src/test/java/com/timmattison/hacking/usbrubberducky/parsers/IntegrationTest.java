@@ -432,6 +432,13 @@ public class IntegrationTest {
         testFile(filename);
     }
 
+    @Test
+    public void testDownloadMimikatzGrabPasswordsAndEmailThemViaGmail() throws Exception {
+        String filename = "download-mimikatz-grab-passwords-and-email-them-via-gmail";
+
+        testFile(filename);
+    }
+
     private void debugFile(int debugOffset, String filename) throws Exception {
         Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
 
