@@ -249,19 +249,17 @@ public class Encoder {
                     } else {
                         writeNull(file);
                     }
-                    file.add((byte) 0xE2);
-
+                    file.add((byte) 0x04);
                 } else if (instruction[0].equals("ENTER")) {
                     file.add((byte) 0x28);
                     writeNull(file);
                 } else if (instruction[0].equals("SHIFT")) {
                     if (instruction.length != 1) {
                         handleSpecialKeys(file, instruction[1]);
-                        file.add((byte) 0xE1);
                     } else {
-                        file.add((byte) 0xE1);
                         writeNull(file);
                     }
+                    file.add((byte) 0x02);
                 } else if (instruction[0].equals("REM")) {
                     continue;
                 } else if (instruction[0].equals("MENU")
