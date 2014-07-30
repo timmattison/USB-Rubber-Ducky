@@ -33,13 +33,11 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
                     throw new UnsupportedOperationException("Trying to repeat " + instructionCount + " instruction(s) but only " + outputInstructionList.size() + " instruction(s) are available");
                 }
 
-                // Create a sublist that holds all of the instructions we want ot repeat
-                List<Instruction> instructionSublist = new ArrayList<Instruction>();
+                // Create a sublist that is a copy of all of the instructions we want to repeat
+                List<Instruction> instructionSublist = new ArrayList<Instruction>(outputInstructionList.subList(outputInstructionList.size() - instructionCount, outputInstructionList.size()));
 
-                instructionSublist.addAll(outputInstructionList.subList(outputInstructionList.size() - instructionCount, outputInstructionList.size()));
-
-                // Repeat the sublist the expected number of times
-                for (int loop = 0; loop < repeatInstruction.getRepeatCount(); loop++) {
+                // Repeat the sublist the requested number of times
+                for (int loop = 0; loop < repeatCount; loop++) {
                     outputInstructionList.addAll(instructionSublist);
                 }
             } else {
