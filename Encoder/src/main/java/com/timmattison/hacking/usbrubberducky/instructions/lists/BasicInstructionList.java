@@ -33,14 +33,21 @@ public class BasicInstructionList implements InstructionList {
 
     @Override
     public byte[] getBytes() throws IOException {
+        // Create our output byte stream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+        // Create a new instruction list to hold our final instruction list (leave our existing instruction list in place)
         List<Instruction> finalInstructionList = new ArrayList<Instruction>();
 
+        // Add all of the instructions to our new list
         finalInstructionList.addAll(instructionList);
 
+        // Loop through all of the processors
         for (InstructionListProcessor instructionListProcessor : instructionListProcessors) {
+            // For each processor loop as many times as it needs to
             while (true) {
+                // TODO: There is a possibility of an infinite loop here.  We should have a sane upper bound.
+
                 // Run each instruction list processor until it makes no more changes
                 List<Instruction> tempInstructionList = instructionListProcessor.process(finalInstructionList);
 
@@ -57,11 +64,14 @@ public class BasicInstructionList implements InstructionList {
 
         // Loop through all of the instructions
         for (Instruction instruction : finalInstructionList) {
+            // Get the encoded instruction
             byte[] encodedInstruction = instruction.getEncodedInstruction();
 
+            // Add the encoded instruction to the byte stream
             baos.write(encodedInstruction);
         }
 
+        // Return the byte stream as a byte array
         return baos.toByteArray();
     }
 
