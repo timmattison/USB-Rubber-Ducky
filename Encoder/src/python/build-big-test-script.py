@@ -27,3 +27,4 @@ def generate_all_codes(first_codes, second_codes):
 
 generate_all_codes(alts, valid_alt_codes)
 generate_all_codes(controls, valid_control_codes)
+generate_all_codes(shifts, valid_shift_codes)
