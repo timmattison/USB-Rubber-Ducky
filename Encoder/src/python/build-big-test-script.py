@@ -26,3 +26,4 @@ def generate_all_codes(first_codes, second_codes):
             print first_code + " " + second_code
 
 generate_all_codes(alts, valid_alt_codes)
+generate_all_codes(controls, valid_control_codes)
