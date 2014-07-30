@@ -12,6 +12,9 @@ import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressIns
 import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionListFactory;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.DefaultDelayInstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.NopInstructionListProcessor;
@@ -97,6 +100,9 @@ public class UsbRubberDuckyModule extends AbstractModule {
 
         // Use the parallel bit counter
         bind(BitCounter.class).to(ParallelBitCounter.class);
+
+        // Use the standard rubber ducky encoder
+        bind(RubberDuckyEncoder.class).to(StandardRubberDuckyEncoder.class);
     }
 
     private void createFactoriesFromInterfaces() {
@@ -104,5 +110,6 @@ public class UsbRubberDuckyModule extends AbstractModule {
         install(new FactoryModuleBuilder().implement(RepeatInstruction.class, BasicRepeatInstruction.class).build(RepeatInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(KeypressInstruction.class, KeypressInstruction.class).build(KeypressInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(DelayInstruction.class, DelayInstruction.class).build(DelayInstructionFactory.class));
+        install(new FactoryModuleBuilder().implement(InstructionList.class, BasicInstructionList.class).build(InstructionListFactory.class));
     }
 }
