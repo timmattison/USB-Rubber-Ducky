@@ -1,6 +1,8 @@
 package com.timmattison.hacking.usbrubberducky.preprocessors;
 
 /**
+ * This preprocessor converts some legacy script syntax to the standard syntax
+ * <p/>
  * Created by timmattison on 7/30/14.
  */
 public class LegacyPreprocessor implements Preprocessor {
