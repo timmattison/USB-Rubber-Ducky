@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class RepeatInstructionParser extends RegexAbstractInstructionParser<RepeatInstruction> {
     private static final String name = "REPEAT";
-    //private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)" + "(" + getWhitespaceCharClass() + "+" + "([0-9]+))?";
     private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
     private final RepeatInstructionFactory repeatInstructionFactory;
 
@@ -29,6 +28,9 @@ public class RepeatInstructionParser extends RegexAbstractInstructionParser<Repe
 
     @Override
     protected RepeatInstruction create(List<String> input) {
+        // TODO: This doesn't support repeating multiple instructions yet
+        
+        // Parse the number of times we should repeat and create the instruction using the factory
         return repeatInstructionFactory.create(Integer.parseInt(input.get(0)));
     }
 
