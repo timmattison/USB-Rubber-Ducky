@@ -246,11 +246,12 @@ public class Encoder {
                             file.add((byte) 0x2B);
                         else
                             handleTheRest(file, instruction[1]);
+
+                        file.add((byte) 0x04);
                     } else {
                         writeNull(file);
+                        file.add((byte) 0xE2);
                     }
-                    file.add((byte) 0xE2);
-
                 } else if (instruction[0].equals("ENTER")) {
                     file.add((byte) 0x28);
                     writeNull(file);
