@@ -6,7 +6,6 @@ import com.timmattison.hacking.usbrubberducky.support.ParallelBitCounter;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardNonPrintableCodes;
-import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCodes;
 import com.timmattison.hacking.usbrubberducky.translation.string.KeyboardUSNonShiftedCodes;
 import com.timmattison.hacking.usbrubberducky.translation.string.KeyboardUSShiftedCodes;
 import org.junit.Assert;

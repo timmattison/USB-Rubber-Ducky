@@ -1,17 +1,8 @@
 package com.timmattison.hacking.usbrubberducky.parsers;
 
-import com.timmattison.hacking.usbrubberducky.instructions.KeypressInstruction;
-import com.timmattison.hacking.usbrubberducky.support.BitCounter;
 import com.timmattison.hacking.usbrubberducky.support.ParallelBitCounter;
-import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
-import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
-import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardNonPrintableCodes;
-import com.timmattison.hacking.usbrubberducky.translation.string.KeyboardUSNonShiftedCodes;
-import com.timmattison.hacking.usbrubberducky.translation.string.KeyboardUSShiftedCodes;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Stack;
 
 /**
  * Created by timmattison on 7/30/14.

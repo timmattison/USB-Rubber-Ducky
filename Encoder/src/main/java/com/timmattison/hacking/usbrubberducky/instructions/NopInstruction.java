@@ -1,7 +1,5 @@
 package com.timmattison.hacking.usbrubberducky.instructions;
 
-import java.io.ByteArrayOutputStream;
-
 /**
  * Created by timmattison on 12/11/13.
  */

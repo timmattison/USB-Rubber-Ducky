@@ -2,15 +2,12 @@ package com.hak5.usbrubberducky;// File:         Encoder.java
 // Created:      8/10/2011
 // Author:       Jason Appelbaum Jason@Hak5.org	
 
-import sun.misc.IOUtils;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.rtf.RTFEditorKit;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Encoder {
 

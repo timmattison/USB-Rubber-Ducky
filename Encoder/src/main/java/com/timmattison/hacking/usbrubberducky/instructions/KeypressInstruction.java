@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.support.BitCounter;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
-import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
 
 import javax.inject.Inject;
 import java.util.HashSet;

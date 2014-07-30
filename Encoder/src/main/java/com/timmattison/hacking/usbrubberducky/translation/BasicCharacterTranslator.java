@@ -4,7 +4,6 @@ import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
 
 import javax.inject.Inject;
-import java.util.Map;
 
 /**
  * Created by timmattison on 12/5/13.

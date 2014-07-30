@@ -5,7 +5,6 @@ import com.timmattison.hacking.usbrubberducky.instructions.DefaultDelayInstructi
 import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.DelayInstructionFactory;
-import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 
 import java.util.ArrayList;
 import java.util.List;

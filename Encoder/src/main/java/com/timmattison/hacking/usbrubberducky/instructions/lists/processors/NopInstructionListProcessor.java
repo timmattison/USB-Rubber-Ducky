@@ -2,7 +2,6 @@ package com.timmattison.hacking.usbrubberducky.instructions.lists.processors;
 
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.NopInstruction;
-import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 
 import java.util.ArrayList;
 import java.util.List;

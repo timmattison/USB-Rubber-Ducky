@@ -2,8 +2,8 @@ package com.timmattison.hacking.usbrubberducky.parsers.regex;
 
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.constants.Whitespace;
-import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
+import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 
 import java.util.List;

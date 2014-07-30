@@ -1,7 +1,6 @@
 package com.timmattison.hacking.usbrubberducky.instructions.lists;
 
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
-import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 
 import java.io.ByteArrayOutputStream;
