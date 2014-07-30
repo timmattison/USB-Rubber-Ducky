@@ -159,16 +159,7 @@ public class Encoder {
                             .trim());
                 } else if (instruction[0].equals("DELAY")) {
                     int delay = Integer.parseInt(instruction[1].trim());
-                    while (delay > 0) {
-                        file.add((byte) 0x00);
-                        if (delay > 255) {
-                            file.add((byte) 0xFF);
-                            delay = delay - 255;
-                        } else {
-                            file.add((byte) delay);
-                            delay = 0;
-                        }
-                    }
+                    doDelay(file, delay);
                     delayOverride = true;
                 } else if (instruction[0].equals("STRING")) {
                     for (int j = 0; j < instruction[1].length(); j++) {
@@ -404,16 +395,7 @@ public class Encoder {
                 // Default delay
                 if (!delayOverride & defaultDelay != 0x00) {
                     int tempDefaultDelay = defaultDelay;
-                    while (tempDefaultDelay > 0) {
-                        file.add((byte) 0x00);
-                        if (tempDefaultDelay > 255) {
-                            file.add((byte) 0xFF);
-                            tempDefaultDelay = tempDefaultDelay - 255;
-                        } else {
-                            file.add((byte) tempDefaultDelay);
-                            tempDefaultDelay = 0;
-                        }
-                    }
+                    doDelay(file, tempDefaultDelay);
                 }
             } catch (Exception e) {
                 System.out.println("Error on Line: " + (i + 1));
@@ -444,6 +426,19 @@ public class Encoder {
             fos.close();
         } catch (Exception e) {
             System.out.print("Failed to write hex file!");
+        }
+    }
+
+    private static void doDelay(List<Byte> file, int delay) {
+        while (delay > 0) {
+            file.add((byte) 0x00);
+            if (delay > 255) {
+                file.add((byte) 0xFF);
+                delay = delay - 255;
+            } else {
+                file.add((byte) delay);
+                delay = 0;
+            }
         }
     }
 
