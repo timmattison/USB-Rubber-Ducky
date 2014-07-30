@@ -7,7 +7,6 @@ import com.google.inject.TypeLiteral;
 import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.DebugInstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 import org.junit.Assert;
@@ -437,14 +436,6 @@ public class IntegrationTest {
         String filename = "download-mimikatz-grab-passwords-and-email-them-via-gmail";
 
         testFile(filename);
-    }
-
-    private void debugFile(int debugOffset, String filename) throws Exception {
-        Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors();
-
-        InstructionList instructionList = new DebugInstructionList(debugOffset, instructionListProcessors);
-
-        testFile(instructionList, filename);
     }
 
     private void testFile(String filename) throws Exception {
