@@ -384,6 +384,17 @@ public class Encoder {
                     failOnInvalidInstruction(instruction[0]);
                 }
 
+                if (!delayOverride) {
+                    String output = file.size() + " ";
+                    output += instruction[0];
+
+                    if (instruction.length > 1) {
+                        output += " " + instruction[1];
+                    }
+
+                    System.err.println(output);
+                }
+
                 // Default delay
                 if (!delayOverride & defaultDelay != 0x00) {
                     int tempDefaultDelay = defaultDelay;
