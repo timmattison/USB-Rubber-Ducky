@@ -36,8 +36,6 @@ public class StringInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return "StringInstruction{" +
-                "input='" + input + '\'' +
-                '}';
+        return "STRING " + input;
     }
 }

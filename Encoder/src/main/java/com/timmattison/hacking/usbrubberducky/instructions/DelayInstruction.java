@@ -45,8 +45,6 @@ public class DelayInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return "DelayInstruction{" +
-                "delayValue=" + delayValue +
-                '}';
+        return "DELAY " + delayValue;
     }
 }
