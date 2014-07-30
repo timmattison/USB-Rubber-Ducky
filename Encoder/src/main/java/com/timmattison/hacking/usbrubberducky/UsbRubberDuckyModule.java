@@ -21,6 +21,8 @@ import com.timmattison.hacking.usbrubberducky.parsers.advanced.KeypressInstructi
 import com.timmattison.hacking.usbrubberducky.parsers.regex.*;
 import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
 import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
+import com.timmattison.hacking.usbrubberducky.support.BitCounter;
+import com.timmattison.hacking.usbrubberducky.support.ParallelBitCounter;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
@@ -92,6 +94,9 @@ public class UsbRubberDuckyModule extends AbstractModule {
 
         // Use the pre-processor that cleans up some legacy instructions
         bind(Preprocessor.class).to(LegacyPreprocessor.class);
+
+        // Use the parallel bit counter
+        bind(BitCounter.class).to(ParallelBitCounter.class);
     }
 
     private void createFactoriesFromInterfaces() {

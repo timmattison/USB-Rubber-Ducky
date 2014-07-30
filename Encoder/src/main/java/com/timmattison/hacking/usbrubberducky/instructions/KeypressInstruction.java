@@ -2,6 +2,7 @@ package com.timmattison.hacking.usbrubberducky.instructions;
 
 import com.google.gson.Gson;
 import com.google.inject.assistedinject.Assisted;
+import com.timmattison.hacking.usbrubberducky.support.BitCounter;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
 
@@ -18,10 +19,12 @@ import java.util.Stack;
  * To change this template use File | Settings | File Templates.
  */
 public class KeypressInstruction implements Instruction {
+    private final BitCounter bitCounter;
     private final Stack<KeyboardCode> keyboardCodeStack;
 
     @Inject
-    public KeypressInstruction(@Assisted("keyboardCodeStack") Stack<KeyboardCode> keyboardCodeStack) {
+    public KeypressInstruction(BitCounter bitCounter, @Assisted("keyboardCodeStack") Stack<KeyboardCode> keyboardCodeStack) {
+        this.bitCounter = bitCounter;
         this.keyboardCodeStack = keyboardCodeStack;
     }
 
@@ -44,7 +47,8 @@ public class KeypressInstruction implements Instruction {
             // Make sure there are no duplicates
             forceNoDuplicates(usedKeyboardCodes, keyboardCode);
 
-            // TODO: Check to make sure that we don't have codes whose bit pattern clashes
+            // Get the bit count before we add/combine this code
+            int bitCountBefore = getBitCount(output);
 
             // Do we have any keys yet?
             if (output == null) {
@@ -54,10 +58,27 @@ public class KeypressInstruction implements Instruction {
                 // Yes, it with the previous keys
                 output = output.combine(keyboardCode);
             }
+
+            // Get the bit count after we added/combined this code
+            int bitCountAfter = getBitCount(output);
+
+            // Are the bit counts the same?
+            if (bitCountBefore == bitCountAfter) {
+                // Yes, this means that multiple codes overlapped
+                throw new UnsupportedOperationException("Multiple codes overlapped.  This can be caused by using a modifier more than once in the same command (eg. ALT and LEFTALT)");
+            }
         }
 
         // Return the bytes to the caller
         return output.getBytes();
+    }
+
+    private int getBitCount(KeyboardCode output) {
+        if (output == null) {
+            return 0;
+        }
+
+        return bitCounter.countBits(output.getFirstByte()) + bitCounter.countBits(output.getSecondByte());
     }
 
     private void forceNoDuplicates(Set<KeyboardCode> usedKeyboardCodes, KeyboardCode keyboardCode) {
