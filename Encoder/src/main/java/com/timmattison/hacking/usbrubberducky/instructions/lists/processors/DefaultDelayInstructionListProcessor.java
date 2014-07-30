@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Handles the DEFAULT_DELAY instruction and puts delays between each instruction
+ * <p/>
  * Created by timmattison on 7/29/14.
  */
 public class DefaultDelayInstructionListProcessor implements InstructionListProcessor {
@@ -33,6 +35,7 @@ public class DefaultDelayInstructionListProcessor implements InstructionListProc
             return instructionList;
         }
 
+        // Create the output instruction list
         List<Instruction> outputInstructionList = new ArrayList<Instruction>();
 
         for (Instruction instruction : instructionList) {
@@ -50,6 +53,7 @@ public class DefaultDelayInstructionListProcessor implements InstructionListProc
             }
         }
 
+        // Return the output instruction list
         return outputInstructionList;
     }
 
