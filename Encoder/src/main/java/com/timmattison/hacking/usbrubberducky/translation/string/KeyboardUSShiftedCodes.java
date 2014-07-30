@@ -56,11 +56,9 @@ public enum KeyboardUSShiftedCodes implements ReturnsKeyboardCode {
     KeyboardQuestionMark(56, '?');
 
     private final KeyboardCode value;
-    private final Character character;
 
     KeyboardUSShiftedCodes(int value, Character character) {
         this.value = new KeyboardCode(String.valueOf(character), (byte) value, KeyboardCode.SHIFT);
-        this.character = character;
     }
 
     public KeyboardCode getValue() {
