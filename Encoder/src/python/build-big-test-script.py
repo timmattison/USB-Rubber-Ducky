@@ -1,22 +1,28 @@
 __author__ = 'timmattison'
 
-base_modifiers = ["CTRL", "CONTROL", "SHIFT", "ALT", "GUI", "WINDOWS", "COMMAND"]
+# TODO: Add all single chars
+valid_alt_codes = ["END", "ESCAPE", "ESC", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
+                   "SPACE", "TAB"]
 
-left_modifiers = ["LEFTCTRL", "LEFTSHIFT", "LEFTALT", "LEFTGUI"]
-right_modifiers = ["RIGHTCTRL", "RIGHTSHIFT", "RIGHTALT", "RIGHTGUI"]
+valid_single_codes = ["BREAK", "PAUSE", "CAPSLOCK", "DELETE", "DOWNARROW", "DOWN", "END", "ESCAPE", "ESC", "F1", "F2",
+                      "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "HOME" "INSERT" "LEFTARROW",
+                      "LEFT", "MENU", "APP", "NUMLOCK", "PAGEDOWN", "PAGEUP", "PRINTSCREEN", "RIGHTARROW", "RIGHT",
+                      "SCROLLLOCK", "SPACE", "TAB", "UPARROW", "UP", "WINDOWS", "GUI"]
 
-us_non_shifted_codes = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-                        't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'SPACE', '-',
-                        '=', '[', ']', '\\', ';', '\'', '`', ',', '.', '/']
+# TODO: Add all single chars
+valid_control_codes = ["BREAK", "PAUSE", "ESCAPE", "ESC", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10",
+                       "F11", "F12"]
 
-print "REM All US non-shifted codes"
+valid_shift_codes = ["DELETE", "HOME", "INSERT", "PAGEUP", "PAGEDOWN", "WINDOWS", "GUI", "UPARROW", "DOWNARROW",
+                     "LEFTARROW", "RIGHTARROW", "TAB"]
 
-for code in us_non_shifted_codes:
-    print "STRING " + code
+alts = ["ALT"]
+controls = ["CONTROL", "CTRL"]
+shifts = ["SHIFT"]
 
-print "REM All US non-shifted codes with base modifiers"
+def generate_all_codes(first_codes, second_codes):
+    for first_code in first_codes:
+        for second_code in second_codes:
+            print first_code + " " + second_code
 
-for modifier in base_modifiers:
-    for code in us_non_shifted_codes:
-        print modifier + " " + code
-
+generate_all_codes(alts, valid_alt_codes)
