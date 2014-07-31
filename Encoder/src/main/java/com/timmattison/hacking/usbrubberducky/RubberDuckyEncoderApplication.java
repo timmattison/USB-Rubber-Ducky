@@ -2,6 +2,7 @@ package com.timmattison.hacking.usbrubberducky;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.timmattison.hacking.usbrubberducky.exceptions.NoParserFoundForStringException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -14,7 +15,7 @@ import java.io.*;
  * To change this template use File | Settings | File Templates.
  */
 public class RubberDuckyEncoderApplication {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws NoParserFoundForStringException {
         Injector injector = Guice.createInjector(new UsbRubberDuckyModule());
 
         // Do we have the right number of arguments?

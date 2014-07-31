@@ -1,6 +1,7 @@
 package com.timmattison.hacking.usbrubberducky;
 
 import com.google.inject.Inject;
+import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
 import com.timmattison.hacking.usbrubberducky.exceptions.NoParserFoundForStringException;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
@@ -28,7 +29,7 @@ public class StandardRubberDuckyEncoder implements RubberDuckyEncoder {
     }
 
     @Override
-    public byte[] encode(String[] input) throws IOException, NoParserFoundForStringException {
+    public byte[] encode(String[] input) throws IOException, EncoderException {
         // Create a new instruction list
         InstructionList instructionList = instructionListFactory.create();
 

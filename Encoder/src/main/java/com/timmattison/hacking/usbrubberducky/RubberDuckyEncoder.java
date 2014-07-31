@@ -5,6 +5,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.multibindings.Multibinder;
+import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
 import com.timmattison.hacking.usbrubberducky.exceptions.NoParserFoundForStringException;
 import com.timmattison.hacking.usbrubberducky.instructions.BasicRepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
@@ -41,5 +42,5 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public interface RubberDuckyEncoder {
-    public byte[] encode(String[] input) throws IOException, NoParserFoundForStringException;
+    public byte[] encode(String[] input) throws IOException, EncoderException;
 }
