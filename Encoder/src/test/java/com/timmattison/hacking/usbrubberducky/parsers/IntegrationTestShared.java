@@ -22,17 +22,6 @@ import java.util.Set;
  * Created by timmattison on 7/31/14.
  */
 public class IntegrationTestShared {
-    public static void testFile(Injector injector, String inputPath, String inputSuffix, String filename) throws Exception {
-        // Get the instruction list processors
-        Set<InstructionListProcessor> instructionListProcessors = getInstructionListProcessors(injector);
-
-        // Get the instruction list
-        InstructionList instructionList = new BasicInstructionList(instructionListProcessors);
-
-        // Test the file against the legacy encoder
-        testAgainstLegacyEncoder(injector, instructionList, inputPath, inputSuffix, filename);
-    }
-
     private static Set<InstructionListProcessor> getInstructionListProcessors(Injector injector) {
         // Create a type literal implementation that is for Set<InstructionListProcessor>
         TypeLiteral<Set<InstructionListProcessor>> instructionListProcessorTypeLiteral = new TypeLiteral<Set<InstructionListProcessor>>() {
@@ -42,28 +31,35 @@ public class IntegrationTestShared {
         return injector.getInstance(Key.get(instructionListProcessorTypeLiteral));
     }
 
-    private static void testAgainstLegacyEncoder(Injector injector, InstructionList instructionList, String inputPath, String inputSuffix, String filename) throws Exception {
-        String[] inputFile;
+    public static void testFile(Injector injector, String inputPath, String inputSuffix, String filename) throws Exception {
         byte[] outputFile;
-
-        // Get the input file data
-        try {
-            inputFile = getInputFile(inputPath, inputSuffix, filename);
-        } catch (NullPointerException e) {
-            throw new UnsupportedOperationException("Input file [" + filename + ".txt] not found");
-        }
 
         // Get the output file from the legacy encoder
         outputFile = getOutputFileFromLegacyEncoder(inputPath, inputSuffix, filename);
 
         // Get the output from the current encoder
-        byte[] generatedData = getOutputFromCurrentEncoder(injector, instructionList, inputFile);
+        byte[] generatedData = getOutputFromCurrentEncoder(injector, inputPath, inputSuffix, filename);
 
         // Make sure the output matches
         Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
     }
 
-    private static byte[] getOutputFromCurrentEncoder(Injector injector, InstructionList instructionList, String[] inputFile) throws IOException {
+    private static String[] getInputFileData(String inputPath, String inputSuffix, String filename) throws IOException {
+        String[] inputFile;// Get the input file data
+        try {
+            inputFile = getInputFile(inputPath, inputSuffix, filename);
+        } catch (NullPointerException e) {
+            throw new UnsupportedOperationException("Input file [" + filename + ".txt] not found");
+        }
+        return inputFile;
+    }
+
+    public static byte[] getOutputFromCurrentEncoder(Injector injector, String inputPath, String inputSuffix, String filename) throws IOException {
+        String[] inputFile = getInputFileData(inputPath, inputSuffix, filename);
+
+        // Get the instruction list
+        InstructionList instructionList = new BasicInstructionList(getInstructionListProcessors(injector));
+
         // Get the set of instruction parsers
         Set<InstructionParser> instructionParserSet = getInstructionParserSet(injector);
 
