@@ -28,7 +28,8 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>com.timmattison.hacking.usbrubberducky.RubberDuckyEncoderApplication</mainClass>
+                                <mainClass>com.timmattison.hacking.usbrubberducky.RubberDuckyEncoderApplication
+                                </mainClass>
                             </manifest>
                         </archive>
                         <descriptorRefs>
