@@ -3,6 +3,7 @@ package com.timmattison.hacking.usbrubberducky.parsers;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
+import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class TestOsxIntegration {
     }
 
     @Test
-    public void testOsxKillFinder() throws IOException {
+    public void testOsxKillFinder() throws IOException, EncoderException {
         String filename = "osx-kill-finder";
 
         byte[] outputData = IntegrationTestShared.getOutputFromCurrentEncoder(injector, inputPath, inputSuffix, filename);

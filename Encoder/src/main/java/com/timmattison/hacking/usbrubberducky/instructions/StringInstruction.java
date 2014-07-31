@@ -1,6 +1,7 @@
 package com.timmattison.hacking.usbrubberducky.instructions;
 
 import com.google.inject.assistedinject.Assisted;
+import com.timmattison.hacking.usbrubberducky.exceptions.UntranslatableCodeException;
 import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslator;
 
 import javax.inject.Inject;
@@ -24,7 +25,7 @@ public class StringInstruction implements Instruction {
     }
 
     @Override
-    public byte[] getEncodedInstruction() {
+    public byte[] getEncodedInstruction() throws UntranslatableCodeException {
         // Create an output stream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
