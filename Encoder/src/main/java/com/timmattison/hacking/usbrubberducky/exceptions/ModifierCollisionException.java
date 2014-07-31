@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * Created by timmattison on 7/31/14.
  */
-public class ModifierCollisionException extends Throwable {
+public class ModifierCollisionException extends EncoderException {
     private final Stack<KeyboardCode> keyboardCodeStack;
 
     public ModifierCollisionException(Stack<KeyboardCode> keyboardCodeStack) {

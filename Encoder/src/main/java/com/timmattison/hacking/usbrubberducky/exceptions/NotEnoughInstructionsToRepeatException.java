@@ -3,7 +3,7 @@ package com.timmattison.hacking.usbrubberducky.exceptions;
 /**
  * Created by timmattison on 7/31/14.
  */
-public class NotEnoughInstructionsToRepeatException extends Throwable {
+public class NotEnoughInstructionsToRepeatException extends EncoderException {
     private final int instructionsAvailable;
     private final int requestedRepeatCount;
 

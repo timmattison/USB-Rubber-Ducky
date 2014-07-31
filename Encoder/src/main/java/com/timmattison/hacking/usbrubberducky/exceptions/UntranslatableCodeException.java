@@ -5,7 +5,7 @@ import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCode
 /**
  * Created by timmattison on 7/31/14.
  */
-public class UntranslatableCodeException extends Throwable {
+public class UntranslatableCodeException extends EncoderException {
     private final KeyboardCodes availableKeyboardCodes;
     private final char character;
 
