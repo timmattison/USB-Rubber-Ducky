@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by timmattison on 7/31/14.
  */
-public class OsxIntegrationTests {
+public class TestOsxIntegration {
     private static final String inputPath = "/inputs/osx/";
     private static final String inputSuffix = ".txt";
 

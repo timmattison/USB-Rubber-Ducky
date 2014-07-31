@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * Created by timmattison on 7/21/14.
  */
-public class OriginalSyntaxIntegrationTests {
+public class TestOriginalSyntaxIntegration {
     private static final String inputPath = "/inputs/original-syntax/";
     private static final String inputSuffix = ".txt";
 
