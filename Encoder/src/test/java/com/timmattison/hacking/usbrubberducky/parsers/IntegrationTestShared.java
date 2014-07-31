@@ -10,10 +10,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.Inst
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -49,7 +46,7 @@ public class IntegrationTestShared {
         try {
             inputFile = getInputFile(inputPath, inputSuffix, filename);
         } catch (NullPointerException e) {
-            throw new UnsupportedOperationException("Input file [" + filename + ".txt] not found");
+            throw new FileNotFoundException("Input file [" + filename + ".txt] not found");
         }
         return inputFile;
     }

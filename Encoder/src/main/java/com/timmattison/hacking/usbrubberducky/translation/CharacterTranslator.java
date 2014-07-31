@@ -1,5 +1,6 @@
 package com.timmattison.hacking.usbrubberducky.translation;
 
+import com.timmattison.hacking.usbrubberducky.exceptions.UntranslatableCodeException;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 
 /**
@@ -12,5 +13,5 @@ public interface CharacterTranslator {
      * @param character
      * @return
      */
-    KeyboardCode translate(char character);
+    KeyboardCode translate(char character) throws UntranslatableCodeException;
 }

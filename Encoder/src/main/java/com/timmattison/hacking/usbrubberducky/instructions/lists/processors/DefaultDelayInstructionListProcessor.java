@@ -1,6 +1,7 @@
 package com.timmattison.hacking.usbrubberducky.instructions.lists.processors;
 
 import com.google.inject.Inject;
+import com.timmattison.hacking.usbrubberducky.exceptions.MultipleDefaultDelayInstructionsException;
 import com.timmattison.hacking.usbrubberducky.instructions.DefaultDelayInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
@@ -24,7 +25,7 @@ public class DefaultDelayInstructionListProcessor implements InstructionListProc
     }
 
     @Override
-    public List<Instruction> process(List<Instruction> instructionList) {
+    public List<Instruction> process(List<Instruction> instructionList) throws MultipleDefaultDelayInstructionsException {
         // Find and set the default delay
         setDefaultDelay(instructionList);
 
@@ -56,7 +57,7 @@ public class DefaultDelayInstructionListProcessor implements InstructionListProc
         return outputInstructionList;
     }
 
-    private void setDefaultDelay(List<Instruction> instructionList) {
+    private void setDefaultDelay(List<Instruction> instructionList) throws MultipleDefaultDelayInstructionsException {
         defaultDelay = -1;
 
         for (Instruction instruction : instructionList) {
@@ -65,7 +66,7 @@ public class DefaultDelayInstructionListProcessor implements InstructionListProc
                 // Did we already set the default delay?
                 if (defaultDelay != -1) {
                     // Yes, we can only set the default delay once per script
-                    throw new UnsupportedOperationException("Only one default delay instruction is allowed per script");
+                    throw new MultipleDefaultDelayInstructionsException();
                 }
 
                 // Default delay has not been set yet.  Set it now.

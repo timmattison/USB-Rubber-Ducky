@@ -1,5 +1,6 @@
 package com.timmattison.hacking.usbrubberducky.instructions.lists.processors;
 
+import com.timmattison.hacking.usbrubberducky.exceptions.NotEnoughInstructionsToRepeatException;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class RepeatInstructionListProcessor implements InstructionListProcessor {
     @Override
-    public List<Instruction> process(List<Instruction> instructionList) {
+    public List<Instruction> process(List<Instruction> instructionList) throws NotEnoughInstructionsToRepeatException {
         // Create the output instruction list
         List<Instruction> outputInstructionList = new ArrayList<Instruction>();
 
@@ -30,7 +31,7 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
                 // Are there enough instructions to do this repeat?
                 if (outputInstructionList.size() < instructionCount) {
                     // No, throw an exception
-                    throw new UnsupportedOperationException("Trying to repeat " + instructionCount + " instruction(s) but only " + outputInstructionList.size() + " instruction(s) are available");
+                    throw new NotEnoughInstructionsToRepeatException(outputInstructionList.size(), instructionCount);
                 }
 
                 // Create a sublist that is a copy of all of the instructions we want to repeat

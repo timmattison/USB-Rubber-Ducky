@@ -1,5 +1,7 @@
 package com.timmattison.hacking.usbrubberducky.instructions.lists.processors;
 
+import com.timmattison.hacking.usbrubberducky.exceptions.MultipleDefaultDelayInstructionsException;
+import com.timmattison.hacking.usbrubberducky.exceptions.NotEnoughInstructionsToRepeatException;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 
 import java.util.List;
@@ -15,5 +17,5 @@ public interface InstructionListProcessor {
      * @param instructionList
      * @return
      */
-    List<Instruction> process(List<Instruction> instructionList);
+    List<Instruction> process(List<Instruction> instructionList) throws NotEnoughInstructionsToRepeatException, MultipleDefaultDelayInstructionsException;
 }

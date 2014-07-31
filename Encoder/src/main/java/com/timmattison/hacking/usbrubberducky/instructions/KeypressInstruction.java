@@ -2,6 +2,8 @@ package com.timmattison.hacking.usbrubberducky.instructions;
 
 import com.google.gson.Gson;
 import com.google.inject.assistedinject.Assisted;
+import com.timmattison.hacking.usbrubberducky.exceptions.DuplicateKeyboardCodeException;
+import com.timmattison.hacking.usbrubberducky.exceptions.ModifierCollisionException;
 import com.timmattison.hacking.usbrubberducky.support.BitCounter;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 
@@ -28,7 +30,7 @@ public class KeypressInstruction implements Instruction {
     }
 
     @Override
-    public byte[] getEncodedInstruction() {
+    public byte[] getEncodedInstruction() throws DuplicateKeyboardCodeException, ModifierCollisionException {
         // The final output value
         KeyboardCode output = null;
 
@@ -64,7 +66,7 @@ public class KeypressInstruction implements Instruction {
             // Are the bit counts the same?
             if (bitCountBefore == bitCountAfter) {
                 // Yes, this means that multiple codes overlapped
-                throw new UnsupportedOperationException("Multiple codes overlapped.  This can be caused by using a modifier more than once in the same command (eg. ALT and LEFTALT)");
+                throw new ModifierCollisionException((Stack<KeyboardCode>) keyboardCodeStack.clone());
             }
         }
 
@@ -80,11 +82,11 @@ public class KeypressInstruction implements Instruction {
         return bitCounter.countBits(output.getFirstByte()) + bitCounter.countBits(output.getSecondByte());
     }
 
-    private void forceNoDuplicates(Set<KeyboardCode> usedKeyboardCodes, KeyboardCode keyboardCode) {
+    private void forceNoDuplicates(Set<KeyboardCode> usedKeyboardCodes, KeyboardCode keyboardCode) throws DuplicateKeyboardCodeException {
         // Does the set already contain this keyboard code?
         if (usedKeyboardCodes.contains(keyboardCode)) {
             // Yes, throw an exception
-            throw new UnsupportedOperationException("Duplicate keyboard code in a single line [" + keyboardCode + "]");
+            throw new DuplicateKeyboardCodeException(keyboardCode);
         }
 
         // Add the code to the set
