@@ -1,5 +1,7 @@
 package com.timmattison.hacking.usbrubberducky.parsers;
 
+import com.timmattison.hacking.usbrubberducky.exceptions.DuplicateKeyboardCodeException;
+import com.timmattison.hacking.usbrubberducky.exceptions.ModifierCollisionException;
 import com.timmattison.hacking.usbrubberducky.instructions.KeypressInstruction;
 import com.timmattison.hacking.usbrubberducky.support.BitCounter;
 import com.timmattison.hacking.usbrubberducky.support.ParallelBitCounter;
@@ -30,7 +32,7 @@ public class TestKeypressInstruction {
     }
 
     @Test
-    public void testDuplicatesThrowsException() {
+    public void testDuplicatesThrowsException() throws ModifierCollisionException {
         Stack<KeyboardCode> keyboardCodeStack = new Stack<KeyboardCode>();
         keyboardCodeStack.add(getKeyboardCode1());
         keyboardCodeStack.add(getKeyboardCode1());
@@ -39,7 +41,7 @@ public class TestKeypressInstruction {
 
         try {
             keypressInstruction.getEncodedInstruction();
-        } catch (Exception e) {
+        } catch (DuplicateKeyboardCodeException e) {
             return;
         }
 
@@ -52,7 +54,7 @@ public class TestKeypressInstruction {
     }
 
     @Test
-    public void testNoDuplicatesDoesNotThrowException() {
+    public void testNoDuplicatesDoesNotThrowException() throws ModifierCollisionException {
         Stack<KeyboardCode> keyboardCodeStack = new Stack<KeyboardCode>();
         keyboardCodeStack.add(getKeyboardCode1());
         keyboardCodeStack.add(getKeyboardCode2());
@@ -61,14 +63,14 @@ public class TestKeypressInstruction {
 
         try {
             keypressInstruction.getEncodedInstruction();
-        } catch (Exception e) {
+        } catch (DuplicateKeyboardCodeException e) {
             // Exception thrown, duplicate detection doesn't work
             Assert.fail("Duplicate detection did not work");
         }
     }
 
     @Test
-    public void testAltAndLeftAltTriggersBitCounter() {
+    public void testAltAndLeftAltTriggersBitCounter() throws DuplicateKeyboardCodeException {
         Stack<KeyboardCode> keyboardCodeStack = new Stack<KeyboardCode>();
         keyboardCodeStack.add(KeyboardModifier.ALT.getValue());
         keyboardCodeStack.add(KeyboardModifier.LEFT_ALT.getValue());
@@ -78,7 +80,7 @@ public class TestKeypressInstruction {
 
         try {
             keypressInstruction.getEncodedInstruction();
-        } catch (Exception e) {
+        } catch (ModifierCollisionException e) {
             return;
         }
 
