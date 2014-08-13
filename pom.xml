@@ -24,56 +24,29 @@
         <sourceDirectory>Encoder/src/main/java</sourceDirectory>
         <testSourceDirectory>Encoder/src/test/java</testSourceDirectory>
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <mainClass>com.timmattison.hacking.usbrubberducky.RubberDuckyEncoderApplication
-                                </mainClass>
-                            </manifest>
-                        </archive>
-                        <descriptorRefs>
-                            <descriptorRef>jar-with-dependencies</descriptorRef>
-                        </descriptorRefs>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>make-assembly</id>
-                            <!-- this is used for inheritance merges -->
-                            <phase>package</phase>
-                            <!-- bind to the packaging phase -->
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
                 <configuration>
-                    <attach>false</attach>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.timmattison.hacking.usbrubberducky.RubberDuckyEncoderApplication
+                            </mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>user_distribution</id>
+                        <id>make-assembly</id>
+                        <!-- this is used for inheritance merges -->
                         <phase>package</phase>
+                        <!-- bind to the packaging phase -->
                         <goals>
-                            <goal>attached</goal>
+                            <goal>single</goal>
                         </goals>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/assembly/dist.xml</descriptor>
-                            </descriptors>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
