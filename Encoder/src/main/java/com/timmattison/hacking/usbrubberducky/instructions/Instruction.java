@@ -1,5 +1,10 @@
 package com.timmattison.hacking.usbrubberducky.instructions;
 
+import com.timmattison.hacking.usbrubberducky.exceptions.DuplicateKeyboardCodeException;
+import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
+import com.timmattison.hacking.usbrubberducky.exceptions.ModifierCollisionException;
+import com.timmattison.hacking.usbrubberducky.exceptions.VirtualInstructionEncodedException;
+
 /**
  * A single instruction
  * <p/>
@@ -15,5 +20,5 @@ public interface Instruction {
      *
      * @return
      */
-    public byte[] getEncodedInstruction();
+    public byte[] getEncodedInstruction() throws EncoderException;
 }

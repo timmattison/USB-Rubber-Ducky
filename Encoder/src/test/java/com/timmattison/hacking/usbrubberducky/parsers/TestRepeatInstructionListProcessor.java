@@ -1,6 +1,7 @@
 package com.timmattison.hacking.usbrubberducky.parsers;
 
 import com.google.inject.assistedinject.Assisted;
+import com.timmattison.hacking.usbrubberducky.exceptions.NotEnoughInstructionsToRepeatException;
 import com.timmattison.hacking.usbrubberducky.instructions.BasicRepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
@@ -42,18 +43,18 @@ public class TestRepeatInstructionListProcessor {
     }
 
     @Test
-    public void testSingleRepeatRepeatsOnce() {
+    public void testSingleRepeatRepeatsOnce() throws NotEnoughInstructionsToRepeatException {
         List<Instruction> instructionList = new ArrayList<Instruction>();
         testSimpleRepeat(instructionList, 100, 1);
     }
 
     @Test
-    public void testSingleRepeatRepeatsTenTimes() {
+    public void testSingleRepeatRepeatsTenTimes() throws NotEnoughInstructionsToRepeatException {
         List<Instruction> instructionList = new ArrayList<Instruction>();
         testSimpleRepeat(instructionList, 100, 10);
     }
 
-    private void testSimpleRepeat(List<Instruction> instructionList, int delayInMilliseconds, int repeatCount) {
+    private void testSimpleRepeat(List<Instruction> instructionList, int delayInMilliseconds, int repeatCount) throws NotEnoughInstructionsToRepeatException {
         instructionList.add(getDelayInstruction(delayInMilliseconds));
         instructionList.add(repeatInstructionFactory.create(repeatCount));
 

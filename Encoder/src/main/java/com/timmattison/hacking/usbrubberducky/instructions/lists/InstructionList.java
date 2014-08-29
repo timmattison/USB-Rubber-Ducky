@@ -1,5 +1,6 @@
 package com.timmattison.hacking.usbrubberducky.instructions.lists;
 
+import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 
 import java.io.IOException;
@@ -27,5 +28,5 @@ public interface InstructionList {
      * @return
      * @throws IOException
      */
-    public byte[] getBytes() throws IOException;
+    public byte[] getBytes() throws IOException, EncoderException;
 }

@@ -1,5 +1,6 @@
 package com.timmattison.hacking.usbrubberducky.translation;
 
+import com.timmattison.hacking.usbrubberducky.exceptions.UntranslatableCodeException;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
 
@@ -17,14 +18,14 @@ public class BasicCharacterTranslator implements CharacterTranslator {
     }
 
     @Override
-    public KeyboardCode translate(char character) {
+    public KeyboardCode translate(char character) throws UntranslatableCodeException {
         // Get the code that corresponds to this character?
         KeyboardCode keyboardCode = keyboardCodes.get().get(String.valueOf(character));
 
         // Did we find it?
         if (keyboardCode == null) {
             // No, throw an exception.  We can't continue if we come across an untranslatable code
-            throw new UnsupportedOperationException("Character [" + character + "] not found in keyboard lookup table");
+            throw new UntranslatableCodeException(keyboardCodes, character);
         }
 
         // Return the translated code to the caller

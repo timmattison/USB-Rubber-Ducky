@@ -3,6 +3,7 @@ package com.timmattison.hacking.usbrubberducky.parsers;
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
+import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
 import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
@@ -10,10 +11,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.Inst
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -49,12 +47,12 @@ public class IntegrationTestShared {
         try {
             inputFile = getInputFile(inputPath, inputSuffix, filename);
         } catch (NullPointerException e) {
-            throw new UnsupportedOperationException("Input file [" + filename + ".txt] not found");
+            throw new FileNotFoundException("Input file [" + filename + ".txt] not found");
         }
         return inputFile;
     }
 
-    public static byte[] getOutputFromCurrentEncoder(Injector injector, String inputPath, String inputSuffix, String filename) throws IOException {
+    public static byte[] getOutputFromCurrentEncoder(Injector injector, String inputPath, String inputSuffix, String filename) throws IOException, EncoderException {
         String[] inputFile = getInputFileData(inputPath, inputSuffix, filename);
 
         // Get the instruction list

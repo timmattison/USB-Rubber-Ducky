@@ -2,6 +2,7 @@ package com.timmattison.hacking.usbrubberducky;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
 import org.apache.commons.cli.*;
 import org.apache.commons.io.IOUtils;
 
@@ -23,7 +24,7 @@ public class RubberDuckyEncoderApplication {
     private static String inputFile = null;
     private static String outputFile = null;
 
-    public static void main(String args[]) throws ParseException {
+    public static void main(String args[]) throws ParseException, EncoderException {
         // Process the command-line arguments with Apache CLI
         processCommandLineOptions(args);
 
