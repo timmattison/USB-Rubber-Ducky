@@ -163,6 +163,13 @@ public class IntegrationTestShared {
         return inputPath + filename + inputSuffix;
     }
 
+    /**
+     * Reads an entire file into an array of strings.  Caution!  This will blow up on big files!
+     *
+     * @param inputFile
+     * @return
+     * @throws IOException
+     */
     private static String[] readFileAsStringArray(String inputFile) throws IOException {
         String string = IOUtils.toString(new InputStreamReader(inputFile.getClass().getResourceAsStream(inputFile)));
         string = string.replaceAll("\r", "");
