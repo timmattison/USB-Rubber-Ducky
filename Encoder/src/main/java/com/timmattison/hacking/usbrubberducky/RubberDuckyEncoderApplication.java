@@ -2,6 +2,7 @@ package com.timmattison.hacking.usbrubberducky;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.apache.commons.cli.*;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -14,17 +15,19 @@ import java.io.*;
  * To change this template use File | Settings | File Templates.
  */
 public class RubberDuckyEncoderApplication {
-    public static void main(String args[]) {
+    public static final String INPUT = "input";
+    public static final String OUTPUT = "output";
+    public static final String INPUT_FILE_NAME = "input file name";
+    public static final String OUTPUT_FILE_NAME = "output file name";
+    public static final String ENCODER_APPLICATION_NAME = "Encoder";
+    private static String inputFile = null;
+    private static String outputFile = null;
+
+    public static void main(String args[]) throws ParseException {
+        // Process the command-line arguments with Apache CLI
+        processCommandLineOptions(args);
+
         Injector injector = Guice.createInjector(new UsbRubberDuckyModule());
-
-        // Do we have the right number of arguments?
-        if ((args == null) || (args.length != 2)) {
-            // No, print out the usage info and exit
-            showUsageInfo();
-        }
-
-        String inputFile = args[0];
-        String outputFile = args[1];
 
         // Read the input file
         String[] input = readInputFile(inputFile);
@@ -55,6 +58,28 @@ public class RubberDuckyEncoderApplication {
         } catch (IOException e) {
             // There was an exception, report it and exit
             reportOutputIoException(inputFile, e);
+        }
+    }
+
+    private static void processCommandLineOptions(String[] args) throws ParseException {
+        // Create the Options object
+        Options options = new Options();
+
+        // Add input and output options
+        options.addOption(INPUT, true, INPUT_FILE_NAME);
+        options.addOption(OUTPUT, true, OUTPUT_FILE_NAME);
+
+        CommandLineParser commandLineParser = new BasicParser();
+        CommandLine commandLine = commandLineParser.parse(options, args);
+
+        inputFile = commandLine.getOptionValue(INPUT);
+        outputFile = commandLine.getOptionValue(OUTPUT);
+
+        if ((inputFile == null) || (outputFile == null)) {
+            // Automatically generate the usage info with Apache CLI
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp(ENCODER_APPLICATION_NAME, options);
+            System.exit(1);
         }
     }
 
