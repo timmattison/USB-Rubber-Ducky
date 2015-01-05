@@ -6,7 +6,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstr
 import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
 import com.timmattison.hacking.usbrubberducky.parsers.regex.RepeatInstructionParser;
 import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

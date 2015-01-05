@@ -7,7 +7,7 @@ import com.timmattison.hacking.usbrubberducky.parsers.regex.StringInstructionPar
 import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCodes;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
