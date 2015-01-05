@@ -1,0 +1,5 @@
+STRING Hello, world
+DELAY 500
+STRING Time to repeat
+DELAY 500
+REPEAT 2 4

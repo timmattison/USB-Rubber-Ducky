@@ -65,6 +65,8 @@ public class UsbRubberDuckyModule extends AbstractModule {
         instructionParserMultibinder.addBinding().to(KeypressInstructionParser.class);
         // Support "REPEAT"
         instructionParserMultibinder.addBinding().to(RepeatInstructionParser.class);
+        // Support "REPEAT" with multiple instructions
+        instructionParserMultibinder.addBinding().to(MultipleRepeatInstructionParser.class);
         // Support "REM"
         instructionParserMultibinder.addBinding().to(RemInstructionParser.class);
         // Support "DEFAULT_DELAY"
