@@ -7,9 +7,12 @@ import com.timmattison.hacking.usbrubberducky.parsers.regex.StringInstructionPar
 import com.timmattison.hacking.usbrubberducky.preprocessors.LegacyPreprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCodes;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -39,7 +42,7 @@ public class TestStringInstructionParser {
 
         StringInstruction stringInstruction = stringInstructionParser.parse(test1String);
 
-        Assert.assertNotNull(stringInstruction);
+        Assert.assertThat(stringInstruction, notNullValue());
     }
 
     @Test
@@ -48,6 +51,6 @@ public class TestStringInstructionParser {
 
         StringInstruction stringInstruction = stringInstructionParser.parse(test1String);
 
-        Assert.assertNull(stringInstruction);
+        Assert.assertThat(stringInstruction, nullValue());
     }
 }
