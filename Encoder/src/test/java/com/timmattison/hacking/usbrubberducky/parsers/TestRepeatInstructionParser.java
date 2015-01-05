@@ -10,6 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: timmattison
@@ -52,9 +54,9 @@ public class TestRepeatInstructionParser {
 
         RepeatInstruction repeatInstruction = repeatInstructionParser.parse(testString);
 
-        Assert.assertNotNull(repeatInstruction);
-        Assert.assertEquals(repeatCount, repeatInstruction.getRepeatCount());
-        Assert.assertEquals(1, repeatInstruction.getInstructionCount());
+        Assert.assertThat(repeatInstruction, notNullValue());
+        Assert.assertThat(repeatInstruction.getRepeatCount(), is(repeatCount));
+        Assert.assertThat(repeatInstruction.getInstructionCount(), is(1));
     }
 
     @Test
@@ -63,7 +65,7 @@ public class TestRepeatInstructionParser {
 
         RepeatInstruction repeatInstruction = repeatInstructionParser.parse(test2String);
 
-        Assert.assertNull(repeatInstruction);
+        Assert.assertThat(repeatInstruction, nullValue());
     }
 
     @Test
@@ -72,6 +74,6 @@ public class TestRepeatInstructionParser {
 
         RepeatInstruction repeatInstruction = repeatInstructionParser.parse(test3String);
 
-        Assert.assertNull(repeatInstruction);
+        Assert.assertThat(repeatInstruction, nullValue());
     }
 }

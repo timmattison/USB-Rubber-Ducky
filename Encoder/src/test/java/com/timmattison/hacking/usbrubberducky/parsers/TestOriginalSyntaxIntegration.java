@@ -2,25 +2,9 @@ package com.timmattison.hacking.usbrubberducky.parsers;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.TypeLiteral;
 import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
-import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
-import org.apache.commons.io.IOUtils;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by timmattison on 7/21/14.

@@ -11,6 +11,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+
 /**
  * Created with IntelliJ IDEA.
  * User: timmattison
@@ -39,7 +42,7 @@ public class TestStringInstructionParser {
 
         StringInstruction stringInstruction = stringInstructionParser.parse(test1String);
 
-        Assert.assertNotNull(stringInstruction);
+        Assert.assertThat(stringInstruction, notNullValue());
     }
 
     @Test
@@ -48,6 +51,6 @@ public class TestStringInstructionParser {
 
         StringInstruction stringInstruction = stringInstructionParser.parse(test1String);
 
-        Assert.assertNull(stringInstruction);
+        Assert.assertThat(stringInstruction, nullValue());
     }
 }

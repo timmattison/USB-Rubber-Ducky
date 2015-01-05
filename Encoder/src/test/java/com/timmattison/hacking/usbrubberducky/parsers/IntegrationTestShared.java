@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.is;
+
 /**
  * Created by timmattison on 7/31/14.
  */
@@ -39,7 +41,7 @@ public class IntegrationTestShared {
         byte[] generatedData = getOutputFromCurrentEncoder(injector, inputPath, inputSuffix, filename);
 
         // Make sure the output matches
-        Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
+        Assert.assertThat("There was an issue with " + filename, outputFile, is(generatedData));
     }
 
     private static String[] getInputFileData(String inputPath, String inputSuffix, String filename) throws IOException {

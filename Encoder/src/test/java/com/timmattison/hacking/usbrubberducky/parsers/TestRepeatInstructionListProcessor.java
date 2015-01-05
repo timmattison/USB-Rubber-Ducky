@@ -15,6 +15,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+
 /**
  * Created with IntelliJ IDEA.
  * User: timmattison
@@ -61,14 +64,14 @@ public class TestRepeatInstructionListProcessor {
         instructionList = repeatInstructionListProcessor.process(instructionList);
 
         int totalInstructionCount = repeatCount + 1;
-        Assert.assertEquals(totalInstructionCount, instructionList.size());
+        Assert.assertThat(totalInstructionCount, is(instructionList.size()));
 
         for (int loop = 0; loop < totalInstructionCount; loop++) {
             Instruction instruction = instructionList.get(loop);
-            Assert.assertTrue(instruction instanceof DelayInstruction);
+            Assert.assertThat(instruction, instanceOf(DelayInstruction.class));
 
             DelayInstruction delayInstruction = (DelayInstruction) instruction;
-            Assert.assertEquals(delayInMilliseconds, delayInstruction.getDelayValue());
+            Assert.assertThat(delayInMilliseconds, is(delayInstruction.getDelayValue()));
         }
     }
 }

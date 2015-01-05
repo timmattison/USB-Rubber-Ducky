@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static org.hamcrest.CoreMatchers.is;
+
 /**
  * Created by timmattison on 7/31/14.
  */
@@ -31,7 +33,7 @@ public class TestOsxIntegration {
         String filename = "osx-kill-finder";
 
         byte[] outputData = IntegrationTestShared.getOutputFromCurrentEncoder(injector, inputPath, inputSuffix, filename);
-        Assert.assertArrayEquals(osxKillFinderBinary, outputData);
+        Assert.assertThat(osxKillFinderBinary, is(outputData));
     }
 
 }
