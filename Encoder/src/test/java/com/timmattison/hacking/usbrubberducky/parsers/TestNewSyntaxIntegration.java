@@ -4,6 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.timmattison.hacking.usbrubberducky.UsbRubberDuckyModule;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -20,6 +21,7 @@ public class TestNewSyntaxIntegration {
         injector = Guice.createInjector(new UsbRubberDuckyModule());
     }
 
+    @Ignore
     @Test
     public void testMultipleRepeat1() throws Exception {
         String filename = "multiple-repeat-1";
