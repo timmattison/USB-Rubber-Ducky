@@ -61,7 +61,7 @@ public class IntegrationTestShared {
 
     private static byte[] getGoldenOutputFile(String inputPath, String inputSuffix, String filename) throws IOException {
         String inputFile = inputPath + filename + inputSuffix;
-        byte[] bytes = IOUtils.toByteArray(new InputStreamReader(inputFile.getClass().getResourceAsStream(inputFile)), "UTF-8");
+        byte[] bytes = IOUtils.toByteArray(new InputStreamReader(inputFile.getClass().getResourceAsStream(inputFile)), "US-ASCII");
 
         return bytes;
     }
