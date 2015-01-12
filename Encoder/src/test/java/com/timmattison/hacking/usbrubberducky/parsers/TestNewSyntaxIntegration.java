@@ -21,7 +21,6 @@ public class TestNewSyntaxIntegration {
         injector = Guice.createInjector(new UsbRubberDuckyModule());
     }
 
-    @Ignore
     @Test
     public void testMultipleRepeat1() throws Exception {
         String filename = "multiple-repeat-1";
