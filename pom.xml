@@ -19,6 +19,22 @@
         <testSourceDirectory>Encoder/src/test/java</testSourceDirectory>
 
         <plugins>
+            <!-- enable JGit plugin -->
+            <plugin>
+                <groupId>ru.concerteza.buildnumber</groupId>
+                <artifactId>maven-jgit-buildnumber-plugin</artifactId>
+                <version>1.2.9</version>
+                <executions>
+                    <execution>
+                        <id>git-buildnumber</id>
+                        <goals>
+                            <goal>extract-buildnumber</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -27,6 +43,9 @@
                             <mainClass>com.timmattison.hacking.usbrubberducky.RubberDuckyEncoderApplication
                             </mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <Implementation-Version>${git.revision}</Implementation-Version>
+                        </manifestEntries>
                     </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -58,7 +77,7 @@
                     </targetTests>
                 </configuration>
             </plugin>
-        </plugins>
+       </plugins>
     </build>
 
     <dependencies>
@@ -101,6 +120,11 @@
             <groupId>commons-cli</groupId>
             <artifactId>commons-cli</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.concerteza.buildnumber</groupId>
+            <artifactId>maven-jgit-buildnumber-plugin</artifactId>
+            <version>1.2.9</version>
         </dependency>
     </dependencies>
 </project>
