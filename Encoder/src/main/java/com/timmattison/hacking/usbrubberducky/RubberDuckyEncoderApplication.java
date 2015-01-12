@@ -3,6 +3,7 @@ package com.timmattison.hacking.usbrubberducky;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.timmattison.hacking.usbrubberducky.exceptions.EncoderException;
+import com.timmattison.hacking.usbrubberducky.exceptions.NoParserFoundForStringException;
 import org.apache.commons.cli.*;
 import org.apache.commons.io.IOUtils;
 
@@ -49,8 +50,11 @@ public class RubberDuckyEncoderApplication {
         try {
             output = rubberDuckyEncoder.encode(input);
         } catch (IOException e) {
-            // There was an exception, report it and exit
+            // There was an IO exception, report it and exit
             reportEncoderIoException(inputFile, e);
+        } catch (EncoderException e) {
+            // There was an encoder exception, report it and exit
+            reportEncoderException(e);
         }
 
         try {
@@ -107,6 +111,25 @@ public class RubberDuckyEncoderApplication {
         System.err.println("Couldn't encode the the input file [" + inputFile + "].  Check to make sure the syntax is correct.");
         e.printStackTrace();
         System.exit(3);
+    }
+
+    private static void reportEncoderException(Exception e) {
+        if (e instanceof NoParserFoundForStringException) {
+            NoParserFoundForStringException noParserFoundForStringException = (NoParserFoundForStringException) e;
+
+            String badInput = noParserFoundForStringException.getString();
+
+            if (badInput == null) {
+                System.err.println("An unknown line caused the exception, this should never happen");
+            } else {
+                System.err.println("This line could not be parsed: " + badInput);
+            }
+
+            System.err.println();
+        }
+
+        e.printStackTrace();
+        System.exit(4);
     }
 
     private static void showInputReadFailure(String inputFile) {
