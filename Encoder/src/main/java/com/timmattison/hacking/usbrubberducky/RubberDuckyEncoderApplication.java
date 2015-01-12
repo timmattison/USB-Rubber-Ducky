@@ -24,7 +24,10 @@ public class RubberDuckyEncoderApplication {
     private static String inputFile = null;
     private static String outputFile = null;
 
-    public static void main(String args[]) throws ParseException, EncoderException {
+    public static void main(String args[]) throws ParseException, EncoderException, IOException {
+        // Print the version number
+        printVersionNumber();
+
         // Process the command-line arguments with Apache CLI
         processCommandLineOptions(args);
 
@@ -60,6 +63,16 @@ public class RubberDuckyEncoderApplication {
             // There was an exception, report it and exit
             reportOutputIoException(inputFile, e);
         }
+    }
+
+    private static void printVersionNumber() throws IOException {
+        String gitHash = RubberDuckyEncoderApplication.class.getPackage().getImplementationVersion();
+
+        if (gitHash == null) {
+            gitHash = "Unknown";
+        }
+
+        System.out.println("Rubber Ducky Encoder Application - githash: " + gitHash);
     }
 
     private static void processCommandLineOptions(String[] args) throws ParseException {
