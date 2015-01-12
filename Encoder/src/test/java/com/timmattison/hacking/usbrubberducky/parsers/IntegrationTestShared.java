@@ -79,6 +79,10 @@ public class IntegrationTestShared {
     public static byte[] getOutputFromCurrentEncoder(Injector injector, String inputPath, String inputSuffix, String filename) throws IOException, EncoderException {
         String[] inputFile = getInputFileData(inputPath, inputSuffix, filename);
 
+        return getOutputFromCurrentEncoder(injector, inputFile);
+    }
+
+    public static byte[] getOutputFromCurrentEncoder(Injector injector, String[] inputFile) throws IOException, EncoderException {
         // Get the instruction list
         InstructionList instructionList = new BasicInstructionList(getInstructionListProcessors(injector));
 
