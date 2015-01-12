@@ -15,13 +15,13 @@ import java.util.List;
  * Time: 11:32 AM
  * To change this template use File | Settings | File Templates.
  */
-public class RepeatInstructionParser extends RegexAbstractInstructionParser<RepeatInstruction> {
+public class MultipleRepeatInstructionParser extends RegexAbstractInstructionParser<RepeatInstruction> {
     private static final String name = "REPEAT";
-    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
+    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)" + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
     private final RepeatInstructionFactory repeatInstructionFactory;
 
     @Inject
-    public RepeatInstructionParser(Preprocessor preprocessor, RepeatInstructionFactory repeatInstructionFactory) {
+    public MultipleRepeatInstructionParser(Preprocessor preprocessor, RepeatInstructionFactory repeatInstructionFactory) {
         super(preprocessor);
         this.repeatInstructionFactory = repeatInstructionFactory;
     }
@@ -32,7 +32,7 @@ public class RepeatInstructionParser extends RegexAbstractInstructionParser<Repe
 
         // Parse the number of times we should repeat and create the instruction using the factory
         int numberOfTimesToRepeat = Integer.parseInt(input.get(0));
-        int numberOfInstructionsToRepeat = 1;
+        int numberOfInstructionsToRepeat = Integer.parseInt(input.get(1));
         return repeatInstructionFactory.create(numberOfTimesToRepeat, numberOfInstructionsToRepeat);
     }
 

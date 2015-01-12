@@ -27,8 +27,8 @@ public class TestRepeatInstructionParser {
     public void setup() {
         repeatInstructionFactory = new RepeatInstructionFactory() {
             @Override
-            public RepeatInstruction create(@Assisted("repeatCount") int repeatCount) {
-                return new BasicRepeatInstruction(repeatCount);
+            public RepeatInstruction create(@Assisted(REPEAT_COUNT) int repeatCount, @Assisted(INSTRUCTION_COUNT) int instructionCount) {
+                return new BasicRepeatInstruction(repeatCount, instructionCount);
             }
         };
 

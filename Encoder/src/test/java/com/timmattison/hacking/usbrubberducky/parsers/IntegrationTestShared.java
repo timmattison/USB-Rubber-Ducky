@@ -10,8 +10,10 @@ import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList
 import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
+import sun.nio.cs.US_ASCII;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +33,7 @@ public class IntegrationTestShared {
         return injector.getInstance(Key.get(instructionListProcessorTypeLiteral));
     }
 
-    public static void testFile(Injector injector, String inputPath, String inputSuffix, String filename) throws Exception {
+    public static void testLegacyFile(Injector injector, String inputPath, String inputSuffix, String filename) throws Exception {
         byte[] outputFile;
 
         // Get the output file from the legacy encoder
@@ -42,6 +44,26 @@ public class IntegrationTestShared {
 
         // Make sure the output matches
         Assert.assertThat("There was an issue with " + filename, outputFile, is(generatedData));
+    }
+
+    public static void testNewFile(Injector injector, String inputPath, String inputSuffix, String filename) throws Exception {
+        byte[] outputFile;
+
+        // Get the golden output file
+        outputFile = getGoldenOutputFile(inputPath, ".bin", filename);
+
+        // Get the output from the current encoder
+        byte[] generatedData = getOutputFromCurrentEncoder(injector, inputPath, inputSuffix, filename);
+
+        // Make sure the output matches
+        Assert.assertArrayEquals("There was an issue with " + filename, outputFile, generatedData);
+    }
+
+    private static byte[] getGoldenOutputFile(String inputPath, String inputSuffix, String filename) throws IOException {
+        String inputFile = inputPath + filename + inputSuffix;
+        byte[] bytes = IOUtils.toByteArray(new InputStreamReader(inputFile.getClass().getResourceAsStream(inputFile), "ISO-8859-1"), "ISO-8859-1");
+
+        return bytes;
     }
 
     private static String[] getInputFileData(String inputPath, String inputSuffix, String filename) throws IOException {
@@ -57,6 +79,10 @@ public class IntegrationTestShared {
     public static byte[] getOutputFromCurrentEncoder(Injector injector, String inputPath, String inputSuffix, String filename) throws IOException, EncoderException {
         String[] inputFile = getInputFileData(inputPath, inputSuffix, filename);
 
+        return getOutputFromCurrentEncoder(injector, inputFile);
+    }
+
+    public static byte[] getOutputFromCurrentEncoder(Injector injector, String[] inputFile) throws IOException, EncoderException {
         // Get the instruction list
         InstructionList instructionList = new BasicInstructionList(getInstructionListProcessors(injector));
 

@@ -33,8 +33,8 @@ public class TestRepeatInstructionListProcessor {
     public void setup() {
         repeatInstructionFactory = new RepeatInstructionFactory() {
             @Override
-            public RepeatInstruction create(@Assisted("repeatCount") int repeatCount) {
-                return new BasicRepeatInstruction(repeatCount);
+            public RepeatInstruction create(@Assisted(REPEAT_COUNT) int repeatCount, @Assisted(INSTRUCTION_COUNT) int instructionCount) {
+                return new BasicRepeatInstruction(repeatCount, instructionCount);
             }
         };
 
@@ -57,9 +57,43 @@ public class TestRepeatInstructionListProcessor {
         testSimpleRepeat(instructionList, 100, 10);
     }
 
+    @Test
+    public void testMultipleRepeatRepeatsOnce() throws NotEnoughInstructionsToRepeatException {
+        List<Instruction> instructionList = new ArrayList<Instruction>();
+        testMultipleRepeat(instructionList, 5, 1);
+    }
+
+    @Test
+    public void testMultipleRepeatRepeatsFiveTimes() throws NotEnoughInstructionsToRepeatException {
+        List<Instruction> instructionList = new ArrayList<Instruction>();
+        testMultipleRepeat(instructionList, 5, 5);
+    }
+
+    private void testMultipleRepeat(List<Instruction> instructionList, int repeatCount, int instructionCount) throws NotEnoughInstructionsToRepeatException {
+        for (int loop = 0; loop < repeatCount; loop++) {
+            instructionList.add(getDelayInstruction(loop));
+        }
+
+        instructionList.add(repeatInstructionFactory.create(repeatCount, instructionCount));
+
+        instructionList = repeatInstructionListProcessor.process(instructionList);
+
+        int totalInstructionCount = repeatCount + (repeatCount * instructionCount);
+        Assert.assertThat(totalInstructionCount, is(instructionList.size()));
+
+        for (int loop = repeatCount; loop < totalInstructionCount; loop++) {
+            Instruction instruction = instructionList.get(loop);
+            Assert.assertThat(instruction, instanceOf(DelayInstruction.class));
+
+            DelayInstruction delayInstruction = (DelayInstruction) instruction;
+            DelayInstruction repeatedDelayInstruction = (DelayInstruction) instructionList.get(loop - instructionCount);
+            Assert.assertThat(delayInstruction.getDelayValue(), is(repeatedDelayInstruction.getDelayValue()));
+        }
+    }
+
     private void testSimpleRepeat(List<Instruction> instructionList, int delayInMilliseconds, int repeatCount) throws NotEnoughInstructionsToRepeatException {
         instructionList.add(getDelayInstruction(delayInMilliseconds));
-        instructionList.add(repeatInstructionFactory.create(repeatCount));
+        instructionList.add(repeatInstructionFactory.create(repeatCount, 1));
 
         instructionList = repeatInstructionListProcessor.process(instructionList);
 
