@@ -116,6 +116,7 @@
             <groupId>ru.concerteza.buildnumber</groupId>
             <artifactId>maven-jgit-buildnumber-plugin</artifactId>
             <version>1.2.9</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
