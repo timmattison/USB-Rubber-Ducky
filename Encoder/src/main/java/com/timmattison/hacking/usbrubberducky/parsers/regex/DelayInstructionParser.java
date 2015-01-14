@@ -3,6 +3,7 @@ package com.timmattison.hacking.usbrubberducky.parsers.regex;
 import com.google.inject.Inject;
 import com.timmattison.hacking.usbrubberducky.constants.Whitespace;
 import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.factories.DelayInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 
 import java.util.List;
@@ -16,17 +17,19 @@ import java.util.List;
  */
 public class DelayInstructionParser extends RegexAbstractInstructionParser<DelayInstruction> {
     private static final String name = "DELAY";
-    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
+    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + NUMERIC_ARGUMENT + "$";
+    private final DelayInstructionFactory delayInstructionFactory;
 
     @Inject
-    public DelayInstructionParser(Preprocessor preprocessor) {
+    public DelayInstructionParser(Preprocessor preprocessor, DelayInstructionFactory delayInstructionFactory) {
         super(preprocessor);
+        this.delayInstructionFactory = delayInstructionFactory;
     }
 
     @Override
     protected DelayInstruction create(List<String> input) {
         // Get the integer value from the input that contains the delay amount and create a delay instruction with it
-        return new DelayInstruction(Integer.parseInt(input.get(0)));
+        return delayInstructionFactory.create(Integer.parseInt(input.get(0)));
     }
 
     @Override

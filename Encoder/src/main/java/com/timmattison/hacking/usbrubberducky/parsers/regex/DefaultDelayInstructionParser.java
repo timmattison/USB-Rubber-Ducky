@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class DefaultDelayInstructionParser extends RegexAbstractInstructionParser<DefaultDelayInstruction> {
     private static final String name = "DEFAULT_DELAY";
-    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
+   private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + NUMERIC_ARGUMENT + "$";
 
     @Inject
     public DefaultDelayInstructionParser(Preprocessor preprocessor) {
