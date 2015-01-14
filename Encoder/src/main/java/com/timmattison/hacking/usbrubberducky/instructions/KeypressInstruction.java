@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.exceptions.DuplicateKeyboardCodeException;
 import com.timmattison.hacking.usbrubberducky.exceptions.ModifierCollisionException;
+import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.support.BitCounter;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 
@@ -24,7 +25,7 @@ public class KeypressInstruction implements Instruction {
     private final Stack<KeyboardCode> keyboardCodeStack;
 
     @Inject
-    public KeypressInstruction(BitCounter bitCounter, @Assisted("keyboardCodeStack") Stack<KeyboardCode> keyboardCodeStack) {
+    public KeypressInstruction(BitCounter bitCounter, @Assisted(KeypressInstructionFactory.KEYBOARD_CODE_STACK) Stack<KeyboardCode> keyboardCodeStack) {
         this.bitCounter = bitCounter;
         this.keyboardCodeStack = keyboardCodeStack;
     }
