@@ -10,8 +10,6 @@ import java.util.List;
 
 public class SimulateTypingInstructionParser extends RegexAbstractInstructionParser<SimulateTypingInstruction> {
     private static final String name = "SIMULATE_TYPING";
-    private static final String NUMERIC_ARGUMENT = "([0-9]+)";
-    private static final String THE_REST = "(.+)$";
     private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + NUMERIC_ARGUMENT + Whitespace.getWhitespaceCharClass() + "+" + NUMERIC_ARGUMENT + Whitespace.getWhitespaceCharClass() + "{1}" + THE_REST;
     private final SimulateTypingInstructionFactory simulateTypingInstructionFactory;
 
