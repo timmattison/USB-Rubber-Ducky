@@ -43,4 +43,8 @@ public class StringInstruction implements Instruction {
     public String toString() {
         return "STRING " + input;
     }
+
+    public String getInput() {
+        return input;
+    }
 }
