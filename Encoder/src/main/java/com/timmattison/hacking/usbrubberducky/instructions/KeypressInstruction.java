@@ -1,6 +1,5 @@
 package com.timmattison.hacking.usbrubberducky.instructions;
 
-import com.google.gson.Gson;
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.exceptions.DuplicateKeyboardCodeException;
 import com.timmattison.hacking.usbrubberducky.exceptions.ModifierCollisionException;
@@ -96,6 +95,6 @@ public class KeypressInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return new Gson().toJson(this);
+        throw new UnsupportedOperationException("Not implemented");
     }
 }
