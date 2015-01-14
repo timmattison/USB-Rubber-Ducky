@@ -10,5 +10,7 @@ import java.util.Stack;
  * Created by timmattison on 12/16/13.
  */
 public interface KeypressInstructionFactory {
-    KeypressInstruction create(@Assisted("keyboardCodeStack") Stack<KeyboardCode> keyboardCodeStack);
+    public static final String KEYBOARD_CODE_STACK = "keyboardCodeStack";
+
+    KeypressInstruction create(@Assisted(KEYBOARD_CODE_STACK) Stack<KeyboardCode> keyboardCodeStack);
 }

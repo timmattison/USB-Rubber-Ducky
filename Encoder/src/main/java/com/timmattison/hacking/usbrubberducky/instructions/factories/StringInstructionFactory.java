@@ -7,5 +7,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.StringInstruction;
  * Created by timmattison on 12/16/13.
  */
 public interface StringInstructionFactory {
-    StringInstruction create(@Assisted("input") String input);
+    public static final String INPUT = "input";
+
+    StringInstruction create(@Assisted(INPUT) String input);
 }

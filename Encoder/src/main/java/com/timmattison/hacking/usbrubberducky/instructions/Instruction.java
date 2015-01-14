@@ -21,4 +21,6 @@ public interface Instruction {
      * @return
      */
     public byte[] getEncodedInstruction() throws EncoderException;
+
+//    public Instruction decode(byte[] input);
 }

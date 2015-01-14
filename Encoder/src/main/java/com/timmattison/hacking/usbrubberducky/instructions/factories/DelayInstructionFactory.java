@@ -7,5 +7,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
  * Created by timmattison on 12/16/13.
  */
 public interface DelayInstructionFactory {
-    DelayInstruction create(@Assisted("delayInMilliseconds") int delayInMilliseconds);
+    public static final String DELAY_IN_MILLISECONDS = "delayInMilliseconds";
+
+    DelayInstruction create(@Assisted(DELAY_IN_MILLISECONDS) int delayInMilliseconds);
 }
