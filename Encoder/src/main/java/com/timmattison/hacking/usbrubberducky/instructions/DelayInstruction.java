@@ -2,6 +2,7 @@ package com.timmattison.hacking.usbrubberducky.instructions;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
+import com.timmattison.hacking.usbrubberducky.instructions.factories.DelayInstructionFactory;
 
 import java.io.ByteArrayOutputStream;
 
@@ -14,7 +15,7 @@ public class DelayInstruction implements Instruction {
     private final int delayValue;
 
     @Inject
-    public DelayInstruction(@Assisted("delayInMilliseconds") int delayValue) {
+    public DelayInstruction(@Assisted(DelayInstructionFactory.DELAY_IN_MILLISECONDS) int delayValue) {
         this.delayValue = delayValue;
     }
 

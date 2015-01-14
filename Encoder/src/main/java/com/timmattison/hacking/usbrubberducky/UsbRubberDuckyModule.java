@@ -19,7 +19,9 @@ import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 import com.timmattison.hacking.usbrubberducky.support.BitCounter;
 import com.timmattison.hacking.usbrubberducky.support.ParallelBitCounter;
 import com.timmattison.hacking.usbrubberducky.translation.BasicCharacterTranslator;
+import com.timmattison.hacking.usbrubberducky.translation.BasicKeyboardModifierMap;
 import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslator;
+import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifierMap;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.USKeyboardCodes;
 
@@ -101,6 +103,9 @@ public class UsbRubberDuckyModule extends AbstractModule {
 
         // Use the standard rubber ducky encoder
         bind(RubberDuckyEncoder.class).to(StandardRubberDuckyEncoder.class);
+
+        // Use the basic keyboard modifier map
+        bind(KeyboardModifierMap.class).to(BasicKeyboardModifierMap.class);
     }
 
     private void createFactoriesFromInterfaces() {

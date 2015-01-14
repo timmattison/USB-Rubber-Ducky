@@ -2,6 +2,7 @@ package com.timmattison.hacking.usbrubberducky.instructions;
 
 import com.google.inject.assistedinject.Assisted;
 import com.timmattison.hacking.usbrubberducky.exceptions.UntranslatableCodeException;
+import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
 import com.timmattison.hacking.usbrubberducky.translation.CharacterTranslator;
 
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ public class StringInstruction implements Instruction {
     private final String input;
 
     @Inject
-    public StringInstruction(CharacterTranslator characterTranslator, @Assisted("input") String input) {
+    public StringInstruction(CharacterTranslator characterTranslator, @Assisted(StringInstructionFactory.INPUT) String input) {
         this.characterTranslator = characterTranslator;
         this.input = input;
     }

@@ -28,7 +28,7 @@ public class TestStringInstructionParser {
     public void setup() {
         StringInstructionFactory stringInstructionFactory = new StringInstructionFactory() {
             @Override
-            public StringInstruction create(@Assisted("input") String input) {
+            public StringInstruction create(@Assisted(StringInstructionFactory.INPUT) String input) {
                 return new StringInstruction(new BasicCharacterTranslator(new USKeyboardCodes()), input);
             }
         };

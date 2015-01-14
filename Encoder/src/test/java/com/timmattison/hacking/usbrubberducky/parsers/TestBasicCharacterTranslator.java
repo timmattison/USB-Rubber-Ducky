@@ -10,18 +10,15 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.mockito.Mockito.mock;
+
 /**
  * Created by timmattison on 7/30/14.
  */
 public class TestBasicCharacterTranslator {
     @Test
     public void testEmptyKeyboardCodesThrowsException() {
-        KeyboardCodes emptyKeyboardCodes = new KeyboardCodes() {
-            @Override
-            public Map<String, KeyboardCode> get() {
-                return new HashMap<String, KeyboardCode>();
-            }
-        };
+        KeyboardCodes emptyKeyboardCodes = mock(KeyboardCodes.class);
 
         BasicCharacterTranslator basicCharacterTranslator = new BasicCharacterTranslator(emptyKeyboardCodes);
 

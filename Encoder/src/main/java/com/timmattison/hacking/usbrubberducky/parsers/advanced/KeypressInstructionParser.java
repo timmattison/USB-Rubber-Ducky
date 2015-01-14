@@ -6,6 +6,7 @@ import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressIns
 import com.timmattison.hacking.usbrubberducky.preprocessors.Preprocessor;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardCode;
 import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifier;
+import com.timmattison.hacking.usbrubberducky.translation.codes.KeyboardModifierMap;
 import com.timmattison.hacking.usbrubberducky.translation.keyboards.KeyboardCodes;
 
 import java.util.HashMap;
@@ -22,13 +23,14 @@ import java.util.Stack;
 public class KeypressInstructionParser extends NonRegexAbstractInstructionParser<KeypressInstruction> {
     private final KeypressInstructionFactory keypressInstructionFactory;
     private final KeyboardCodes keyboardCodes;
-    private Map<String, KeyboardCode> keyboardModifierMap;
+    private final KeyboardModifierMap keyboardModifierMap;
 
     @Inject
-    public KeypressInstructionParser(Preprocessor preprocessor, KeypressInstructionFactory keypressInstructionFactory, KeyboardCodes keyboardCodes) {
+    public KeypressInstructionParser(Preprocessor preprocessor, KeypressInstructionFactory keypressInstructionFactory, KeyboardCodes keyboardCodes, KeyboardModifierMap keyboardModifierMap) {
         super(preprocessor);
         this.keypressInstructionFactory = keypressInstructionFactory;
         this.keyboardCodes = keyboardCodes;
+        this.keyboardModifierMap = keyboardModifierMap;
     }
 
     @Override
@@ -72,26 +74,10 @@ public class KeypressInstructionParser extends NonRegexAbstractInstructionParser
     }
 
     private KeyboardCode getKeyboardCode(String codeString) {
-        return keyboardCodes.get().get(codeString);
+        return keyboardCodes.get(codeString);
     }
 
     private KeyboardCode getKeyboardModifier(String codeString) {
-        return getKeyboardModifierMap().get(codeString);
-    }
-
-    private Map<String, KeyboardCode> getKeyboardModifierMap() {
-        // Has the keyboard modifier map been built already?
-        if (keyboardModifierMap == null) {
-            // No, build it
-            keyboardModifierMap = new HashMap<String, KeyboardCode>();
-
-            // Loop through each keyboard modifier and add it and its name to a map so we can search them quickly.
-            for (KeyboardModifier keyboardModifier : KeyboardModifier.values()) {
-                keyboardModifierMap.put(keyboardModifier.name(), keyboardModifier.getValue());
-            }
-        }
-
-        // Return the map to the caller
-        return keyboardModifierMap;
+        return keyboardModifierMap.get(codeString);
     }
 }
