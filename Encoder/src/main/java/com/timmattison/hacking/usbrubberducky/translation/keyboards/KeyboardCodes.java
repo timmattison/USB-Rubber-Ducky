@@ -8,5 +8,5 @@ import java.util.Map;
  * Created by timmattison on 12/9/13.
  */
 public interface KeyboardCodes {
-    Map<String, KeyboardCode> get();
+    KeyboardCode get(String string);
 }
