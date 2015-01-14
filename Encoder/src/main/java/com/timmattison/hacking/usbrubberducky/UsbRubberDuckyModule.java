@@ -3,22 +3,14 @@ package com.timmattison.hacking.usbrubberducky;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.multibindings.Multibinder;
-import com.timmattison.hacking.usbrubberducky.instructions.BasicRepeatInstruction;
-import com.timmattison.hacking.usbrubberducky.instructions.DelayInstruction;
-import com.timmattison.hacking.usbrubberducky.instructions.KeypressInstruction;
-import com.timmattison.hacking.usbrubberducky.instructions.StringInstruction;
-import com.timmattison.hacking.usbrubberducky.instructions.factories.DelayInstructionFactory;
-import com.timmattison.hacking.usbrubberducky.instructions.factories.KeypressInstructionFactory;
-import com.timmattison.hacking.usbrubberducky.instructions.factories.RepeatInstructionFactory;
-import com.timmattison.hacking.usbrubberducky.instructions.factories.StringInstructionFactory;
+import com.timmattison.hacking.usbrubberducky.instructions.*;
+import com.timmattison.hacking.usbrubberducky.instructions.factories.*;
 import com.timmattison.hacking.usbrubberducky.instructions.interfaces.RepeatInstruction;
+import com.timmattison.hacking.usbrubberducky.instructions.interfaces.SimulateTypingInstruction;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.BasicInstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionList;
 import com.timmattison.hacking.usbrubberducky.instructions.lists.InstructionListFactory;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.DefaultDelayInstructionListProcessor;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.InstructionListProcessor;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.NopInstructionListProcessor;
-import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.RepeatInstructionListProcessor;
+import com.timmattison.hacking.usbrubberducky.instructions.lists.processors.*;
 import com.timmattison.hacking.usbrubberducky.parsers.InstructionParser;
 import com.timmattison.hacking.usbrubberducky.parsers.advanced.KeypressInstructionParser;
 import com.timmattison.hacking.usbrubberducky.parsers.regex.*;
@@ -75,6 +67,8 @@ public class UsbRubberDuckyModule extends AbstractModule {
         instructionParserMultibinder.addBinding().to(DefaultDelayInstructionParser.class);
         // Support blank lines
         instructionParserMultibinder.addBinding().to(BlankLineInstructionParser.class);
+        // Support "SIMULATE_TYPING"
+        instructionParserMultibinder.addBinding().to(SimulateTypingInstructionParser.class);
     }
 
     private void createListProcessingMultibinder() {
@@ -88,6 +82,8 @@ public class UsbRubberDuckyModule extends AbstractModule {
         instructionListProcessorMultibinder.addBinding().to(RepeatInstructionListProcessor.class);
         // Step 3 - Add default delays
         instructionListProcessorMultibinder.addBinding().to(DefaultDelayInstructionListProcessor.class);
+        // Step 4 - Add simulated typing
+        instructionListProcessorMultibinder.addBinding().to(SimulateTypingInstructionListProcessor.class);
     }
 
     private void bindConcreteImplementations() {
@@ -117,6 +113,7 @@ public class UsbRubberDuckyModule extends AbstractModule {
         install(new FactoryModuleBuilder().implement(RepeatInstruction.class, BasicRepeatInstruction.class).build(RepeatInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(KeypressInstruction.class, KeypressInstruction.class).build(KeypressInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(DelayInstruction.class, DelayInstruction.class).build(DelayInstructionFactory.class));
+        install(new FactoryModuleBuilder().implement(SimulateTypingInstruction.class, BasicSimulateTypingInstruction.class).build(SimulateTypingInstructionFactory.class));
         install(new FactoryModuleBuilder().implement(InstructionList.class, BasicInstructionList.class).build(InstructionListFactory.class));
     }
 }

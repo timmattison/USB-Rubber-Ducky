@@ -42,7 +42,7 @@ public class RepeatInstructionListProcessor implements InstructionListProcessor 
                     outputInstructionList.addAll(instructionSublist);
                 }
             } else {
-                // No, just encode the instruction
+                // No, just add the instruction
                 outputInstructionList.add(instruction);
             }
         }
