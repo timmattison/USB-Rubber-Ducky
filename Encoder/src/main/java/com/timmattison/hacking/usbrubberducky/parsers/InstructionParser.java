@@ -10,6 +10,9 @@ import com.timmattison.hacking.usbrubberducky.instructions.Instruction;
  * To change this template use File | Settings | File Templates.
  */
 public interface InstructionParser<T extends Instruction> {
+    public static final String NUMERIC_ARGUMENT = "([0-9]+)";
+    public static final String THE_REST = "(.+)";
+
     /**
      * Returns an instruction if the input can be parsed as a particular instruction.  Returns NULL if not.
      *

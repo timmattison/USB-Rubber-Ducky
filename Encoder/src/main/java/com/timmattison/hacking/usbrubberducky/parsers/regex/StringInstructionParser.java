@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class StringInstructionParser extends RegexAbstractInstructionParser<StringInstruction> {
     private static final String name = "STRING";
-    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "{1}" + "(.+)$";
+    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "{1}" + THE_REST + "$";
     private final StringInstructionFactory stringInstructionFactory;
 
     @Inject

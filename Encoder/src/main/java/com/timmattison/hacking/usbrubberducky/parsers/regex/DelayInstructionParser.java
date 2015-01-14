@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class DelayInstructionParser extends RegexAbstractInstructionParser<DelayInstruction> {
     private static final String name = "DELAY";
-    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
+    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + NUMERIC_ARGUMENT + "$";
     private final DelayInstructionFactory delayInstructionFactory;
 
     @Inject

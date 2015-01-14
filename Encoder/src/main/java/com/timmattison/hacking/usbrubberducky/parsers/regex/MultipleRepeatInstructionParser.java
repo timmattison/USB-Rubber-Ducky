@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class MultipleRepeatInstructionParser extends RegexAbstractInstructionParser<RepeatInstruction> {
     private static final String name = "REPEAT";
-    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)" + Whitespace.getWhitespaceCharClass() + "+" + "([0-9]+)$";
+    private static final String matchingRegex = "^" + name + Whitespace.getWhitespaceCharClass() + "+" + NUMERIC_ARGUMENT + Whitespace.getWhitespaceCharClass() + "+" + NUMERIC_ARGUMENT + "$";
     private final RepeatInstructionFactory repeatInstructionFactory;
 
     @Inject
