@@ -20,7 +20,7 @@ public class BasicCharacterTranslator implements CharacterTranslator {
     @Override
     public KeyboardCode translate(char character) throws UntranslatableCodeException {
         // Get the code that corresponds to this character?
-        KeyboardCode keyboardCode = keyboardCodes.get().get(String.valueOf(character));
+        KeyboardCode keyboardCode = keyboardCodes.get(String.valueOf(character));
 
         // Did we find it?
         if (keyboardCode == null) {

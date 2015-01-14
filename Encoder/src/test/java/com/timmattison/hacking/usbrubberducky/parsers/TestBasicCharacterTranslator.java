@@ -18,8 +18,8 @@ public class TestBasicCharacterTranslator {
     public void testEmptyKeyboardCodesThrowsException() {
         KeyboardCodes emptyKeyboardCodes = new KeyboardCodes() {
             @Override
-            public Map<String, KeyboardCode> get() {
-                return new HashMap<String, KeyboardCode>();
+            public KeyboardCode get(String string) {
+                return null;
             }
         };
 

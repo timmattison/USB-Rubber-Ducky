@@ -14,8 +14,7 @@ import java.util.Map;
 public class USKeyboardCodes extends AbstractKeyboardCodes implements KeyboardCodes {
     private Map<String, KeyboardCode> keyboardCodes;
 
-    @Override
-    public Map<String, KeyboardCode> get() {
+    private synchronized void setup() {
         // Did we build the list of keyboard codes already?
         if (keyboardCodes == null) {
             // No, build it now
@@ -26,8 +25,12 @@ public class USKeyboardCodes extends AbstractKeyboardCodes implements KeyboardCo
             addKeyboardValues(KeyboardUSNonShiftedCodes.values(), keyboardCodes);
             addKeyboardValues(KeyboardNonPrintableCodes.values(), keyboardCodes);
         }
+    }
 
-        // Return the map to the caller
-        return keyboardCodes;
+    @Override
+    public KeyboardCode get(String string) {
+        setup();
+
+        return keyboardCodes.get(string);
     }
 }
