@@ -425,5 +425,12 @@ public class TestOriginalSyntaxIntegration {
 
         IntegrationTestShared.testLegacyFile(injector, inputPath, inputSuffix, filename);
     }
+
+    @Test
+    public void testLongFile1() throws Exception {
+        String filename = "long-file-1";
+
+        IntegrationTestShared.testLegacyFile(injector, inputPath, inputSuffix, filename);
+    }
 }
 

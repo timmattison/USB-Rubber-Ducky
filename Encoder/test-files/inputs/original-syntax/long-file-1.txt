@@ -1,0 +1,465 @@
+DELAY 1000
+ESC
+DELAY 1000
+CONTROL ESCAPE
+DELAY 3000
+STRING c
+DELAY 2000
+STRING all Blah vz test
+ENTER
+DELAY 1000
+DOWN
+DELAY 1000
+RIGHT
+DELAY 1000
+ENTER
+DELAY 3000
+DOWN
+DOWN
+LEFT
+ENTER
+DELAY 10000
+UP
+ENTER
+ESC
+DELAY 2000
+ESC
+REM On-net test call
+DELAY 1000
+STRING c
+DELAY 1000
+STRING all Blah QA
+ENTER
+DELAY 1000
+DOWN
+DELAY 1000
+RIGHT
+DELAY 1000
+ENTER
+DELAY 4000
+DOWN
+DOWN
+LEFT
+ENTER
+DELAY 10000
+UP
+ENTER
+ESC
+DELAY 2000
+ESC
+REM Phase Two - WiFi SMS/MMS Test
+DELAY 1000
+GUI s
+DELAY 1000
+DOWN
+DOWN
+LEFT
+ENTER
+DELAY 2000
+STRING R
+DELAY 1000
+STRING obert vz test
+DELAY 1000
+DOWN
+TAB
+DELAY 1000
+STRING Starting SMS/MMS Test.
+ENTER
+DELAY 1000
+STRING Char Count 141
+ENTER
+DELAY 1000
+STRING GixUp0N6mBZj7Q7uWN1G0Vec6XpJl@L2Y0AxQ7150ks9U3Uo3vz5lMdIL7M3R5gEuY7lT79@x5m7OR33Yy8xi4Vr2C190om6icZSSOsH5s2lfV9cAKFH35C0g3i8t21ag6t4AdFuxH61
+ENTER
+DELAY 1000
+STRING Char Count 149
+ENTER
+DELAY 1000
+STRING jk97nnLdjjpH9vbSuE83j6323f6wb9Wnu460Q84R66Kvg5KUTWb46RIvGg0DW4ULnZgg79I1iimsfP4N4n957vK73C5107wJU96kdMfHgj2nGSOJzcybTq74K83aq7VNmdo1V1Xd2aCa80qa@Qby
+ENTER
+DELAY 1000
+STRING Char Count 160+
+ENTER
+DELAY 1000
+STRING jjjjjjjjjsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddasdsdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdsaddasdasdasdasdasdasdsadasdasdasdasdasdasdasdasdasdasdadasdasdasdasdasdasdasdadasdsadjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjdjdjdjdjdjdjdjdjdjdjasjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjjsjsjsjsjsjsjsjsjsjsjsjsjsjjjjjjfffffjfjfjfjfjfjfjfjfjfjfjffjfjfjfjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjffjfjfjfjfjfjfjfjfjfjfjfjfjfjjfjffjjjjjjjfffffjfjfjfjfjfjfjfjfjfjfjffjfjfjfjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjffjfjfsdfsadfsdfasfsdfsdafsdfdsafsdafsdfsdfdsfsdafsadfsdffsdfsdfsdfsdafsdafsadfdsfdsafsdfsdafsadfsafasfdsfdsafsdafsdafsdafsadfsfsdfsdfsfsafsdfsdfsdfsdfsfaj
+DELAY 5500
+ENTER
+STRING Char Digit's
+ENTER
+DELAY 1000
+STRING 1234567890
+ENTER
+STRING Char Special's
+ENTER
+DELAY 1000
+STRING !@#$%^
+ENTER
+DELAY 1000
+STRING Pipe Char's
+ENTER
+DELAY 1000
+STRING How about some pipes | maybe? | maybe not?
+ENTER
+DELAY 2000
+REM MMS PART
+STRING MMS Picture
+ENTER
+DELAY 1000
+DOWN
+RIGHT
+RIGHT
+DELAY 1000
+ENTER
+DELAY 1000
+DOWN
+ENTER
+DELAY 3000
+ENTER
+DELAY 2000
+DOWN
+RIGHT
+ENTER
+DELAY 1000
+ENTER
+DELAY 4000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+ENTER
+DELAY 1000
+DOWN
+DELAY 500
+DOWN
+DELAY 500
+DOWN
+DELAY 500
+DOWN
+DELAY 1000
+ENTER
+DELAY 500
+ENTER
+DELAY 500
+TAB
+DELAY 500
+RIGHT
+DELAY 500
+ENTER
+DELAY 500
+ENTER
+DELAY 1000
+ESC
+DELAY 500
+ESC
+DELAY 500
+REM Turn Wifi Off for RWC Test
+STRING w
+DELAY 2000
+STRING ifi off
+ENTER
+DELAY 1000
+DOWN
+DOWN
+DOWN
+RIGHT
+ENTER
+DELAY 500
+UP
+RIGHT
+ENTER
+DELAY 500
+ESC
+DELAY 500
+ESC
+REM REM REPEAT 2
+REM Phase Three - Cell w/ Data Call Test
+REM Starting Call Test
+DELAY 3000
+STRING c
+DELAY 2000
+STRING all Blah vz test
+ENTER
+DELAY 1000
+DOWN
+DELAY 1000
+RIGHT
+DELAY 1000
+ENTER
+DELAY 3000
+DOWN
+DOWN
+LEFT
+ENTER
+DELAY 10000
+UP
+ENTER
+ESC
+DELAY 2000
+ESC
+REM On-net test call
+DELAY 1000
+STRING c
+DELAY 1000
+STRING all Blah QA
+ENTER
+DELAY 1000
+DOWN
+DELAY 1000
+RIGHT
+DELAY 1000
+ENTER
+DELAY 4000
+DOWN
+DOWN
+LEFT
+ENTER
+DELAY 10000
+UP
+ENTER
+ESC
+DELAY 2000
+ESC
+REM Phase Two - WiFi SMS/MMS Test
+DELAY 1000
+GUI s
+DELAY 1000
+DOWN
+DOWN
+LEFT
+ENTER
+DELAY 2000
+STRING R
+DELAY 1000
+STRING Blah vz test
+DELAY 1000
+DOWN
+TAB
+DELAY 1000
+STRING Starting SMS/MMS Test.
+ENTER
+DELAY 1000
+STRING Char Count 141
+ENTER
+DELAY 1000
+STRING GixUp0N6mBZj7Q7uWN1G0Vec6XpJl@L2Y0AxQ7150ks9U3Uo3vz5lMdIL7M3R5gEuY7lT79@x5m7OR33Yy8xi4Vr2C190om6icZSSOsH5s2lfV9cAKFH35C0g3i8t21ag6t4AdFuxH61
+ENTER
+DELAY 1000
+STRING Char Count 149
+ENTER
+DELAY 1000
+STRING jk97nnLdjjpH9vbSuE83j6323f6wb9Wnu460Q84R66Kvg5KUTWb46RIvGg0DW4ULnZgg79I1iimsfP4N4n957vK73C5107wJU96kdMfHgj2nGSOJzcybTq74K83aq7VNmdo1V1Xd2aCa80qa@Qby
+ENTER
+DELAY 1000
+STRING Char Count 160+
+ENTER
+DELAY 1000
+STRING jjjjjjjjjsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddasdsdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdsaddasdasdasdasdasdasdsadasdasdasdasdasdasdasdasdasdasdadasdasdasdasdasdasdasdadasdsadjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjdjdjdjdjdjdjdjdjdjdjasjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjjsjsjsjsjsjsjsjsjsjsjsjsjsjjjjjjfffffjfjfjfjfjfjfjfjfjfjfjffjfjfjfjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjffjfjfjfjfjfjfjfjfjfjfjfjfjfjjfjffjjjjjjjfffffjfjfjfjfjfjfjfjfjfjfjffjfjfjfjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjffjfjfsdfsadfsdfasfsdfsdafsdfdsafsdafsdfsdfdsfsdafsadfsdffsdfsdfsdfsdafsdafsadfdsfdsafsdfsdafsadfsafasfdsfdsafsdafsdafsdafsadfsfsdfsdfsfsafsdfsdfsdfsdfsfaj
+DELAY 5500
+ENTER
+STRING Char Digit's
+ENTER
+DELAY 1000
+STRING 1234567890
+ENTER
+STRING Char Special's
+ENTER
+DELAY 1000
+STRING !@#$%^
+ENTER
+DELAY 1000
+STRING Pipe Char's
+ENTER
+DELAY 1000
+STRING How about some pipes | maybe? | maybe not?
+ENTER
+DELAY 2000
+REM MMS PART
+STRING MMS Picture
+ENTER
+DELAY 1000
+DOWN
+RIGHT
+RIGHT
+DELAY 1000
+ENTER
+DELAY 1000
+DOWN
+ENTER
+DELAY 3000
+ENTER
+DELAY 2000
+DOWN
+RIGHT
+ENTER
+DELAY 1000
+ENTER
+DELAY 4000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+ENTER
+DELAY 1000
+DOWN
+DELAY 500
+DOWN
+DELAY 500
+DOWN
+DELAY 500
+DOWN
+DELAY 1000
+ENTER
+DELAY 500
+ENTER
+DELAY 500
+TAB
+DELAY 500
+RIGHT
+DELAY 500
+ENTER
+DELAY 500
+ENTER
+DELAY 1000
+ESC
+DELAY 500
+ESC
+DELAY 500
+REM REM REPEAT 3
+REM Phase Five - Cell w/o Data SMS Test
+DELAY 2000
+STRING o
+DELAY 2000
+STRING pen settings
+DELAY 2000
+ENTER
+DELAY 1000
+DOWN
+RIGHT
+ENTER
+DELAY 1000
+DOWN
+DELAY 1000
+DOWN
+DELAY 1000
+ENTER
+DELAY 1000
+DOWN
+UP
+ENTER
+DELAY 1000
+RIGHT
+ENTER
+DELAY 1000
+ESC
+REM REPEAT 2
+DELAY 1000
+GUI s
+DELAY 1000
+DOWN
+DOWN
+LEFT
+ENTER
+DELAY 3000
+STRING R
+DELAY 2000
+STRING Blah vz test
+DELAY 1000
+DOWN
+TAB
+DELAY 1000
+STRING Starting Cell No Data SMS Test.
+ENTER
+DELAY 1000
+STRING Char Count 141
+ENTER
+DELAY 1000
+STRING GixUp0N6mBZj7Q7uWN1G0Vec6XpJl@L2Y0AxQ7150ks9U3Uo3vz5lMdIL7M3R5gEuY7lT79@x5m7OR33Yy8xi4Vr2C190om6icZSSOsH5s2lfV9cAKFH35C0g3i8t21ag6t4AdFuxH61
+ENTER
+DELAY 1000
+STRING Char Count 149
+ENTER
+DELAY 1000
+STRING jk97nnLdjjpH9vbSuE83j6323f6wb9Wnu460Q84R66Kvg5KUTWb46RIvGg0DW4ULnZgg79I1iimsfP4N4n957vK73C5107wJU96kdMfHgj2nGSOJzcybTq74K83aq7VNmdo1V1Xd2aCa80qa@Qby
+ENTER
+DELAY 1000
+STRING Char Count 160+
+ENTER
+DELAY 1000
+STRING jjjjjjjjjsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddasdsdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdsaddasdasdasdasdasdasdsadasdasdasdasdasdasdasdasdasdasdadasdasdasdasdasdasdasdadasdsadjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdjdjdjdjdjdjdjdjdjdjdjasjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjjsjsjsjsjsjsjsjsjsjsjsjsjsjjjjjjfffffjfjfjfjfjfjfjfjfjfjfjffjfjfjfjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjffjfjfjfjfjfjfjfjfjfjfjfjfjfjjfjffjjjjjjjfffffjfjfjfjfjfjfjfjfjfjfjffjfjfjfjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjffjfjfsdfsadfsdfasfsdfsdafsdfdsafsdafsdfsdfdsfsdafsadfsdffsdfsdfsdfsdafsdafsadfdsfdsafsdfsdafsadfsafasfdsfdsafsdafsdafsdafsadfsfsdfsdfsfsafsdfsdfsdfsdfsfaj
+DELAY 5500
+ENTER
+STRING Char Digit's
+ENTER
+DELAY 1000
+STRING 1234567890
+ENTER
+STRING Char Special's
+ENTER
+DELAY 1000
+STRING !@#$%^
+ENTER
+DELAY 1000
+STRING Pipe Char's
+ENTER
+DELAY 1000
+STRING How about some pipes | maybe? | maybe not?
+ENTER
+DELAY 500
+ESC
+DELAY 1000
+ESC
+DELAY 500
+ESC
+DELAY 500
+ESC
+REM Phase Six - Turn Cel Data back on and Wifi Back On
+REM Turn Cell Data Back On
+DELAY 2000
+STRING o
+DELAY 500
+STRING pen settings
+DELAY 1000
+ENTER
+DELAY 1000
+DOWN
+RIGHT
+ENTER
+DELAY 1000
+DOWN
+DOWN
+ENTER
+DELAY 1000
+DOWN
+DELAY 1000
+ENTER
+DELAY 1000
+ESC
+DELAY 1000
+ESC
+ESC
+DELAY 500
+ESC
+REM Turn Wifi Back On
+DELAY 500
+STRING w
+DELAY 2000
+STRING ifi off
+ENTER
+DELAY 1000
+DOWN
+DOWN
+DOWN
+RIGHT
+ENTER
+DELAY 500
+UP
+RIGHT
+ENTER
+DELAY 500
+ESC
+DELAY 500
+ESC
