@@ -11,7 +11,7 @@ public class Whitespace {
     /**
      * From http://stackoverflow.com/questions/4731055/whitespace-matching-regex-java
      */
-    protected static String whitespaceChars = ""       /* dummy empty string for homogeneity */
+    protected final static String whitespaceChars = ""       /* dummy empty string for homogeneity */
             + "\\u0009" // CHARACTER TABULATION
             + "\\u000A" // LINE FEED (LF)
             + "\\u000B" // LINE TABULATION
@@ -42,7 +42,7 @@ public class Whitespace {
     /**
      * From http://stackoverflow.com/questions/4731055/whitespace-matching-regex-java
      */
-    protected static String whitespaceCharClass = "[" + whitespaceChars + "]";
+    protected final static String whitespaceCharClass = "[" + whitespaceChars + "]";
 
     public static String getWhitespaceCharClass() {
         return whitespaceCharClass;
