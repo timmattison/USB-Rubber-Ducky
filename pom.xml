@@ -84,23 +84,23 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>3.0</version>
+            <version>4.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-assistedinject</artifactId>
-            <version>3.0</version>
+            <version>4.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-multibindings</artifactId>
-            <version>3.0</version>
+            <version>4.0</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -110,12 +110,12 @@
         <dependency>
             <groupId>commons-cli</groupId>
             <artifactId>commons-cli</artifactId>
-            <version>1.2</version>
+            <version>1.3.1</version>
         </dependency>
         <dependency>
             <groupId>ru.concerteza.buildnumber</groupId>
             <artifactId>maven-jgit-buildnumber-plugin</artifactId>
-            <version>1.2.9</version>
+            <version>1.2.10</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
